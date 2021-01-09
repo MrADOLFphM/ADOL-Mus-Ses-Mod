@@ -55,6 +55,7 @@ module.exports = {
   },
   MAIN: {
     ALREADY_AFK: "You are already afk!",
+
     NOW_AFK: 'You are now afk!\nReason: {reason || "AFK"}',
     COVID_STATS: "Coronavirus Stats",
     CONFIRMED_COVID_CASES: "Confirmed Cases",
@@ -71,5 +72,15 @@ module.exports = {
       "I couldn't find that country. That country either doesn't exist, was typed incorrectly or has no confirmed cases. For a list of supported country names please type `c.countries`",
     SUGGEST_CHANNEL_NOT_SET: "The suggestion channel hasnt been set yet!",
     GIVE_SUGGESTION: "Please Give the Suggestion",
+    NO_MOVIE_PROVIDED: "Please give the name of movie or series",
+  },
+  IMDB: {
+    RATINGS: "Ratings",
+    COUNTRY: "Country",
+    GENRES: "Genres",
+    AWARDS: "Awards",
+    LANGUAGES: "Languages",
+    RELEASED: "Released",
+    TYPE: "Type",
   },
 };

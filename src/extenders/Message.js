@@ -11,6 +11,11 @@ module.exports = Structures.extend(
       embed() {
         return new MessageEmbed();
       }
+      async translate(msg, cat) {
+        const e = await this.guild.getLang();
+        if (!cat) return e[msg];
+        if (cat) return e[cat][msg];
+      }
       async send(content, options) {
         const transformedOptions = APIMessage.transformOptions(
           content,

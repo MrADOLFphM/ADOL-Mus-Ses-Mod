@@ -1,5 +1,4 @@
 const { MessageEmbed } = require("discord.js");
-const { imdbKey } = require("../../../config.json");
 
 module.exports = {
   name: "imdb",
@@ -9,11 +8,9 @@ module.exports = {
     const search = args.join(" ");
 
     if (!args.length) {
-      return message.channel.send("Please give the name of movie or series");
-    }
-
-    if (imdbKey === "") {
-      return message.channel.send("imdbKey is required for this command.");
+      return message.channel.send(
+        message.translate("NO_MOVIE_PROVIDED", "MAIN")
+      );
     }
 
     try {
@@ -25,13 +22,13 @@ module.exports = {
         .setColor("BLUE")
         .setThumbnail(movie.poster)
         .setDescription(movie.plot)
-        .addField("Ratings", movie.rating, true)
-        .addField("Country", movie.country, true)
-        .addField("Genres", movie.genres, true)
-        .addField("Awards", movie.awards, true)
-        .addField("Languages", movie.languages, true)
-        .addField("Released", released, true)
-        .addField("Type", movie.type, true);
+        .addField(message.translate("RATINGS", "IMDB"), movie.rating, true)
+        .addField(message.translate("COUNTRY", "IMDB"), movie.country, true)
+        .addField(message.translate("GENRES", "IMDB"), movie.genres, true)
+        .addField(message.translate("AWARDS", "IMDB"), movie.awards, true)
+        .addField(message.translate("LANGUAGES", "IMDB"), movie.languages, true)
+        .addField(message.translate("RELEASED", "IMDB"), released, true)
+        .addField(message.translate("TYPE", "IMDB"), movie.type, true);
 
       message.channel.send({ embed });
     } catch (e) {

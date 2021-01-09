@@ -16,7 +16,7 @@ const client = new Discord.Client({
   disableMentions: "everyone",
   partials: ["MESSAGE", "REACTION", "USER", "GUILD_MEMBER"],
 });
-client.setMaxListeners(20);
+client.setMaxListeners(50);
 
 require("./utils/user")(client);
 const { Player } = require("discord-player");
