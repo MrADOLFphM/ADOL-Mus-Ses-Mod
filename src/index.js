@@ -8,15 +8,16 @@ const server = http.createServer(app);
 const { addUserMoney } = require("./utils/economy");
 const fs = require("fs");
 const token = require(`../config.json`);
-const { Client, MessageEmbed, Guild, ShardingManager } = require("discord.js");
+const { MessageEmbed } = require("discord.js");
 const { GiveawaysManager } = require("discord-giveaways");
+require("./extenders/Guild");
+require("./extenders/Message");
 const client = new Discord.Client({
   disableMentions: "everyone",
   partials: ["MESSAGE", "REACTION", "USER", "GUILD_MEMBER"],
-  ws: {
-    properties: { $browser: "Discord Android" },
-  },
 });
+client.setMaxListeners(20);
+
 require("./utils/user")(client);
 const { Player } = require("discord-player");
 const emotes = require("./JSON/emojis.json");
@@ -30,6 +31,8 @@ const { sendErrorLog } = require("./utils/functions");
 require("./utils/config.js")(client);
 const check = client.emojis.cache.find((emoji) => emoji.name === "andoiCheck");
 const cross = client.emojis.cache.find((emoji) => emoji.name === "andoiCross");
+const utils = require("./utils/functions");
+
 client.cross = cross;
 client.check = check;
 client.items = new ItemManager();
@@ -39,6 +42,8 @@ client.player = player;
 client.commands = new Discord.Collection();
 client.cooldowns = new Discord.Collection();
 client.aliases = new Discord.Collection();
+client.phone = new Discord.Collection();
+client.utils = utils;
 client.queue = new Map();
 client.snipes = new Map();
 client.afk = new Map();
@@ -81,30 +86,30 @@ if (dblkey && dblkey.length !== 0) {
     }, 1800000);
   });
 }
-const GiveawayManagerWithShardSupport = class extends GiveawaysManager {
-  // Refresh storage method is called when the database is updated on one of the shards
-  async refreshStorage() {
-    // This should make all shard refreshing their cache with the updated database
-    return client.shard.broadcastEval(() =>
-      this.giveawaysManager.getAllGiveaways()
-    );
-  }
-};
 
 // Create a new instance of your new class
-const manager = new GiveawayManagerWithShardSupport(client, {
+const manager = new GiveawaysManager(client, {
+  hasGuildMembersIntent: true,
   storage: "./src/giveaways.json",
-  updateCountdownEvery: 10000,
+  updateCountdownEvery: 5000,
   default: {
+    embedColor: "#7289DA",
     botsCanWin: false,
-    exemptPermissions: ["MANAGE_MESSAGES", "ADMINISTRATOR"],
-    embedColor: "#FF0000",
     reaction: "🎉",
+    embedColorEnd: "#7289DA",
   },
 });
-
 client.giveawaysManager = manager;
-
+manager.on("giveawayEnded", (giveaway, winners) => {
+  winners.forEach((member) => {
+    member.send(
+      "Congratulations, " +
+        member.user.username +
+        ", you won: " +
+        giveaway.prize
+    );
+  });
+});
 ["command"].forEach((handler) => {
   require(`./handlers/${handler}`)(client);
 });

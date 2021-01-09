@@ -53,12 +53,20 @@ module.exports = {
       return message.channel.send(
         "You don't have enough money to buy this item!"
       );
-
-    setUserInventory(guildId, message.author.id, item.name);
-    removeUserMoney(message.author.id, item.price);
-
-    message.channel.send(
-      `Successfully bought **${item.name}** paid **${item.price}**`
-    );
+    if (!itemss.includes(item)) {
+      setUserInventory(guildId, message.author.id, item.name);
+      removeUserMoney(message.author.id, item.price);
+      message.channel.send(
+        `Successfully bought **${item.name}** paid **${item.price}**`
+      );
+    } else {
+      const u = await client.getUser(user.id);
+      u.inventory.push(item);
+      u.save();
+      removeUserMoney(message.author.id, item.price);
+      message.channel.send(
+        `Successfully bought **${item.name}** paid **${item.price}**`
+      );
+    }
   },
 };

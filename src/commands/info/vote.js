@@ -1,5 +1,3 @@
-const { MessageEmbed } = require("discord.js");
-
 module.exports = {
   name: "vote",
   description: "vote for me!",
@@ -7,17 +5,13 @@ module.exports = {
   usage: "vote",
   aliases: ["invite", "support"],
   run: async (client, message, args) => {
-    const embed = new MessageEmbed()
-      .setTitle("vote for me on discord boat list!")
-      .setURL("https://discord.boats/bot/728694375739162685/vote")
+    const embed = message
+      .embed()
+      .setTitle("Vote for me on top.gg")
       .setDescription(
-        "[invite me!](https://discord.com/api/oauth2/authorize?client_id=728694375739162685&permissions=0&scope=bot)"
+        "Voting gives you acces to 2 commands and a 1000 extra coins (2000 if weekend)"
       )
-      .addField(
-        "Need support?",
-        "[Support Server](https://discord.gg/jqm4Ybh)"
-      );
-
+      .setURL("https://top.gg/bot/728694375739162685");
     message.channel.send(embed);
   },
 };

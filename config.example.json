@@ -1,0 +1,22 @@
+{
+  "everyoneMention": false,
+  "hostedBy": true,
+  "owners": ["your id"],
+  "bugchannel": "channel id",
+  "imdbKey": "imdb api key here",
+  "configDefaultSettings": {
+    "levelMessage": false,
+    "prefix": "a!"
+  },
+  "userDefaultStats": {
+    "bank": 0,
+    "money": 0
+  },
+  "Token": "token here",
+  "Mongo": "mongoDB key here",
+  "news": "news api key here",
+  "dblkey": "",
+  "fortnite": "fortnite tracker key here",
+  "genius": "genius api key here",
+  "default_lang": "english"
+}

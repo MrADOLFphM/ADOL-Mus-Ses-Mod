@@ -19,28 +19,29 @@ module.exports = {
   run: async (client, message, args) => {
     if (!args[0]) {
       const totalStats = await covid.getAll();
+      const lang = await message.guild.getLang();
 
       const updatedTime = new Date(totalStats.updated);
 
       const embed = new Discord.MessageEmbed()
-        .setAuthor("Coronavirus Stats", client.user.displayAvatarURL())
+        .setAuthor(lang.MAIN.COVID_STATS, client.user.displayAvatarURL())
         .addField(
-          "Confirmed Cases",
+          lang.MAIN.CONFIRMED_COVID_CASES,
           `**${totalStats.cases.toLocaleString()}**`,
           true
         )
         .addField(
-          "Today Cases",
+          lang.MAIN.TODAY_COVID_CASES,
           `+${totalStats.todayCases.toLocaleString()}`,
           true
         )
         .addField(
-          "Today Deaths",
+          lang.MAIN.TODAY_COVID_DEATHS,
           `+${totalStats.todayDeaths.toLocaleString()}`,
           true
         )
         .addField(
-          "Active",
+          lang.MAIN.ACTIVE_COVID,
           `${totalStats.active.toLocaleString()} (${(
             (totalStats.active / totalStats.cases) *
             100
@@ -48,7 +49,7 @@ module.exports = {
           true
         )
         .addField(
-          "Recovered",
+          lang.MAIN.RECOVERED_COVID,
           `${totalStats.recovered.toLocaleString()} (${(
             (totalStats.recovered / totalStats.cases) *
             100
@@ -56,21 +57,25 @@ module.exports = {
           true
         )
         .addField(
-          "Deaths",
+          lang.MAIN.DEATHS_COVID,
           `${totalStats.deaths.toLocaleString()} (${(
             (totalStats.deaths / totalStats.cases) *
             100
           ).toFixed(2)}%)`,
           true
         )
-        .addField("Tests", `${totalStats.tests.toLocaleString()}`, true)
         .addField(
-          "Cases Per Mil",
+          lang.MAIN.TESTS_COVID,
+          `${totalStats.tests.toLocaleString()}`,
+          true
+        )
+        .addField(
+          lang.MAIN.CASES_PER_MIL_COVID,
           `${totalStats.casesPerOneMillion.toLocaleString()}`,
           true
         )
         .addField(
-          "Deaths Per Mil",
+          lang.MAIN.DEATHS_PER_MIL_COVID,
           `${totalStats.deathsPerOneMillion.toLocaleString()}`,
           true
         )
@@ -78,7 +83,9 @@ module.exports = {
           `https://xtrading.io/static/layouts/qK98Z47ptC-embed.png?newest=${Date.now()}`
         )
         .setColor("RANDOM")
-        .setFooter(`Last Updated: ${updatedTime}`);
+        .setFooter(
+          lang.MAIN.LAST_UPDATED_COVID.replace("{updatedTime}", updatedTime)
+        );
       message.channel.send(embed);
     } else {
       let countryInput = args.join(" ").toProperCase();
@@ -87,9 +94,7 @@ module.exports = {
         countryInput = "Lao People's Democratic Republic";
       const country = await covid.getCountry({ country: countryInput });
       if (!country)
-        return message.channel.send(
-          "I couldn't find that country. That country either doesn't exist, was typed incorrectly or has no confirmed cases. For a list of supported country names please type `c.countries`"
-        );
+        return message.channel.send(lang.MAIN.COUNTRY_NOT_FOUND_COVID);
 
       let wikiName;
       const wikiAliases = {
@@ -136,22 +141,22 @@ module.exports = {
       const embed = new Discord.MessageEmbed()
         .setAuthor(country.country)
         .addField(
-          "Confirmed Cases",
+          lang.MAIN.CONFIRMED_COVID_CASES,
           `**${country.cases.toLocaleString()}**`,
           true
         )
         .addField(
-          "Today Cases",
+          lang.MAIN.TODAY_COVID_CASES,
           `+${country.todayCases.toLocaleString()}`,
           true
         )
         .addField(
-          "Today Deaths",
+          lang.MAIN.TODAY_COVID_DEATHS,
           `+${country.todayDeaths.toLocaleString()}`,
           true
         )
         .addField(
-          "Active",
+          lang.MAIN.ACTIVE_COVID,
           `${country.active.toLocaleString()} (${(
             (country.active / country.cases) *
             100
@@ -159,7 +164,7 @@ module.exports = {
           true
         )
         .addField(
-          "Recovered",
+          lang.MAIN.RECOVERED_COVID,
           `${country.recovered.toLocaleString()} (${(
             (country.recovered / country.cases) *
             100
@@ -167,21 +172,25 @@ module.exports = {
           true
         )
         .addField(
-          "Deaths",
+          lang.MAIN.DEATHS_COVID,
           `${country.deaths.toLocaleString()} (${(
             (country.deaths / country.cases) *
             100
           ).toFixed(2)}%)`,
           true
         )
-        .addField("Tests", `${country.tests.toLocaleString()}`, true)
         .addField(
-          "Cases Per Mil",
+          lang.MAIN.TESTS_COVID,
+          `${country.tests.toLocaleString()}`,
+          true
+        )
+        .addField(
+          lang.MAIN.CASES_PER_MIL_COVID,
           `${country.casesPerOneMillion.toLocaleString()}`,
           true
         )
         .addField(
-          "Deaths Per Mil",
+          lang.MAIN.DEATHS_PER_MIL_COVID,
           `${country.deathsPerOneMillion.toLocaleString()}`,
           true
         )
@@ -193,7 +202,9 @@ module.exports = {
           }/flat/64.png`
         )
         .setColor("RANDOM")
-        .setFooter(`Last Updated: ${updatedTime}`);
+        .setFooter(
+          lang.MAIN.LAST_UPDATED_COVID.replace("{updatedTime}", updatedTime)
+        );
       if (wikiImage) embed.setImage(wikiImage);
       message.channel.send(embed);
     }

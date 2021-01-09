@@ -18,7 +18,17 @@ module.exports = {
       : e.commands.map((cmd) => {
           return { name: cmd, category: "disabled" };
         });
-    const commands = [...client.commands.array(), ...disabledCmds];
+    const customCmds = !e.custom[0]
+      ? [{ category: "custom", name: "None" }]
+      : e.custom.map((cmd) => {
+          return { name: cmd.name, category: "custom" };
+        });
+
+    const commands = [
+      ...client.commands.array(),
+      ...disabledCmds,
+      ...customCmds,
+    ];
     if (args[0] && categories.includes(args[0])) {
       const cmds = commands
         .filter(({ category }) => category === args[0].toLowerCase())
@@ -53,9 +63,6 @@ module.exports = {
           command.aliases ? "`" + command.aliases + "`" : "not provided"
         )
         .addField("cooldown", command.cooldown ? command.cooldown : "None");
-      if (command.options.size !== 0) {
-        embed.addField(`Options:`, command.options.join(", "));
-      }
       embed
         .setThumbnail(client.user.displayAvatarURL())
         .setColor("GREEN")
@@ -74,29 +81,105 @@ module.exports = {
         )
         .setThumbnail(client.user.displayAvatarURL());
 
-      let com = {};
-      for (let comm of commands) {
-        let category = comm.category || "Unknown";
-        let name = comm.name;
-
-        if (!com[category]) {
-          com[category] = [];
-        }
-        com[category].push(name);
+      const utilCmds = commands
+        .filter(({ category }) => category === "utility")
+        .map(({ name }) => name)
+        .join(", ");
+      const configCmds = commands
+        .filter(({ category }) => category === "config")
+        .map(({ name }) => name)
+        .join(", ");
+      const funCmds = commands
+        .filter(({ category }) => category === "fun")
+        .map(({ name }) => name)
+        .join(", ");
+      const infoCmds = commands
+        .filter(({ category }) => category === "info")
+        .map(({ name }) => name)
+        .join(", ");
+      const musicCmds = commands
+        .filter(({ category }) => category === "music")
+        .map(({ name }) => name)
+        .join(", ");
+      const levelCmds = commands
+        .filter(({ category }) => category === "levels")
+        .map(({ name }) => name)
+        .join(", ");
+      const ownerCmds = commands
+        .filter(({ category }) => category === "owner")
+        .map(({ name }) => name)
+        .join(", ");
+      const ticketCmds = commands
+        .filter(({ category }) => category === "tickets")
+        .map(({ name }) => name)
+        .join(", ");
+      const modCms = commands
+        .filter(({ category }) => category === "moderation")
+        .map(({ name }) => name)
+        .join(", ");
+      const searchCmds = commands
+        .filter(({ category }) => category === "search")
+        .map(({ name }) => name)
+        .join(", ");
+      const rrCmd = commands
+        .filter(({ category }) => category === "reactions")
+        .map(({ name }) => name)
+        .join(", ");
+      const imageCmds = commands
+        .filter(({ category }) => category === "image")
+        .map(({ name }) => name)
+        .join(", ");
+      const gameCmds = commands
+        .filter(({ category }) => category === "games")
+        .map(({ name }) => name)
+        .join(", ");
+      const giveCmds = commands
+        .filter(({ category }) => category === "giveaway")
+        .map(({ name }) => name)
+        .join(", ");
+      const animalCmds = commands
+        .filter(({ category }) => category === "animal")
+        .map(({ name }) => name)
+        .join(", ");
+      const ecoCmds = commands
+        .filter(({ category }) => category === "economy")
+        .map(({ name }) => name)
+        .join(", ");
+      const dis = commands
+        .filter(({ category }) => category === "disabled")
+        .map(({ name }) => name)
+        .join(", ");
+      const cus = commands
+        .filter(({ category }) => category === "custom")
+        .map(({ name }) => name)
+        .join(", ");
+      emx
+        .addField(`${client.emotes.config}Config`, `\`${configCmds}\``)
+        .addField(`${client.emotes.info}Info`, `\`${infoCmds}\``)
+        .addField(`${client.emotes.fun}Fun`, `\`${funCmds}\``);
+      if (!isBotOwner) {
+        emx.addField(
+          `${client.emotes.owner}Owner`,
+          `Ownly viewable by the owner!`
+        );
+      } else {
+        emx.addField(`${client.emotes.owner}Owner`, `\`${ownerCmds}\``);
       }
-
-      for (const [key, value] of Object.entries(com)) {
-        let category = key;
-
-        let desc = "```" + value.join(", ") + "```";
-        if (["nsfw"].includes(category) && !message.channel.nsfw) {
-          emx.addField(`NSFW`, "Channel is not nsfw");
-        } else if (category === "owner" && !isBotOwner) {
-          emx.addField(category.toLowerCase(), "Only for owners");
-        } else {
-          emx.addField(category.toLowerCase(), desc);
-        }
-      }
+      emx
+        .addField(`${client.emotes.levels}Levels`, `\`${levelCmds}\``)
+        .addField(`${client.emotes.music}Music`, `\`${musicCmds}\``)
+        .addField(`${client.emotes.utility}Utility`, `\`${utilCmds}\``)
+        .addField(`${client.emotes.economy}Economy`, `\`${ecoCmds}\``)
+        .addField(`${client.emotes.moderation}Moderation`, `\`${modCms}\``)
+        .addField(`${client.emotes.ticket}Ticket`, `\`${ticketCmds}\``)
+        .addField(`${client.emotes.search}Searching`, `\`${searchCmds}\``)
+        .addField(`${client.emotes.games}Games`, `\`${gameCmds}\``)
+        .addField(`${client.emotes.image}Image`, `\`${imageCmds}\``)
+        .addField(`${client.emotes.giveaway}Giveaway`, `\`${giveCmds}\``)
+        .addField(`${client.emotes.reaction}Reactions`, `\`${rrCmd}\``)
+        .addField(`${client.emotes.animal}Animal`, `\`${animalCmds}\``)
+        .addField(`${client.emotes.disabled}Disabled`, `\`${dis || "None"}\``)
+        .addField(`${client.emotes.custom}Custom`, `\`${cus}\``);
       return message.channel.send(emx);
     }
   },

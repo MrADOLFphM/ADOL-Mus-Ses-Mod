@@ -10,10 +10,6 @@ module.exports = model(
     autoRole: String,
     muteRole: String,
     suggestChan: String,
-    levelMessage: {
-      type: Boolean,
-      default: configDefaultSettings.levelMessage,
-    },
     modlog: { type: String, default: null },
     prefix: { type: String, default: configDefaultSettings.prefix },
     disabled: { type: Array, default: ["tickets"] },
@@ -35,5 +31,8 @@ module.exports = model(
     custom: { type: Array, default: [] },
     starboardchan: { type: String, default: null },
     starboardnum: { type: Number, default: 3 },
+    premium: { type: Boolean, default: false },
+    lan: { type: String, default: "english" },
+    cases: { type: Number, default: 0 },
   })
 );

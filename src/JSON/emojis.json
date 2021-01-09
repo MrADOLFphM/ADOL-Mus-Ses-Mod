@@ -1,6 +1,23 @@
 {
-  "music": ":musical_note:",
+  "music": "<a:DiscordMusic_GIF:793432640530546698>",
   "queue": ":bar_chart:",
-  "error": ":x:",
-  "success": ":white_check_mark:"
+  "giveaway": "<a:Giveaway:793432979728629790>",
+  "error": "<a:andoiCross:786561514122641408>",
+  "success": "<a:andoiCheck:786561775705129040>",
+  "config": "<:settings:793432139520671775>",
+  "utility": "🛠️",
+  "search": "<:atlanta_search:793432704585826334>",
+  "games": "<:Game:793433038884175893>",
+  "moderation": "<:moderator:793432291127853077>",
+  "economy": "<:atlanta_economy_category:793433098523770891>",
+  "fun": "<:atlanta_fun_category:793432549439438848>",
+  "animal": "🐮",
+  "info": "<:Information:793432949843427328>",
+  "levels": "<:level:793447264470171669>",
+  "owner": "<:ownercrown:793447155821445120>",
+  "image": "<:atlanta_images_category:793447194630815765>",
+  "reaction": "<:add_reaction:793432417041907713>",
+  "disabled": "<:stop:793453455158935652>",
+  "ticket": "<:supportticket:793432370912165899>",
+  "custom": "<:custom:757978989926154411>"
 }

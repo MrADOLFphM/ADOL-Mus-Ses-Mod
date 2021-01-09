@@ -7,6 +7,7 @@ module.exports = {
   usage: "unban <userID>",
   run: async (client, message, args) => {
     const conf = await client.getConfig(message.guild);
+    const lang = await message.guild.getLang();
     const target = args[0];
 
     if (
@@ -14,16 +15,16 @@ module.exports = {
       !message.member.hasPermission("ADMINISTRATOR")
     )
       return message.channel.send(
-        `Sorry ${message.author.username}, but you don't have the perm BAN MEMBERS.`
+        lang.NO_PERMS.replace("{perm}", "BAN_MEMBERS")
       );
 
     const banList = await message.guild.fetchBans();
     const bannedUser = banList.get(target);
 
-    if (!target) return message.channel.send("You need to specify a user id.");
-    if (isNaN(target)) return message.channel.send("This is not a user id...");
+    if (!target) return message.channel.send(lang.MODERATION.NO_ID);
+    if (isNaN(target)) return message.channel.send(lang.MODERATION.NO_ID);
 
-    let reasonUnBanned = args.slice(1).join(" ") || "Reason not given.";
+    let reasonUnBanned = args.slice(1).join(" ") || lang.NONE;
 
     message.guild.members.unban(target, reasonUnBanned);
 

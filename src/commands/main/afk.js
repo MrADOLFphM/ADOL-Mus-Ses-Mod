@@ -6,23 +6,30 @@ module.exports = {
   category: "utility",
   description: "",
   run: async (client, message, args) => {
-    if (client.afk.has(message.author.id)) {
-      return message.channel.send("You are already afk!");
+    const lang = await message.guild.getLang();
+    const user = await client.getUser(message.author);
+    if (user.afk.afk) {
+      await client.updateUser(message.author, {
+        afk: { afk: false, reason: null },
+      });
+      return message.send("Your no longer afk");
     }
 
     let reason = args.join(" ");
 
     let options = {
-      reason: `${reason || "AFK"}`,
-      id: message.author.id,
-      justafk: true,
+      reason: `${reason || lang.NONE}`,
+      afk: true,
     };
-
-    client.afk.set(message.author.id, options);
+    await client.updateUser(message.author, {
+      afk: { afk: true, reason: options.reason },
+    });
 
     const embed = new MessageEmbed()
       .setTimestamp()
-      .setDescription(`You are now afk!\nReason: ${reason || "AFK"}`)
+      .setDescription(
+        lang.MAIN.NOW_AFK.replace('{reason || "AFK"}', reason || options.reason)
+      )
       .setColor("BLUE");
 
     message.channel.send(embed);

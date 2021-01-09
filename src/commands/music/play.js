@@ -16,6 +16,6 @@ module.exports = {
         `${client.emotes.error} - Please indicate the title of a song !`
       );
 
-    client.player.play(message, args.join(" "));
+    client.player.play(message, args.join(" "), { firstResult: true });
   },
 };

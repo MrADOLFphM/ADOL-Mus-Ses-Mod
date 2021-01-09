@@ -5,11 +5,10 @@ module.exports = (client) => {
         message.guild.members.cache.get(args[0]) ||
         message.guild.members.cache.find((m) => m.user.id === args[0]) ||
         message.guild.members.cache.find(
-          (m) => m.user.tag.toLowerCase() === args.join(" ").toLocaleLowerCase()
+          (m) => m.user.tag.toLowerCase() === args[0].toLowerCase()
         ) ||
         message.guild.members.cache.find(
-          (m) =>
-            m.user.username.toLowerCase() === args.join(" ").toLocaleLowerCase()
+          (m) => m.user.username.toLowerCase() === args[0].toLowerCase()
         ) ||
         (allowAuthor === true ? message.member : null)
     );
@@ -20,7 +19,7 @@ module.exports = (client) => {
       message.guild.channels.cache.get(args[0]) ||
       message.guild.channels.cache.find((m) => m.id === args[0]) ||
       message.guild.channels.cache.find(
-        (m) => m.name.toLowerCase() === args[0].toLocaleLowerCase()
+        (m) => m.name.toLowerCase() === args[0].toLowerCase()
       ) ||
       (allowChannel === true ? message.channel : null)
     );

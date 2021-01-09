@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const Levels = require("../../modules/xp");
+const Levels = require("../../modules/discord-xp");
 module.exports = {
   name: "leaderboard",
   description: "leaderboard!",
@@ -11,7 +11,7 @@ module.exports = {
     if (rawLeaderboard.length < 1)
       return message.reply("Nobody's in leaderboard yet.");
 
-    const leaderboard = Levels.computeLeaderboard(client, rawLeaderboard); // We process the leaderboard.
+    const leaderboard = Levels.computeLeaderboard(client, rawLeaderboard, true); // We process the leaderboard.
 
     const lb = leaderboard.map(
       (e) =>

@@ -6,5 +6,7 @@ module.exports = model(
     name: { type: String, default: "Andoi" },
     commandssincerestart: { type: Number, required: true },
     total: { type: Number, default: 0 },
+    channel: String,
+    lastMsg: String,
   })
 );

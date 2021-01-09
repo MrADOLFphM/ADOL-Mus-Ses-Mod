@@ -7,41 +7,34 @@ module.exports = {
   description: "Warn anyone who do not obey the rules",
   run: async (client, message, args) => {
     const conf = await client.getConfig(message.guild);
+    const lang = await message.guild.getLang();
     if (!message.member.hasPermission("ADMINISTRATOR")) {
       return message.channel.send(
-        "You should have admin perms to use this command!"
+        lang.NO_PERMS.replace("{perm}", "ADMINISTRATOR")
       );
     }
 
     const user = message.mentions.members.first();
 
     if (!user) {
-      return message.channel.send(
-        "Please Mention the person to who you want to warn - warn @mention <reaosn>"
-      );
+      return message.channel.send(lang.MODERATION.NO_WARN_USER);
     }
 
     if (message.mentions.users.first().bot) {
-      return message.channel.send("You can not warn bots");
+      return message.channel.send(lang.MODERATION.WARN_BOT);
     }
 
     if (message.author.id === user.id) {
-      return message.channel.send("You can not warn yourself");
+      return message.channel.send(lang.MODERATION.CANNOT_WARN_YOURSELF);
     }
 
     if (user.id === message.guild.owner.id) {
-      return message.channel.send(
-        "You jerk, how you can warn server owner -_-"
-      );
+      return message.channel.send(lang.MODERATION.WARN_OWNER);
     }
 
     const reason = args.slice(1).join(" ");
 
-    if (!reason) {
-      return message.channel.send(
-        "Please provide reason to warn - warn @mention <reason>"
-      );
-    }
+    if (!reason) reason = lang.NONE;
 
     let warnings = await warnModel.findOne({
       GuildID: message.guild.id,
@@ -50,9 +43,9 @@ module.exports = {
 
     if (warnings === 3) {
       return message.channel.send(
-        `${
-          message.mentions.users.first().username
-        } already reached his/her limit with 3 warnings`
+        `${message.mentions.users.first().username} ${
+          lang.MODERATION.WARN_LIMIT
+        }`
       );
     }
 
@@ -65,45 +58,44 @@ module.exports = {
       }); //kk
       aaa.save();
       user.send(
-        `You have been warned in **${message.guild.name}** for ${reason}`
+        lang.MODERATION.WARN_DM.replace("{guild}", message.guild.name).replace(
+          "{reason}",
+          reason
+        )
       );
       await message.channel.send(
-        `You warned **${
-          message.mentions.users.first().username
-        }** for ${reason}`
+        lang.MODERATION.WARN_SUCCES.replace(
+          "{user}",
+          user.user.username
+        ).replace("{reason}", reason)
       );
     } else if (warnings !== null) {
       warnings.warnings.push(reason);
       warnings.moderator.push(message.author.id);
       warnings.save();
       user.send(
-        `You have been warned in **${message.guild.name}** for ${reason}`
+        lang.MODERATION.WARN_DM.replace("{guild}", message.guild.name).replace(
+          "{reason}",
+          reason
+        )
       );
       await message.channel.send(
-        `You warned **${
-          message.mentions.users.first().username
-        }** for ${reason}`
+        lang.MODERATION.WARN_SUCCES.replace(
+          "{user}",
+          user.user.username
+        ).replace("{reason}", reason)
       );
     }
     let channel = conf.modlog;
     if (!channel) return;
-
-    const sembed = new MessageEmbed()
-      .setColor(redlight)
-      .setTimestamp()
-      .setThumbnail(target.user.displayAvatarURL({ dynamic: true }))
-      .setFooter(message.guild.name, message.guild.iconURL())
-      .setAuthor(`${message.guild.name} Modlogs`, message.guild.iconURL())
-      .addField("**Moderation**", "report")
-      .addField("**User Reported**", `${user}`)
-      .addField("**User ID**", `${user.user.id}`)
-      .addField("**Reported By**", `${message.member}`)
-      .addField("**Reported in**", `${message.channel}`)
-      .addField("**Reason**", `**${reason || "No Reason"}**`)
-      .addField("**Date**", message.createdAt.toLocaleString());
-
-    var sChannel = message.guild.channels.cache.get(channel);
-    if (!sChannel) return;
-    sChannel.send(sembed);
+    await client.emit(
+      "modlog",
+      message.guild,
+      channel,
+      user,
+      reason,
+      lang.MODERATION.WARN,
+      message.member.user
+    );
   },
 };

@@ -9,12 +9,13 @@ module.exports = {
   run: async (client, message, args) => {
     let e = await client.getConfig(message.guild);
     let sugChannel = e?.suggestChan;
+    const lang = await message.guild.getLang();
     if (!sugChannel) {
-      return message.channel.send("The suggestion channel hasnt been set yet!");
+      return message.channel.send(lang.MAIN.SUGGEST_CHANNEL_NOT_SET);
     }
 
     if (!args.length) {
-      return message.channel.send("Please Give the Suggestion");
+      return message.channel.send(lang.MAIN.GIVE_SUGGESTION);
     }
 
     let embed = new MessageEmbed()

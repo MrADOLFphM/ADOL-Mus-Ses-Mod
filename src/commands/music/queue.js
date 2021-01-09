@@ -16,10 +16,12 @@ module.exports = {
       return message.channel.send(
         `${client.emotes.error} - No songs currently playing !`
       );
-
-    message.channel.send(
-      `**Server queue - ${message.guild.name} ${client.emotes.queue}**\nCurrent : ${queue.playing.title} | ${queue.playing.author}\n\n` +
-        (queue.tracks
+    const embed = new MessageEmbed()
+      .setTitle(
+        `Server queue - ${message.guild.name} ${client.emotes.queue}**\nCurrent : ${queue.playing.title} | ${queue.playing.author}\n\n`
+      )
+      .setDescription(
+        queue.tracks
           .map((track, i) => {
             return `**#${i + 1}** - ${track.title} | ${
               track.author
@@ -31,7 +33,8 @@ module.exports = {
             queue.tracks.length > 5
               ? `And **${queue.tracks.length - 5}** other songs...`
               : `In the playlist **${queue.tracks.length}** song(s)...`
-          }`)
-    );
+          }`
+      );
+    message.channel.send();
   },
 };

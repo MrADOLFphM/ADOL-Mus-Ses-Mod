@@ -4,7 +4,7 @@ module.exports = model(
   "covid",
   new Schema({
     guild: String,
-    autopost: Boolean,
+    enabled: Boolean,
     channelID: String,
   })
 );

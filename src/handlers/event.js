@@ -1,22 +1,15 @@
-const { readdirSync } = require("fs");
+const glob = require("glob");
+const path = require("path");
 
 module.exports = (client) => {
-  const eventFiles = readdirSync("./src/events/").filter((file) =>
-    file.endsWith(".js")
-  );
+  const eventFiles = glob.sync("./src/events/**/*.js");
+  for (const file of eventFiles) {
+    const event = require(path.resolve(file));
 
-  eventFiles.forEach((file) => {
-    const event = require(`../events/${file}`);
-    if (!event.execute)
-      throw new TypeError(
-        `[ERROR]: execute function is required for events! (${file})`
-      );
-
-    if (!event.name)
-      throw new TypeError(`[ERROR]: name is required for events! (${file})`);
+    if (!event.execute) {
+      throw new Error("Execute function is required!");
+    }
 
     client.on(event.name, event.execute.bind(null, client));
-
-    delete require.cache[require.resolve(`../events/${file}`)];
-  });
+  }
 };

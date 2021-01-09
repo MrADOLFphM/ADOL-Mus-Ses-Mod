@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-
+const fetch = require("node-fetch");
 const yes = ["yes", "y", "ye", "yea", "correct"];
 const no = ["no", "n", "nah", "nope", "fuck off"];
 const errorLogsChannelId = "749358808337481811";
@@ -103,11 +103,108 @@ function wrapText(ctx, text, maxWidth) {
 function delay(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
+const isInPhoneCall = (channel, client) => {
+  return client.phone.some(
+    (call) => call.origin.id === channel.id || call.recipient.id === channel.id
+  );
+};
+function shorten(text, maxLen = 2000) {
+  return text.length > maxLen ? `${text.substr(0, maxLen - 3)}...` : text;
+}
+function randomRange(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function trimArray(arr, maxLen = 10) {
+  if (arr.length > maxLen) {
+    const len = arr.length - maxLen;
+    arr = arr.slice(0, maxLen);
+    arr.push(`${len} more...`);
+  }
+  return arr;
+}
+
+function removeFromArray(arr, value) {
+  const index = arr.indexOf(value);
+  if (index > -1) return arr.splice(index, 1);
+  return arr;
+}
+
+function removeDuplicates(arr) {
+  if (arr.length === 0 || arr.length === 1) return arr;
+  const newArr = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (newArr.includes(arr[i])) continue;
+    newArr.push(arr[i]);
+  }
+  return newArr;
+}
+function firstUpperCase(text, split = " ") {
+  return text
+    .split(split)
+    .map((word) => `${word.charAt(0).toUpperCase()}${word.slice(1)}`)
+    .join(" ");
+}
+
+function formatNumber(number, minimumFractionDigits = 0) {
+  return Number.parseFloat(number).toLocaleString(undefined, {
+    minimumFractionDigits,
+    maximumFractionDigits: 2,
+  });
+}
+
+function formatNumberK(number) {
+  return number > 999
+    ? `${(number / 1000).toLocaleString(undefined, {
+        maximumFractionDigits: 1,
+      })}K`
+    : number;
+}
+
+function formatTime(time) {
+  const min = Math.floor(time / 60);
+  const sec = Math.floor(time - min * 60);
+  const ms = time - sec - min * 60;
+  return `${min}:${sec.toString().padStart(2, "0")}.${ms.toFixed(4).slice(2)}`;
+}
+
+function base64(text, mode = "encode") {
+  if (mode === "encode") return Buffer.from(text).toString("base64");
+  if (mode === "decode")
+    return Buffer.from(text, "base64").toString("utf8") || null;
+  throw new TypeError(`${mode} is not a supported base64 mode.`);
+}
+async function binary(text, mode = "encode") {
+  if (mode === "encode") {
+    const data = await fetch(
+      `https://some-random-api.ml/binary?text=${text}`
+    ).then((res) => res.json());
+    return data.binary;
+  }
+  if (mode === "decode") {
+    const data = await fetch(
+      `https://some-random-api.ml/binary?decode=${text}`
+    ).then((res) => res.json());
+    return data.text;
+  }
+}
 module.exports = {
   verify,
   list,
   delay,
+  randomRange,
+  removeFromArray,
+  removeDuplicates,
   promptMessage,
   wrapText,
   sendErrorLog,
+  isInPhoneCall,
+  shorten,
+  trimArray,
+  formatNumber,
+  formatNumberK,
+  formatTime,
+  base64,
+  firstUpperCase,
+  binary,
 };

@@ -1,6 +1,2 @@
-node_modules
-template/command.js
-json.sqlite
+/node_modules
 config.json
-package.json
-tovade.js

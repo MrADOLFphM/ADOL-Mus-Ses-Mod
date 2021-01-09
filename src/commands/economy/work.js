@@ -18,6 +18,8 @@ module.exports = {
     const amount = Math.floor(Math.random() * 500); // i dont have a brain so yeh
     const work = await getUserWork(user.id);
     const job = await getUserJob(user.id);
+    const data = await client.getUser(user);
+    const randomBank = Math.round(Math.random() * 500) + 1;
 
     if (work !== null && timeout - (Date.now() - work) > 0) {
       const timeUntillWork = moment(timeout - (Date.now() - work)).format(
@@ -42,6 +44,8 @@ module.exports = {
           .setColor("BLUE");
 
         message.channel.send(embed);
+        data.bankSpace += randomBank;
+        await data.save();
 
         addUserMoney(user.id, amount);
         setUserWork(user.id, Date.now());

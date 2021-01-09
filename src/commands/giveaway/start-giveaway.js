@@ -1,5 +1,6 @@
 const ms = require("ms");
 const { hostedBy, everyoneMention } = require("../../../config.json");
+const levels = require("../../modules/discord-xp");
 
 module.exports = {
   name: "start-giveaway",
@@ -18,36 +19,55 @@ module.exports = {
       );
     }
 
-    // Giveaway channel
-    let giveawayChannel = client.findChannel(message, args, false);
-    // If no channel is mentionned
-    if (!giveawayChannel) {
-      return message.channel.send(":x: You have to mention a valid channel!");
-    }
-
-    // Giveaway duration
-    let giveawayDuration = args[1];
-    // If the duration isn't valid
-    if (!giveawayDuration || isNaN(ms(giveawayDuration))) {
-      return message.channel.send(":x: You have to specify a valid duration!");
-    }
-
-    // Number of winners
-    let giveawayNumberWinners = args[2];
-    // If the specified number of winners is not a number
-    if (isNaN(giveawayNumberWinners) || parseInt(giveawayNumberWinners) <= 0) {
+    const filter = (res) => res.author.id === message.author.id;
+    let chn = await message.awaitReply(
+      "Mention the channel now you want the giveaway started in or type `cancel`",
+      filter
+    );
+    if (!chn) return message.channel.send("Cancelled you have no time left!");
+    if (chn === "cancel") return message.channel.send("cancelled");
+    chn = chn.replace("<", "").replace("#", "").replace(">", "");
+    let salon = message.guild.channels.cache.find((c) => c.id === chn);
+    if (!salon) {
       return message.channel.send(
-        ":x: You have to specify a valid number of winners!"
+        new Discord.MessageEmbed()
+          .setTitle("__ERROR__")
+          .setColor("#FF0000")
+          .setDescription(
+            "I can't find this channel. Are you sure that I can see it?"
+          )
       );
     }
+    let giveawayChannel = salon;
+
+    const msg = await message.awaitReply(
+      "How long does the giveaway has to last? `send now`",
+      filter
+    );
+    if (!msg) return message.channel.send("Cancelled you have no time left!");
+    if (msg === "cancel") return message.channel.send("Cancelled!");
+    const giveawayDuration = msg;
+
+    // Number of winners
+    const msg2 = await message.awaitReply(
+      "How much winners do you want? `send now`",
+      filter
+    );
+    if (!msg2) return message.channel.send("Cancelled you have no time left!");
+    if (isNaN(msg2) || parseInt(msg2) <= 0)
+      return message.channel.send("Thats not a valid number");
+    if (msg2 === "cancel") return message.channel.send("Cancelled!");
+    let giveawayNumberWinners = msg2;
 
     // Giveaway prize
-    let giveawayPrize = args.slice(3).join(" ");
-    // If no prize is specified
-    if (!giveawayPrize) {
-      return message.channel.send(":x: You have to specify a valid prize!");
-    }
+    const msg3 = await message.awaitReply(
+      "Whats the prize `send now`?",
+      filter
+    );
+    if (!msg3) return message.channel.send("Cancelled you have no time left!");
+    if (msg3 === "cancel") return message.channel.send("cancelled!");
 
+    const giveawayPrize = msg3;
     // Start the giveaway
     client.giveawaysManager.start(giveawayChannel, {
       // The giveaway duration
@@ -63,8 +83,7 @@ module.exports = {
         giveaway:
           (everyoneMention ? "@everyone\n\n" : "") + "🎉🎉 **GIVEAWAY** 🎉🎉",
         giveawayEnded:
-          (everyoneMention ? "@everyone\n\n" : "") +
-          "🎉🎉 **GIVEAWAY ENDED** 🎉🎉",
+          (everyoneMention ? "@everyone\n\n" : "") + "**GIVEAWAY ENDED**",
         timeRemaining: "Time remaining: **{duration}**!",
         inviteToParticipate: "React with 🎉 to participate!",
         winMessage: "Congratulations, {winners}! You won **{prize}**!",
@@ -82,7 +101,6 @@ module.exports = {
         },
       },
     });
-
     message.channel.send(`Giveaway started in ${giveawayChannel}!`);
   },
 };

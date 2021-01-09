@@ -5,11 +5,10 @@ module.exports = {
   description: "Returns a cat fact",
   category: "animal",
   run: async (client, message) => {
-    fetch("https://cat-fact.herokuapp.com/facts?animal_type=cat")
+    const fact = await fetch("https://catfact.ninja/fact")
       .then((res) => res.json())
-      .then(async (data) => {
-        const fact = data.all[Math.floor(Math.random() * data.all.length)];
-        await message.channel.send(fact.text);
-      });
+      .then(({ fact }) => fact);
+
+    message.channel.send(fact);
   },
 };
