@@ -26,10 +26,6 @@ module.exports = {
       return message.channel.send("The bot cannot be blacklisted");
     }
 
-    if (owners.includes(member.id)) {
-      return message.channel.send("The user cannot be a bot owner!");
-    }
-
     const users = await Blacklisted.find();
 
     switch (type) {

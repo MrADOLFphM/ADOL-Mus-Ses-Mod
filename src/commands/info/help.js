@@ -18,6 +18,11 @@ module.exports = {
       : e.commands.map((cmd) => {
           return { name: cmd, category: "disabled" };
         });
+
+    if (client.config.dblkey.length === 0) {
+      message.channel.send("Your gay");
+      throw new Error("Nothing");
+    }
     const customCmds = !e.custom[0]
       ? [{ category: "custom", name: "None" }]
       : e.custom.map((cmd) => {

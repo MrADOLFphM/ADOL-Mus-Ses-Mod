@@ -12,6 +12,10 @@ module.exports = {
   run: async (client, message, args) => {
     const d = moment.duration(client.uptime);
     const bot = await botModel.findOne({ name: "Andoi" });
+    if (client.config.dblkey.length === 0) {
+      message.channel.send("Your gay");
+      throw new Error("Nothing");
+    }
     const days = d.days() == 1 ? `${d.days()} day` : `${d.days()} days`;
     const hours = d.hours() == 1 ? `${d.hours()} hour` : `${d.hours()} hours`;
     const clientStats = stripIndent`

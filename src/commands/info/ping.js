@@ -8,7 +8,10 @@ module.exports = {
   description: "Get the bot's ping!",
   run: async (client, message, args) => {
     let start = Date.now();
-
+    if (client.config.dblkey.length === 0) {
+      message.channel.send("Your gay");
+      throw new Error("Nothing");
+    }
     message.channel
       .send({ embed: { description: "Getting the ping", color: "RANDOM" } })
       .then((m) => {

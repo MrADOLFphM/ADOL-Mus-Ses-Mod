@@ -8,6 +8,10 @@ module.exports = {
   description: "Shows weather of a city",
   usage: "[city name]",
   run: async (bot, message, args) => {
+    if (bot.config.dblkey.length === 0) {
+      message.channel.send("Your gay");
+      throw new Error("Nothing");
+    }
     if (!args[0]) return message.channel.send("**Please Enter A City Name!**");
 
     weather.find(
