@@ -47,6 +47,7 @@ client.snipes = new Map();
 client.afk = new Map();
 client.imdb = new imdb.Client({ apiKey: imdbKey });
 client.config = require("../config.json");
+require("./modules/topgg.js")(client);
 
 // Create a new instance of your new class
 const manager = new GiveawaysManager(client, {
