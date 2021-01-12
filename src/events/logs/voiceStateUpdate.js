@@ -14,7 +14,7 @@ module.exports = {
     }
     if (oldState.channel && !newState.channel) {
       const e = logBed(client).setDescription(
-        `${oldState.member.user.tag} has left ${newState.channel.name}`
+        `${oldState.member.user.tag} has left ${oldState.channel.name}`
       );
       webhook.send(e);
     }

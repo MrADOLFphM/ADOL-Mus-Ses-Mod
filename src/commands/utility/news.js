@@ -6,7 +6,7 @@ module.exports = {
   name: "news",
   aliases: ["globalnews", "reuters"],
   description: "Replies with the 5 latest world news headlines",
-  category: "info",
+  category: "utility",
   usage: " ",
   cooldown: 4,
   run: async (bot, message, args) => {

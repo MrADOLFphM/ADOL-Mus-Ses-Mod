@@ -13,6 +13,7 @@
     "aki-api": "^5.2.0",
     "canvacord": "^5.0.8",
     "canvas": "^2.6.1",
+    "canvas-constructor": "^4.1.0",
     "chalk": "^4.1.0",
     "chatcord": "0.0.5",
     "common-tags": "^1.8.0",

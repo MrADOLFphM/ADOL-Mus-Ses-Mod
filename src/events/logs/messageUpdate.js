@@ -9,6 +9,7 @@ module.exports = {
     if (!webhook) return;
 
     // not enabled
+    if (!newMsg.author) return;
 
     if (newMsg.author.id === client.user.id) return;
     if (newMsg.content === oldMsg.content) return;

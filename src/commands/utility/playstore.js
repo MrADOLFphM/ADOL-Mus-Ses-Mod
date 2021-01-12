@@ -4,7 +4,7 @@ const PlayStore = require("google-play-scraper");
 module.exports = {
   name: "playstore",
   aliases: ["googleplaystore", "googleps"],
-  category: "info",
+  category: "utility",
   description: "Show Playstore Application Information Of Your Given Name!",
   usage: "<Application Name>",
   run: async (bot, message, args) => {

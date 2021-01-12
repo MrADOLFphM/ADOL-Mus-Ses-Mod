@@ -3,6 +3,7 @@ const Invite =
   "https://discord.com/api/oauth2/authorize?client_id=728694375739162685&permissions=0&scope=bot";
 const categories = require("../../JSON/categories.json");
 const { owners } = require("../../../config.json");
+const paginate = require("../../modules/paginate");
 module.exports = {
   name: "help",
   description:
@@ -18,11 +19,6 @@ module.exports = {
       : e.commands.map((cmd) => {
           return { name: cmd, category: "disabled" };
         });
-
-    if (client.config.dblkey.length === 0) {
-      message.channel.send("Your gay");
-      throw new Error("Nothing");
-    }
     const customCmds = !e.custom[0]
       ? [{ category: "custom", name: "None" }]
       : e.custom.map((cmd) => {
@@ -76,116 +72,40 @@ module.exports = {
       return message.channel.send(embed);
     } else {
       //prefix variable is prefix
-      let emx = new MessageEmbed()
-        .setDescription("these are my commands")
-        .setColor("GREEN")
-        .setFooter(`do ${prefix}help <command name> for more info.`)
-        .addField(
-          "need support?",
-          `[Join our support server](https://discord.gg/jqm4Ybh) | [or invite me](${Invite})`
-        )
-        .setThumbnail(client.user.displayAvatarURL());
 
-      const utilCmds = commands
-        .filter(({ category }) => category === "utility")
-        .map(({ name }) => name)
-        .join(", ");
-      const configCmds = commands
-        .filter(({ category }) => category === "config")
-        .map(({ name }) => name)
-        .join(", ");
-      const funCmds = commands
-        .filter(({ category }) => category === "fun")
-        .map(({ name }) => name)
-        .join(", ");
-      const infoCmds = commands
-        .filter(({ category }) => category === "info")
-        .map(({ name }) => name)
-        .join(", ");
-      const musicCmds = commands
-        .filter(({ category }) => category === "music")
-        .map(({ name }) => name)
-        .join(", ");
-      const levelCmds = commands
-        .filter(({ category }) => category === "levels")
-        .map(({ name }) => name)
-        .join(", ");
-      const ownerCmds = commands
-        .filter(({ category }) => category === "owner")
-        .map(({ name }) => name)
-        .join(", ");
-      const ticketCmds = commands
-        .filter(({ category }) => category === "tickets")
-        .map(({ name }) => name)
-        .join(", ");
-      const modCms = commands
-        .filter(({ category }) => category === "moderation")
-        .map(({ name }) => name)
-        .join(", ");
-      const searchCmds = commands
-        .filter(({ category }) => category === "search")
-        .map(({ name }) => name)
-        .join(", ");
-      const rrCmd = commands
-        .filter(({ category }) => category === "reactions")
-        .map(({ name }) => name)
-        .join(", ");
-      const imageCmds = commands
-        .filter(({ category }) => category === "image")
-        .map(({ name }) => name)
-        .join(", ");
-      const gameCmds = commands
-        .filter(({ category }) => category === "games")
-        .map(({ name }) => name)
-        .join(", ");
-      const giveCmds = commands
-        .filter(({ category }) => category === "giveaway")
-        .map(({ name }) => name)
-        .join(", ");
-      const animalCmds = commands
-        .filter(({ category }) => category === "animal")
-        .map(({ name }) => name)
-        .join(", ");
-      const ecoCmds = commands
-        .filter(({ category }) => category === "economy")
-        .map(({ name }) => name)
-        .join(", ");
-      const dis = commands
-        .filter(({ category }) => category === "disabled")
-        .map(({ name }) => name)
-        .join(", ");
-      const cus = commands
-        .filter(({ category }) => category === "custom")
-        .map(({ name }) => name)
-        .join(", ");
-      emx
-        .addField(`${client.emotes.config}Config`, `\`${configCmds}\``)
-        .addField(`${client.emotes.info}Info`, `\`${infoCmds}\``)
-        .addField(`${client.emotes.fun}Fun`, `\`${funCmds}\``);
-      if (!isBotOwner) {
-        emx.addField(
-          `${client.emotes.owner}Owner`,
-          `Ownly viewable by the owner!`
+      const embeds = [];
+
+      const categories = client.commands
+        .map((c) => c.category)
+        .reduce((a, b) => {
+          if (a.indexOf(b) < 0) a.push(b);
+          return a;
+        }, [])
+        .sort();
+      for (const category of categories) {
+        let commands = client.commands.filter(
+          (c) => c.category.toLowerCase() === category.toLowerCase()
         );
-      } else {
-        emx.addField(`${client.emotes.owner}Owner`, `\`${ownerCmds}\``);
+
+        commands = commands
+          .filter((c) =>
+            c.name && !client.config.owners.includes(message.author.id)
+              ? !c.botOwnersOnly
+              : true
+          )
+          .map((c) => `\`${c.name}\``);
+        let emx = new MessageEmbed()
+          .setTitle(`Viewing category: ${client.emotes[category]} ${category}`)
+          .setColor("GREEN")
+          .addField(
+            "need support?",
+            `[Join our support server](https://discord.gg/jqm4Ybh) | [or invite me](${Invite})`
+          )
+          .setThumbnail(client.user.displayAvatarURL());
+        emx.addField(category, `${commands.sort().join(", ")}`);
+        embeds.push(emx);
       }
-      emx
-        .addField(`${client.emotes.levels}Levels`, `\`${levelCmds}\``)
-        .addField(`${client.emotes.music}Music`, `\`${musicCmds}\``)
-        .addField(`${client.emotes.utility}Utility`, `\`${utilCmds}\``)
-        .addField(`${client.emotes.economy}Economy`, `\`${ecoCmds}\``)
-        .addField(`${client.emotes.moderation}Moderation`, `\`${modCms}\``)
-        .addField(`${client.emotes.ticket}Ticket`, `\`${ticketCmds}\``)
-        .addField(`${client.emotes.search}Searching`, `\`${searchCmds}\``)
-        .addField(`${client.emotes.games}Games`, `\`${gameCmds}\``)
-        .addField(`${client.emotes.image}Image`, `\`${imageCmds}\``)
-        .addField(`${client.emotes.giveaway}Giveaway`, `\`${giveCmds}\``)
-        .addField(`${client.emotes.reaction}Reactions`, `\`${rrCmd}\``)
-        .addField(`${client.emotes.animal}Animal`, `\`${animalCmds}\``)
-        .addField(`${client.emotes.disabled}Disabled`, `\`${dis || "None"}\``)
-        .addField(`${client.emotes.custom}Custom`, `\`${cus}\``);
-      return message.channel.send(emx);
+      await paginate(message, embeds);
     }
   },
 };

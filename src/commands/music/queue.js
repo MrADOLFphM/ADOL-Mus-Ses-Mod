@@ -35,6 +35,6 @@ module.exports = {
               : `In the playlist **${queue.tracks.length}** song(s)...`
           }`
       );
-    message.channel.send();
+    message.channel.send(embed);
   },
 };

@@ -3,7 +3,7 @@ const { parse } = require("twemoji-parser");
 
 module.exports = {
   name: "stealemoji",
-  category: "admin",
+  category: "moderation",
   usage: "stealemoji <emoji> <custom name>",
   description: "Steal an emoji from a different server",
   botPermissions: ["MANAGE_EMOJIS"],

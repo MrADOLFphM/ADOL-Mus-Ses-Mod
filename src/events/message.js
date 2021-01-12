@@ -1,14 +1,13 @@
 const { MessageEmbed } = require("discord.js");
 const { owners, dblkey } = require("../../config.json");
-const Levels = require("../modules/discord-xp");
 const configModel = require("../models/config");
 const Discord = require("discord.js");
 const games = new Map();
 const botModel = require("../models/bot");
 const Blacklist = require("../models/blacklistmodel");
 const d = require("dblapi.js");
+const { handleLevel } = require("../handlers/message");
 
-const timer = new Discord.Collection();
 module.exports = {
   name: "message",
   async execute(client, message, nolevel = false) {
@@ -48,52 +47,7 @@ module.exports = {
           }
         });
     }
-    if (!nolevel) {
-      const msgDocument2 = message.guild.levelconfig
-        ? await message.guild.getLevelConfig()
-        : null;
-      if (msgDocument2 && msgDocument2.levelsystem) {
-        if (!timer.get(message.author.id)) {
-          timer.set(message.author.id, true);
-          setTimeout(() => {
-            timer.delete(message.author.id);
-          }, 30000);
-          const randomAmountOfXp = Math.floor(Math.random() * 100) + 1; // Min 1, Max 10
-          const hasLeveledUp = await Levels.appendXp(
-            message.author.id,
-            message.guild.id,
-            randomAmountOfXp
-          );
-          if (hasLeveledUp) {
-            const user = await Levels.fetch(
-              message.author.id,
-              message.guild.id
-            );
-            const { roles } = msgDocument2;
-            if (roles[user.level - 1]) {
-              const toadd = roles[user.level].filter(
-                (e) =>
-                  message.guild.roles.cache.has(e) &&
-                  message.guild.roles.cache.get(e).editable &&
-                  !message.guild.roles.cache.get(e).managed
-              );
-              message.member.roles.add(toadd);
-            }
-          }
-          if (hasLeveledUp && msgDocument2.levelnotif) {
-            const user = await Levels.fetch(
-              message.author.id,
-              message.guild.id
-            );
-            await message.channel
-              .send(
-                `${message.author}, congratulations! You have leveled up to **${user.level}**. :tada:`
-              )
-              .catch(() => {});
-          }
-        }
-      }
-    }
+    await handleLevel(message);
 
     const ignoredChannels = config.ignored_channels;
     if (ignoredChannels.includes(message.channel.id)) return;
@@ -142,6 +96,7 @@ module.exports = {
         }
       });
     }
+
     const blacklistedUsers = await Blacklist.find();
     if (blacklistedUsers) {
       const isBlacklisted = blacklistedUsers.find(

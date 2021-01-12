@@ -1,7 +1,7 @@
 const ms = require("ms");
 module.exports = {
   name: "uptime",
-  category: "utility",
+  category: "info",
   description: "check how long the bot has been online for",
   aliases: ["up"],
   usage: "uptime",

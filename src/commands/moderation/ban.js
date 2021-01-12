@@ -20,15 +20,13 @@ module.exports = {
 
       let banMember =
         message.mentions.members.first() ||
-        message.guild.members.cache.get(args[0]) ||
-        message.guild.members.cache.find(
-          (r) => r.user.username.toLowerCase() === args[0].toLocaleLowerCase()
+        client.users.cache.get(args[0]) ||
+        client.users.cache.find(
+          (r) => r.username.toLowerCase() === args[0].toLocaleLowerCase()
         ) ||
-        message.guild.members.cache.find(
-          (ro) => ro.displayName.toLowerCase() === args[0].toLocaleLowerCase()
+        client.users.cache.find(
+          (r) => r.tag.toLowerCase() === args[0].toLowerCase()
         );
-      if (!banMember)
-        return message.channel.send("**User Is Not In The Guild**");
       if (banMember === message.member)
         return message.channel.send("**You Cannot Ban Yourself**");
 

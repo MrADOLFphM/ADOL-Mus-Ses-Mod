@@ -9,11 +9,12 @@ module.exports = {
   run: async (client, message, args) => {
     const toEval = args.join(" ");
     if (!toEval) return message.channel.send("Please provide text");
-    const type = typeof toEval;
+
     try {
       eval("(async () =>  " + toEval + " )();").then((e) => {
         let evaluated = e;
         evaluated = util.inspect(evaluated, { depth: 0 });
+        const type = typeof evaluated;
         const embed = new MessageEmbed()
           .setTitle("Eval Command")
           .addField("**Input:**", `\`\`\`js\n${toEval}\`\`\``)
