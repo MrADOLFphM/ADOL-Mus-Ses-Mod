@@ -14,7 +14,7 @@ module.exports = {
       return message.channel.send("Please provide a member");
     }
 
-    if (user.bot) {
+    if (member.bot) {
       return message.channel.send("That user is a bot");
     }
 
@@ -22,7 +22,7 @@ module.exports = {
       return message.channel.send("Please give an amount to give");
     }
 
-    message.channel.send(`Added ${amount} money to ${user.username}`);
-    await addUserMoney(user.id, amount);
+    message.channel.send(`Added ${amount} money to ${member.user.username}`);
+    await addUserMoney(member.id, amount);
   },
 };
