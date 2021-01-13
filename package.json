@@ -21,6 +21,7 @@
     "covidtracker": "^2.0.1",
     "dateformat": "^4.4.1",
     "dblapi.js": "^2.4.1",
+    "discord-canvas": "^1.4.1",
     "discord-fetch-all": "^3.0.2",
     "discord-giveaways": "github:Androz2091/discord-giveaways#develop",
     "discord-image-generation": "^1.4.5",
