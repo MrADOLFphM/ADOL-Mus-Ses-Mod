@@ -20,5 +20,8 @@ module.exports = model(
         reason: null,
       },
     },
+    backups: {
+      type: Array,
+    },
   })
 );

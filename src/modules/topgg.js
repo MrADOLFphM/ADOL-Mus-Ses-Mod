@@ -1,11 +1,7 @@
-const http = require("http");
-const express = require("express");
-const app = express();
-const server = http.createServer(app);
 const { MessageEmbed } = require("discord.js");
 const { addUserMoney } = require("../utils/economy");
 const { dblkey } = require("../../config.json");
-module.exports = async (client) => {
+module.exports = async (client, server) => {
   client.on("ready", () => {
     setInterval(() => {
       dbl.postStats(client.guilds.cache.size);
@@ -18,7 +14,7 @@ module.exports = async (client) => {
     client
   );
   dbl.webhook.on("ready", (hook) => {
-    console.log(`Webhook is running on ${hook}`);
+    console.log(`Webhook is running on ${hook.path}`);
   });
 
   dbl.webhook.on("vote", async (vote) => {

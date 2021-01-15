@@ -11,7 +11,7 @@ module.exports = {
     if (!toEval) return message.channel.send("Please provide text");
 
     try {
-      eval("(async () =>  " + toEval + " )();").then((e) => {
+      eval("(async () =>  { " + toEval + " } )();").then((e) => {
         let evaluated = e;
         evaluated = util.inspect(evaluated, { depth: 0 });
         const type = typeof evaluated;

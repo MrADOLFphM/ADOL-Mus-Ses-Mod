@@ -229,6 +229,20 @@ module.exports = {
     };
     try {
       if (command) {
+        if (command.requiredArgs && args.length < command.requiredArgs.length) {
+          const cmdArgs = cmd.requiredArgs.map((a) => `\`${a}\``).join(", ");
+          const cmdExample = `${matchedPrefix}${
+            cmd.name
+          } ${cmd.requiredArgs.map((a) => `<${a}>`).join(" ")}`;
+
+          const embed = new MessageEmbed()
+            .setTitle("Incorrect command usage")
+            .setColor("RED")
+            .setDescription(`:x: You must provide more args: ${cmdArgs}`)
+            .addField("Example:", cmdExample);
+
+          return message.channel.send(embed);
+        }
         command.run(client, message, args, ops, emo);
         botDoc.commandssincerestart += 1;
         botDoc.total += 1;

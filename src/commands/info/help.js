@@ -87,13 +87,7 @@ module.exports = {
           (c) => c.category.toLowerCase() === category.toLowerCase()
         );
 
-        commands = commands
-          .filter((c) =>
-            c.name && !client.config.owners.includes(message.author.id)
-              ? !c.botOwnersOnly
-              : true
-          )
-          .map((c) => `\`${c.name}\``);
+        commands = commands.filter((c) => c.name).map((c) => `\`${c.name}\``);
         let emx = new MessageEmbed()
           .setTitle(`Viewing category: ${client.emotes[category]} ${category}`)
           .setColor("GREEN")

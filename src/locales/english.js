@@ -5,6 +5,7 @@ module.exports = {
   NONE: "None",
   I_PERMS: "I do not have {perm} permission",
   NO_USER: "You did not provide an user!",
+  GUILD_NAME: "Guild name",
   CONFIG: {
     ADD_CMD_ALREADY_EXISTS:
       "This command name is already added in guild custom commands.",
@@ -82,5 +83,10 @@ module.exports = {
     LANGUAGES: "Languages",
     RELEASED: "Released",
     TYPE: "Type",
+  },
+  BACKUP: {
+    CREATING: "Creating a backup.....",
+    ID: "Backup ID",
+    CREATED: "Backup created!",
   },
 };
