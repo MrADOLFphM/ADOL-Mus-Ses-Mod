@@ -2,17 +2,17 @@ const { MessageEmbed } = require("discord.js");
 const { addUserMoney } = require("../utils/economy");
 const { dblkey } = require("../../config.json");
 module.exports = async (client, server) => {
-  client.on("ready", () => {
-    setInterval(() => {
-      dbl.postStats(client.guilds.cache.size);
-    }, 1800000);
-  });
   const d = require("dblapi.js");
   const dbl = new d(
     dblkey,
     { webhookAuth: "AndoiBot", webhookServer: server },
     client
   );
+  client.on("ready", () => {
+    setInterval(() => {
+      dbl.postStats(client.guilds.cache.size);
+    }, 1800000);
+  });
   dbl.webhook.on("ready", (hook) => {
     console.log(`Webhook is running on ${hook.path}`);
   });
