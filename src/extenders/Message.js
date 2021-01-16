@@ -8,7 +8,7 @@ module.exports = Structures.extend(
 
         this.lastResponse = null;
       }
-      get language() {
+      getLang() {
         return this.guild.getLang();
       }
       embed() {

@@ -1,4 +1,5 @@
 const request = require("node-superfetch");
+let pornList;
 const url = require("url");
 module.exports = {
   name: "capture-website",
@@ -7,10 +8,11 @@ module.exports = {
   description: "Return a screenshot of the website",
   run: async (client, message, args) => {
     const lang = await message.getLang();
+
     try {
       let site = args[0];
       try {
-        if (!this.pornList) await this.fetchPornList();
+        if (!pornList) await fetchPornList();
         const parsed = url.parse(site);
         if (
           this.pornList.some((pornURL) => parsed.host === pornURL) &&
@@ -36,14 +38,14 @@ module.exports = {
     }
   },
   async fetchPornList(force = false) {
-    if (!force && this.pornList) return this.pornList;
+    if (!force && this.pornList) return pornList;
     const { text } = await request.get(
       "https://raw.githubusercontent.com/blocklistproject/Lists/master/porn.txt"
     );
-    this.pornList = text
+    pornList = text
       .split("\n")
       .filter((site) => site && !site.startsWith("#"))
       .map((site) => site.replace(/^(0.0.0.0	)/, "")); // eslint-disable-line no-control-regex
-    return this.pornList;
+    return pornList;
   },
 };
