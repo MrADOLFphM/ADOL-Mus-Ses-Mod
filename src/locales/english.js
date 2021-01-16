@@ -90,7 +90,8 @@ module.exports = {
     CREATED: "Backup created!",
   },
   UTILITY: {
-    COULD_NOT_FIND_WEB: "I did not find that website. Are you sure this",
+    COULD_NOT_FIND_WEB:
+      "I did not find that website. Are you sure this is a valid url?",
     SITE_NSFW: "That site is nsfw!",
   },
 };

@@ -15,7 +15,7 @@ module.exports = {
         if (!pornList) await fetchPornList();
         const parsed = url.parse(site);
         if (
-          this.pornList.some((pornURL) => parsed.host === pornURL) &&
+          pornList.some((pornURL) => site === pornURL) &&
           !message.channel.nsfw
         ) {
           return message.reply(lang.UTILITY.SITE_NSFW);
@@ -36,16 +36,16 @@ module.exports = {
       console.log(err);
       return message.reply(lang.ERROR);
     }
-  },
-  async fetchPornList(force = false) {
-    if (!force && this.pornList) return pornList;
-    const { text } = await request.get(
-      "https://raw.githubusercontent.com/blocklistproject/Lists/master/porn.txt"
-    );
-    pornList = text
-      .split("\n")
-      .filter((site) => site && !site.startsWith("#"))
-      .map((site) => site.replace(/^(0.0.0.0	)/, "")); // eslint-disable-line no-control-regex
-    return pornList;
+    async function fetchPornList(force = false) {
+      if (!force && pornList) return pornList;
+      const { text } = await request.get(
+        "https://raw.githubusercontent.com/blocklistproject/Lists/master/porn.txt"
+      );
+      pornList = text
+        .split("\n")
+        .filter((site) => site && !site.startsWith("#"))
+        .map((site) => site.replace(/^(0.0.0.0	)/, "")); // eslint-disable-line no-control-regex
+      return pornList;
+    }
   },
 };
