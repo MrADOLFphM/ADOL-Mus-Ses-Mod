@@ -1,6 +1,7 @@
 const { Structures } = require("discord.js");
 const level = require("../models/levelconfig.js");
 const Config = require("../models/config");
+const verify = require("../models/verify");
 Structures.extend("Guild", (Guild) => {
   return class extends Guild {
     constructor(client, data) {
@@ -77,6 +78,12 @@ Structures.extend("Guild", (Guild) => {
       } catch (e) {
         console.error(e);
       }
+    }
+    async getVerify() {
+      let data = await verify
+        .findOne({ GuildID: this.id })
+        .catch((err) => console.log(err));
+      return data;
     }
   };
 });

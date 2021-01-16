@@ -35,8 +35,12 @@ module.exports = {
       const ms = vot?.lastMsg;
       if (!ms) return;
       if (!chan) return;
-      const msg = await client.channels.cache.get(chan).messages.fetch(ms);
-      msg.edit("restarted succesfully");
+      try {
+        const msg = await client.channels.cache.get(chan).messages.fetch(ms);
+        msg.edit("restarted succesfully");
+      } catch (err) {
+        return;
+      }
     }
   },
 };

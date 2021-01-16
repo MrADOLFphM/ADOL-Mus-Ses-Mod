@@ -1,54 +1,32 @@
-const { imdbKey } = require("../config.json");
-const imdb = require("imdb-api");
+const AndoiClient = require("./structures/Client");
 const Discord = require("discord.js");
 
 const token = require(`../config.json`);
 const { GiveawaysManager } = require("discord-giveaways");
 require("./extenders/Guild");
 require("./extenders/Message");
-const client = new Discord.Client({
-  disableMentions: "everyone",
-  partials: ["MESSAGE", "REACTION", "USER", "GUILD_MEMBER"],
-});
-client.setMaxListeners(50);
+const client = new AndoiClient();
+client.start();
 
 require("./utils/user")(client);
-const { Player } = require("discord-player");
-const emotes = require("./JSON/emojis.json");
-const { init } = require("./utils/mongoose");
-const filters = require("./JSON/filters.json");
-const player = new Player(client, {
-  leaveOnEmpty: true,
-  autoSelfDeaf: true,
-});
-const ItemManager = require("./modules/itemmanager");
 require("./utils/client")(client);
-init();
 const { sendErrorLog } = require("./utils/functions");
 require("./utils/config.js")(client);
-require("./handlers/playerEvents")(client, player);
-const check = client.emojis.cache.find((emoji) => emoji.name === "andoiCheck");
-const cross = client.emojis.cache.find((emoji) => emoji.name === "andoiCross");
-const utils = require("./utils/functions");
-
-client.cross = cross;
-client.check = check;
-client.items = new ItemManager();
-client.emotes = emotes;
-client.filters = filters;
-client.player = player;
-client.commands = new Discord.Collection();
-client.cooldowns = new Discord.Collection();
-client.aliases = new Discord.Collection();
-client.phone = new Discord.Collection();
-client.utils = utils;
-client.queue = new Map();
-client.snipes = new Map();
-client.afk = new Map();
-client.imdb = new imdb.Client({ apiKey: imdbKey });
-client.config = require("../config.json");
 require("./web/app")(client);
-
+Array.prototype.last = function () {
+  return this[this.length - 1];
+};
+global.botIntl = Intl.DateTimeFormat("en", {
+  weekday: "long",
+  year: "numeric",
+  month: "2-digit",
+  day: "2-digit",
+  hour: "2-digit",
+  minute: "2-digit",
+  timeZone: "America/New_York",
+  hour12: true,
+  timeZoneName: "short",
+});
 // Create a new instance of your new class
 const manager = new GiveawaysManager(client, {
   hasGuildMembersIntent: true,

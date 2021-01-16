@@ -8,8 +8,8 @@ module.exports = Structures.extend(
 
         this.lastResponse = null;
       }
-      getLang() {
-        return this.guild.getLang();
+      async getLang() {
+        return await this.guild.getLang();
       }
       embed() {
         return new MessageEmbed();

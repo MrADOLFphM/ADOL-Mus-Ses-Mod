@@ -188,6 +188,24 @@ async function binary(text, mode = "encode") {
     return data.text;
   }
 }
+function makeid(length) {
+  var result = "";
+  var characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+  var charactersLength = characters.length;
+  for (var i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return result;
+}
+
+function moneyFormat(amount) {
+  var formatter = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+  });
+
+  return formatter.format(amount);
+}
 module.exports = {
   verify,
   list,
@@ -207,4 +225,6 @@ module.exports = {
   base64,
   firstUpperCase,
   binary,
+  moneyFormat,
+  makeid,
 };

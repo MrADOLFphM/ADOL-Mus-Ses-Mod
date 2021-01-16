@@ -1,161 +1,64 @@
-const dateformat = require("dateformat");
-const Discord = require("discord.js");
-
-const filterLevels = {
-  DISABLED: "Off",
-  MEMBERS_WITHOUT_ROLES: "No Role",
-  ALL_MEMBERS: "Everyone",
-};
-
-const verificationLevels = {
-  NONE: "None",
-  LOW: "Low",
-  MEDIUM: "Medium",
-  HIGH: "(╯°□°）╯︵ ┻━┻",
-  VERY_HIGH: "┻━┻ ﾐヽ(ಠ益ಠ)ノ彡┻━┻",
-};
-
-const regions = {
-  "india": ":flag_in: India",
-  "brazil": ":flag_br: Brazil",
-  "singapore": ":flag_za: Singapore",
-  "europe": ":flag_eu: Europe",
-  "london": "London",
-  "russia": ":flag_ru: Russia",
-  "japan": ":flag_jp: Japan",
-  "hongkong": ":flag_hk: Hongkong",
-  "sydney": ":flag_au: Sydney",
-  "us-central": ":flag_um: U.S. Central",
-  "us-east": ":flag_um: U.S. East",
-  "us-south": ":flag_um: U.S. South",
-  "us-west": ":flag_um: U.S. West",
-};
-
+const { MessageEmbed } = require("discord.js");
+const moment = require("moment");
 module.exports = {
   name: "serverinfo",
   category: "utility",
   aliases: ["si"],
   description: "Get Info About The Server.",
   usage: "serverinfo",
-  async run(client, message, args, flags) {
-    let icon = message.guild.iconURL({
+  async run(client, message, args) {
+    const lang = await message.getLang();
+    const { guild } = message;
+    const {
+      name,
+      memberCount,
+      premiumSubscriptionCount,
+      premiumTier,
+      verified,
+      partnered,
+    } = guild;
+    const roles = client.utils.formatNumber(guild.roles.cache.size);
+    const channels = client.utils.formatNumber(guild.channels.cache.size);
+    const emojis = client.utils.formatNumber(guild.emojis.cache.size);
+    const createdAt = global.botIntl.format(guild.createdAt);
+    const boosts = premiumSubscriptionCount;
+    const boostLevel = premiumTier;
+    const owner = (guild.owner && guild.owner.user.tag) || "error";
+    const isVerified = verified
+      ? lang.GUILD.IS_VERIFIED
+      : lang.GUILD.NOT_VERIFIED;
+    const isPartnered = partnered
+      ? lang.GUILD.IS_PARTNERED
+      : lang.GUILD.NOT_PARTNERED;
+    const inviteBanner = guild.bannerURL({
       size: 2048,
-    }); // Server Avatar
-    const offlineemo = client.emojis.cache.find(
-      (emoji) => emoji.name === "offline"
-    );
-    const onlineemo = client.emojis.cache.find(
-      (emoji) => emoji.name === "online"
-    );
-    const idleemo = client.emojis.cache.find((emoji) => emoji.name === "idle");
-    const dndemo = client.emojis.cache.find((emoji) => emoji.name === "dnd");
+      format: "png",
+      dynamic: true,
+    });
 
-    // Members
-    const roles = message.guild.roles.cache
-      .sort((a, b) => b.position - a.position)
-      .map((role) => role.toString());
-    let member = message.guild.members;
-    let offline = member.cache.filter(
-        (m) => m.user.presence.status === "offline"
-      ).size,
-      online = member.cache.filter((m) => m.user.presence.status === "online")
-        .size,
-      idle = member.cache.filter((m) => m.user.presence.status === "idle").size,
-      dnd = member.cache.filter((m) => m.user.presence.status === "dnd").size,
-      robot = member.cache.filter((m) => m.user.bot).size,
-      total = message.guild.memberCount;
-    usercount = member.cache.filter((member) => !member.user.bot).size;
+    const region = guild.region;
 
-    // Channels
-    let channels = message.guild.channels;
-    let text = channels.cache.filter((r) => r.type === "text").size,
-      vc = channels.cache.filter((r) => r.type === "voice").size,
-      category = channels.cache.filter((r) => r.type === "category").size,
-      totalchan = channels.cache.size;
+    const verLevel = guild.verificationLevel;
+    const mfaLevel = guild.mfaLevel;
 
-    // Region
-    let location = regions[message.guild.region];
+    const embed = new MessageEmbed()
+      .setTitle(name)
+      .setThumbnail(guild.iconURL({ dynamic: true, size: 1024 }))
+      .addField(`**${lang.GUILD.OWNER}**`, owner, true)
+      .addField(`**${lang.GUILD.ROLES_C}**`, roles, true)
+      .addField(`**${lang.GUILD.CHANNEL_C}**`, channels, true)
+      .addField(`**${lang.GUILD.CREATED}**`, createdAt, true)
+      .addField(`**${lang.GUILD.EMOJI_C}**`, emojis, true)
+      .addField(`**${lang.GUILD.MEMBER_C}**`, memberCount, true)
+      .addField(`**${lang.GUILD.REGION}**`, region, true)
+      .addField(`**${lang.GUILD.VERIFICATION}**`, verLevel, true)
+      .addField(`**${lang.GUILD.MFA}**`, mfaLevel, true)
+      .addField(`**${lang.GUILD.BOOSTS}**`, boosts, true)
+      .addField(`**${lang.GUILD.BOOST_LVL}**`, boostLevel, true)
+      .addField(`**${lang.GUILD.VERIFIED}**`, isVerified, true)
+      .addField(`**${lang.GUILD.PARTNERED}**`, isPartnered, true)
+      .setImage(inviteBanner);
 
-    //Emojis
-    const emojis = message.guild.emojis.cache;
-
-    // Date
-    let x = Date.now() - message.guild.createdAt;
-    let h = Math.floor(x / 86400000); // 86400000, 5 digits-zero.
-    let created = dateformat(message.guild.createdAt); // Install "dateformat" first.
-
-    const embed = new Discord.MessageEmbed()
-      .setColor(0x7289da)
-      .setFooter(`ID: ${message.guild.id}`)
-      .setTimestamp(new Date())
-      .setThumbnail(
-        message.guild.iconURL({
-          format: "png",
-          dynamic: true,
-        })
-      )
-      .setTitle(`${message.guild.name}`)
-      .addFields(
-        {
-          name: "**Owner:**",
-          value: `${message.guild.owner.user.tag}`,
-          inline: true,
-        },
-        {
-          name: "**Region:**",
-          value: `${location}`,
-          inline: true,
-        },
-        {
-          name: "**Date Created:**",
-          value: `${created} \nSince **${h}** day(s)`,
-          inline: true,
-        },
-        {
-          name: "** Boost Tier:**",
-          value: `${
-            message.guild.premiumTier
-              ? `Tier ${message.guild.premiumTier}`
-              : "None"
-          }`,
-          inline: true,
-        },
-        {
-          name: "**Explicit Filter:**",
-          value: `${filterLevels[message.guild.explicitContentFilter]}`,
-          inline: true,
-        },
-        {
-          name: "**Verification Level**",
-          value: `${verificationLevels[message.guild.verificationLevel]}`,
-          inline: true,
-        },
-        {
-          name: "**Role Count:**",
-          value: `${roles.length - 1}`,
-          inline: true,
-        },
-        {
-          name: "**Emojis Count:**",
-          value: `${emojis.size}`,
-          inline: true,
-        },
-        {
-          name: `**Channels [${totalchan}]:**`,
-          value: `Text: ${text} \nVoice: ${vc} \nCategory: ${category}`,
-          inline: true,
-        },
-        {
-          name: `**Members [${total}]**`,
-          value: `${onlineemo}-Online : ${online} \n${idleemo}-Idle : ${idle} \n${dndemo}-Do not Disturb : ${dnd} \n${offlineemo}-Offline : ${offline} \n🧑-Humans : ${usercount} \n🤖-Bots : ${robot}\n Total = ${total}`,
-          inline: true,
-        },
-        {
-          name: "** Boost Count**",
-          value: `${message.guild.premiumSubscriptionCount || "0"}`,
-          inline: true,
-        }
-      );
     message.channel.send(embed);
   },
 };

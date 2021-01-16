@@ -1,5 +1,5 @@
 const request = require("node-superfetch");
-let pornList;
+let pornList = false;
 const url = require("url");
 module.exports = {
   name: "capture-website",
@@ -15,7 +15,7 @@ module.exports = {
         if (!pornList) await fetchPornList();
         const parsed = url.parse(site);
         if (
-          pornList.some((pornURL) => site === pornURL) &&
+          pornList.some((pornURL) => parsed.host === pornURL) &&
           !message.channel.nsfw
         ) {
           return message.reply(lang.UTILITY.SITE_NSFW);

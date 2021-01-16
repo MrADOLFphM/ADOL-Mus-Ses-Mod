@@ -51,7 +51,7 @@ module.exports = {
       .addField("Aliases", `\`${message.client.aliases.size}\` aliases`, true)
       .addField("Client", `\`\`\`asciidoc\n${clientStats}\`\`\``)
       .addField("Server", `\`\`\`asciidoc\n${serverStats}\`\`\``)
-      .setFooter("Andoi bot `created by: Tovade#6617 and Potatoexe2930#1771")
+      .setFooter("Andoi bot `created by: Tovade#6617 and Potatoexe2930#1771`")
       .setTimestamp()
       .setColor(message.guild.me.displayHexColor);
     message.channel.send(embed);

@@ -4,7 +4,7 @@ async function paginate(
   msg,
   pages,
   endEmoji = "🗑️",
-  emojiList = ["⏪", "⏩"],
+  emojiList = ["⏪", "◀️", "▶️", "⏩"],
   timeout = 120000
 ) {
   let page = 0;
@@ -15,10 +15,11 @@ async function paginate(
       })})`
     )
   );
-
   await curPage.react(emojiList[0]);
-  await curPage.react(endEmoji);
   await curPage.react(emojiList[1]);
+  await curPage.react(endEmoji);
+  await curPage.react(emojiList[2]);
+  await curPage.react(emojiList[3]);
 
   const reactionCollector = curPage.createReactionCollector(
     (reaction, user) =>
@@ -31,11 +32,17 @@ async function paginate(
   reactionCollector.on("collect", (reaction) => {
     reaction.users.remove(msg.author).catch(() => {});
     switch (reaction.emoji.name) {
-      case emojiList[0]:
+      case emojiList[1]:
         page = page > 0 ? --page : pages.length - 1;
         break;
-      case emojiList[1]:
+      case emojiList[2]:
         page = page + 1 < pages.length ? ++page : 0;
+        break;
+      case emojiList[0]:
+        page = 0;
+        break;
+      case emojiList[3]:
+        page = pages.length - 1;
         break;
       case endEmoji:
         reactionCollector.stop();
