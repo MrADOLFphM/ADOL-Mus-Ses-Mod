@@ -84,7 +84,7 @@ module.exports = {
     }
     if (mentions && !message.content.startsWith(prefix)) {
       mentions.forEach((member) => {
-        const user = client.afk.get(member.id);
+        let user = false;
 
         if (user) {
           const embed = new MessageEmbed()
@@ -228,6 +228,10 @@ module.exports = {
       check: check,
     };
     try {
+      message.flags = [];
+      while (args[0] && args[0][0] === "-") {
+        message.flags.push(args.shift().slice(1));
+      }
       if (command) {
         if (command.requiredArgs && args.length < command.requiredArgs.length) {
           const cmdArgs = cmd.requiredArgs.map((a) => `\`${a}\``).join(", ");

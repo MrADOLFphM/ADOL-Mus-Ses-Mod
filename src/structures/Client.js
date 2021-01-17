@@ -85,10 +85,11 @@ module.exports = class AndoiClient extends (
    * @param {Guild} guild
    */
   resolveChannel(search, guild) {
-    if (!search || typeof search !== "string") return null;
+    if (!search) return null;
     let channel = null;
-    if (search.match(/^<@#!?(\d+)>$/))
-      channel = guild.channels.cache.get(search.match(/^<@#!?(\d+)>$/)[1]);
+    channel = guild.channels.cache.get(
+      search.replace("<", "").replace("#", "").replace(">", "")
+    );
     if (!channel) channel = guild.channels.cache.find((c) => c.name === search);
     if (!channel) channel = guild.channels.cache.get(search);
     return channel;

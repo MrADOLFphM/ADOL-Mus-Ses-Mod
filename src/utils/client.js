@@ -1,38 +1,35 @@
 module.exports = (client) => {
   client.findMember = (message, args, allowAuthor) => {
-    return message.guild.member(
+    let member;
+
+    member = message.guild.member(
       message.mentions.users.first() ||
         message.guild.members.cache.get(args[0]) ||
         message.guild.members.cache.find((m) => m.user.id === args[0]) ||
-        message.guild.members.cache.find(
-          (m) => m.user.tag.toLowerCase() === args[0].toLocaleLowerCase()
-        ) ||
-        message.guild.members.cache.find(
-          (m) => m.user.username.toLowerCase() === args[0].toLocaleLowerCase()
-        ) ||
-        (allowAuthor === true ? message.member : null)
+        message.guild.members.cache.find((m) => m.user.tag === args[0]) ||
+        message.guild.members.cache.find((m) => m.user.username === args[0])
     );
+
+    if (!member && allowAuthor) {
+      member = message.member;
+    }
+
+    return member;
   };
-  client.findChannel = (message, args, allowChannel) => {
+  client.findChannel = (message, args) => {
     return (
       message.mentions.channels.first() ||
       message.guild.channels.cache.get(args[0]) ||
-      message.guild.channels.cache.find((m) => m.id === args[0]) ||
-      message.guild.channels.cache.find(
-        (m) => m.name.toLowerCase() === args[0].toLowerCase()
-      ) ||
-      (allowChannel === true ? message.channel : null)
+      message.guild.channels.cache.find((r) => r.name === args[0]) ||
+      message.guild.channels.cache.find((r) => r.name.startsWith(args[0]))
     );
   };
   client.findRole = (message, args, allowChannel) => {
     return (
       message.mentions.roles.first() ||
       message.guild.roles.cache.get(args[0]) ||
-      message.guild.roles.cache.find((m) => m.id === args[0]) ||
-      message.guild.roles.cache.find(
-        (m) => m.name.toLowerCase() === args.join(" ").toLocaleLowerCase()
-      ) ||
-      (allowChannel === true ? message.member.roles.highest : null)
+      message.guild.roles.cache.find((r) => r.name === args[0]) ||
+      message.guild.roles.cache.find((r) => r.name.startsWith(args[0]))
     );
   };
   client.GetImage = (message, args) => {

@@ -81,8 +81,13 @@ Structures.extend("Guild", (Guild) => {
     }
     async getVerify() {
       let data = await verify
-        .findOne({ GuildID: this.id })
+        .findOne({ guild_id: this.id })
         .catch((err) => console.log(err));
+      return data;
+    }
+    createVerify(settings) {
+      let data = new verify(settings);
+      data.save();
       return data;
     }
   };

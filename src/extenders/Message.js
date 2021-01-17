@@ -7,6 +7,7 @@ module.exports = Structures.extend(
         super(...args);
 
         this.lastResponse = null;
+        this.flags = [];
       }
       async getLang() {
         return await this.guild.getLang();

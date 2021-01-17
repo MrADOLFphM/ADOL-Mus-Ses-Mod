@@ -31,7 +31,7 @@ module.exports = {
   usage: "info",
   aliases: ["whois", "ui"],
   run: async (client, message, args) => {
-    const member = client.findMember(message, args, true);
+    const member = await client.findMember(message, args, true);
 
     const nickname = member.nickname || "*None*";
     const discriminator = member.user.discriminator || "*None*";
