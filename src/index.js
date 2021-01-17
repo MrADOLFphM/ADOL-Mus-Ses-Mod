@@ -5,6 +5,7 @@ const token = require(`../config.json`);
 const { GiveawaysManager } = require("discord-giveaways");
 require("./extenders/Guild");
 require("./extenders/Message");
+require("./extenders/Member");
 const client = new AndoiClient();
 client.start();
 
