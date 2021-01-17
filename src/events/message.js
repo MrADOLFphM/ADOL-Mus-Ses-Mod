@@ -7,14 +7,17 @@ const botModel = require("../models/bot");
 const Blacklist = require("../models/blacklistmodel");
 const d = require("dblapi.js");
 const { handleLevel } = require("../handlers/message");
+const memberVerification = require("../modules/verification");
 
 module.exports = {
   name: "message",
   async execute(client, message, nolevel = false) {
     const dbl = new d(dblkey, client);
     const botDoc = await botModel.findOne({ name: "Andoi" });
+
     if (message.author.bot) return;
     if (message.channel.type === "dm") return;
+    if (await memberVerification(client, message)) return;
     const mentions = message.mentions.members;
     //hey can u add me to the database
     const config = await configModel.findOne({ GuildID: message.guild.id });
