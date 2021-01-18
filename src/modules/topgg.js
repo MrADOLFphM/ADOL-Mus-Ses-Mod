@@ -1,11 +1,11 @@
 const { MessageEmbed } = require("discord.js");
 const { addUserMoney } = require("../utils/economy");
 const { dblkey } = require("../../config.json");
-module.exports = async (client, server) => {
+module.exports = async (client) => {
   const d = require("dblapi.js");
   const dbl = new d(
     dblkey,
-    { webhookAuth: "AndoiBot", webhookServer: server },
+    { webhookAuth: "AndoiBot"},
     client
   );
   client.on("ready", () => {

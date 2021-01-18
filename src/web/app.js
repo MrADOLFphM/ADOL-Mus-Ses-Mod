@@ -4,6 +4,7 @@ const port = 3030;
 const path = require("path");
 module.exports = (client) => {
   app.set("views", path.join(__dirname, "views"));
+  app.use(express.static("css"));
   app.set("view engine", "ejs");
   app.set("trust proxy", true);
 
