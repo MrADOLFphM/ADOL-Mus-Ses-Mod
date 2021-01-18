@@ -6,6 +6,7 @@ module.exports = (client, message) => {
       const mdb = await message.guild.getConfig();
       const db = await message.guild.getVerify();
       const mem = await client.getMember(message.guild, message.member);
+      if (!db.enabled || !db.role || !db.channel || !db.type) return false;
       const channel_id = db.channel;
       const type = db.type;
       const role = db.role;
