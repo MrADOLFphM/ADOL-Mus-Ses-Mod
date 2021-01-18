@@ -10,7 +10,7 @@ module.exports = (client, message) => {
       const type = db.type;
       const role = db.role;
       const enabled = db.enabled;
-      const stat = !enabled || !role || !channel_id ? true : false;
+      if (!enabled || !role || !channel_id) return false;
       if (stat || channel_id !== message.channel.id) return resolve(false);
       if (message.deletable) message.delete({ timeout: 1000 }).catch(() => {});
       if (type === "react") return resolve(false);
