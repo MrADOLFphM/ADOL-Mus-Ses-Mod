@@ -17,7 +17,7 @@ module.exports = class AndoiClient extends (
   constructor() {
     super({
       disableMentions: "everyone",
-      partials: ["MESSAGE", "REACTION", "USER", "GUILD_MEMBER"],
+      partials: ["MESSAGE", "REACTION", "USER", "GUILD_MEMBER", "CHANNEL"],
     });
     const player = new Player(this, {
       leaveOnEmpty: true,

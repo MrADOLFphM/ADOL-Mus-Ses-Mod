@@ -3,7 +3,7 @@ module.exports = {
   name: "messageUpdate",
   async execute(client, oldMsg, newMsg) {
     if (!newMsg.guild) return;
-    if (!newMsg.guild.me.hasPermission("MANAGE_WEBHOOKS")) return;
+    // if (!newMsg.guild.me.hasPermission("MANAGE_WEBHOOKS")) return;
     const w = await oldMsg.guild.fetchWebhooks();
     const webhook = w.find((w) => w.name === "Andoi");
     if (!webhook) return;

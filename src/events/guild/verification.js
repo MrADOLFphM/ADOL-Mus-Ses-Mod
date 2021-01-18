@@ -2,9 +2,9 @@ module.exports = {
   name: "guildMemberAdd",
   async execute(client, member) {
     const captcha = client.utils.makeid(6);
-    const mem = await member.getMember();
+    const mem = await client.getMember(member.guild, member);
     if (!mem) {
-      member.createMember({
+      client.createMember({
         guild: member.guild.id,
         member: member.id,
         captcha: captcha,
