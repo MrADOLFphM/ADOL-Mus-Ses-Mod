@@ -10,12 +10,14 @@ client.start();
 
 require("./utils/user")(client);
 require("./utils/client")(client);
+require("./utils/member")(client);
 const { sendErrorLog } = require("./utils/functions");
 require("./utils/config.js")(client);
 require("./web/app")(client);
 Array.prototype.last = function () {
   return this[this.length - 1];
 };
+global.client = client;
 global.botIntl = Intl.DateTimeFormat("en", {
   weekday: "long",
   year: "numeric",

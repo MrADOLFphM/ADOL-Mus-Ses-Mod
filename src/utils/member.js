@@ -1,4 +1,4 @@
-const Config = require("../models/config.js");
+const Config = require("../models/member.js");
 
 module.exports = (client) => {
   client.getMember = async (guild, member) => {
@@ -8,7 +8,7 @@ module.exports = (client) => {
     }).catch((err) => console.log(err));
     return data;
   };
-  client.updateConfig = async (guild, member, settings) => {
+  client.updateMember = async (guild, member, settings) => {
     let data = await client.getConfig(guild, member);
     if (typeof data != "object") data = {};
     for (const key in settings) {
@@ -23,7 +23,7 @@ module.exports = (client) => {
     const newConfig = new Config(settings);
     return newConfig.save().catch((err) => console.log(err));
   };
-  client.deleteConfig = async (guild, member) => {
+  client.deleteMember = async (guild, member) => {
     await Config.deleteOne({
       guild: guild.id,
       member: member.id,
