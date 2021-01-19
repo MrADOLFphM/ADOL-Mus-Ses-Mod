@@ -3,11 +3,7 @@ const { addUserMoney } = require("../utils/economy");
 const { dblkey } = require("../../config.json");
 module.exports = async (client) => {
   const d = require("dblapi.js");
-  const dbl = new d(
-    dblkey,
-    { webhookAuth: "AndoiBot"},
-    client
-  );
+  const dbl = new d(dblkey, { webhookAuth: "AndoiBot" }, client);
   client.on("ready", () => {
     setInterval(() => {
       dbl.postStats(client.guilds.cache.size);

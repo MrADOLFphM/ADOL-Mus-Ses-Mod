@@ -1,6 +1,6 @@
 const AndoiClient = require("./structures/Client");
 const Discord = require("discord.js");
-
+const remodel = require("./models/requirements");
 const token = require(`../config.json`);
 const { GiveawaysManager } = require("discord-giveaways");
 require("./extenders/Guild");
@@ -66,3 +66,4 @@ process.on("uncaughtExceptionMonitor", (error) =>
 );
 process.on("warning", (warning) => sendErrorLog(client, warning, "warning"));
 client.login(token.Token);
+require("./features/invites")(client);

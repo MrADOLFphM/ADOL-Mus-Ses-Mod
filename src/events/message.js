@@ -128,6 +128,7 @@ module.exports = {
     // If none is found, try to find it by alias
     if (!command) command = client.commands.get(client.aliases.get(cmd));
     if (!command) return;
+    if (command.category === "invites") return;
     if (command.votersOnly && command.votersOnly === true) {
       let hasVoted = false;
 

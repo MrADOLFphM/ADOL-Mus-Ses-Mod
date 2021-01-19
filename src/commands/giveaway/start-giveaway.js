@@ -1,6 +1,6 @@
 const ms = require("ms");
 const { hostedBy, everyoneMention } = require("../../../config.json");
-const levels = require("../../modules/discord-xp");
+const rModel = require("../../models/requirements");
 
 module.exports = {
   name: "start-giveaway",
@@ -69,7 +69,7 @@ module.exports = {
 
     const giveawayPrize = msg3;
     // Start the giveaway
-    client.giveawaysManager.start(giveawayChannel, {
+    await client.giveawaysManager.start(giveawayChannel, {
       // The giveaway duration
       time: ms(giveawayDuration),
       // The giveaway prize
@@ -101,6 +101,7 @@ module.exports = {
         },
       },
     });
+
     message.channel.send(`Giveaway started in ${giveawayChannel}!`);
   },
 };
