@@ -15,11 +15,14 @@ module.exports = {
     }
     const gui = await member.guild.getConfig();
     const guild = await member.guild.getVerify();
-    const verifier = guild.type;
+
+    const verifier = guild?.type;
+
     if (["discrim", "captcha"].includes(verifier)) {
-      const enabled = guild.enabled;
-      const channel = guild.channel;
-      const role = guild.role;
+      const enabled = guild?.enabled;
+      if (!enabled) return;
+      const channel = guild?.channel;
+      const role = guild?.role;
       if (enabled && channel && role) {
         try {
           const dm = await member.user.createDM();

@@ -1,18 +1,12 @@
-const {
-  Client,
-  Guild,
-  GuildMember,
-  Channel,
-  Role,
-  Collection,
-} = require("discord.js");
+const { Guild, GuildMember, Channel, Role, Collection } = require("discord.js");
 const emotes = require("../JSON/emojis.json");
 const { Player } = require("discord-player");
 const filters = require("../JSON/filters.json");
 const imdb = require("imdb-api");
 const ItemManager = require("../modules/itemmanager");
+const { KlasaClient } = require("klasa");
 module.exports = class AndoiClient extends (
-  Client
+  KlasaClient
 ) {
   constructor() {
     super({

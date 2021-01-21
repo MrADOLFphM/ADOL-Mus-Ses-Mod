@@ -69,27 +69,14 @@ module.exports = {
       message.channel.send(
         `muted ${mentionedMember} ${reason ? `for **${reason}**` : "None"}`
       );
-      let channel = e.modlog;
-      if (!channel) return;
-
-      let embed = new MessageEmbed()
-        .setColor(redlight)
-        .setThumbnail(mutee.user.displayAvatarURL({ dynamic: true }))
-        .setAuthor(`${message.guild.name} Modlogs`, message.guild.iconURL())
-        .addField("**Moderation**", "mute")
-        .addField("**Muted**", mentionedMember.user.username)
-        .addField("**Moderator**", message.author.username)
-        .addField("**Reason**", `${reason || "**No Reason**"}`)
-        .addField("**Date**", message.createdAt.toLocaleString())
-        .setFooter(
-          message.member.displayName,
-          message.author.displayAvatarURL()
-        )
-        .setTimestamp();
-
-      var sChannel = message.guild.channels.cache.get(channel);
-      if (!sChannel) return;
-      sChannel.send(embed);
+      await client.emit(
+        "modlog",
+        message.guild,
+        mentionedMember.user.username,
+        "mute",
+        reason || "None",
+        message.member.user
+      );
     }
   },
 };

@@ -70,23 +70,13 @@ module.exports = {
       );
     message.channel.send(sembed);
 
-    let channel = conf.modlog;
-    if (!channel) return;
-
-    const embed = new MessageEmbed()
-      .setAuthor(`${message.guild.name} Modlogs`, message.guild.iconURL())
-      .setColor("#ff0000")
-      .setThumbnail(rMember.user.displayAvatarURL({ dynamic: true }))
-      .setFooter(message.guild.name, message.guild.iconURL())
-      .addField("**Moderation**", "addrole")
-      .addField("**Added Role to**", rMember.user.username)
-      .addField("**Role Added**", role.name)
-      .addField("**Added By**", message.author.username)
-      .addField("**Date**", message.createdAt.toLocaleString())
-      .setTimestamp();
-
-    let sChannel = message.guild.channels.cache.get(channel);
-    if (!sChannel) return;
-    sChannel.send(embed);
+    await client.emit(
+      "modlog",
+      message.guild,
+      rMember.user.tag,
+      "add-role",
+      "None",
+      message.member.user
+    );
   },
 };

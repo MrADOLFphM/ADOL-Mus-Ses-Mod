@@ -86,13 +86,10 @@ module.exports = {
         ).replace("{reason}", reason)
       );
     }
-    let channel = conf.modlog;
-    if (!channel) return;
     await client.emit(
       "modlog",
       message.guild,
-      channel,
-      user,
+      user.user.username,
       reason,
       lang.MODERATION.WARN,
       message.member.user

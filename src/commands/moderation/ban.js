@@ -74,27 +74,14 @@ module.exports = {
           );
         message.channel.send(sembed2);
       }
-      let channel = null;
-      if (channel == null) return;
-
-      if (!channel) return;
-
-      const embed = new MessageEmbed()
-        .setAuthor(`${message.guild.name} Modlogs`, message.guild.iconURL())
-        .setColor("#ff0000")
-        .setThumbnail(banMember.user.displayAvatarURL({ dynamic: true }))
-        .setFooter(message.guild.name, message.guild.iconURL())
-        .addField("**Moderation**", "ban")
-        .addField("**Banned**", banMember.user.username)
-        .addField("**ID**", `${banMember.id}`)
-        .addField("**Banned By**", message.author.username)
-        .addField("**Reason**", `${reason || "**No Reason**"}`)
-        .addField("**Date**", message.createdAt.toLocaleString())
-        .setTimestamp();
-
-      var sChannel = message.guild.channels.cache.get(channel);
-      if (!sChannel) return;
-      sChannel.send(embed);
+      await client.emit(
+        "modlog",
+        message.guild,
+        banMember.user.tag,
+        "Ban",
+        "None",
+        message.member.user
+      );
     } catch (e) {
       return message.channel.send(`${cross}**${e.message}**`);
     }

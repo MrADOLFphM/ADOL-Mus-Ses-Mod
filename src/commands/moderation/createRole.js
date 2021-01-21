@@ -29,28 +29,19 @@ module.exports = {
       const embed = new MessageEmbed()
         .setTitle(`Created Role: ${roleName}`)
         .setDescription(
-          `${client.check}Successfully created the \`${roleName}\` role`
+          `${client.emotes.success}Successfully created the \`${roleName}\` role`
         )
         .setColor("BLUE")
         .setTimestamp();
       message.channel.send(embed);
     }
-    let channel = conf.modlog;
-    if (!channel) return;
-
-    const embed = new MessageEmbed()
-      .setAuthor(`${message.guild.name} Modlogs`, message.guild.iconURL())
-      .setColor("#ff0000")
-      .setThumbnail(rMember.user.displayAvatarURL({ dynamic: true }))
-      .setFooter(message.guild.name, message.guild.iconURL())
-      .addField("**Moderation**", "create role")
-      .addField("**Role**", roleName)
-      .addField("**Created By**", message.author.username)
-      .addField("**Date**", message.createdAt.toLocaleString())
-      .setTimestamp();
-
-    let sChannel = message.guild.channels.cache.get(channel);
-    if (!sChannel) return;
-    sChannel.send(embed);
+    await client.emit(
+      "modlog",
+      message.guild,
+      "No one",
+      "create-role",
+      "None",
+      message.member.user
+    );
   },
 };

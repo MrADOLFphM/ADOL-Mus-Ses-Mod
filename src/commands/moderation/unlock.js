@@ -24,5 +24,6 @@ module.exports = {
     message.channel.send(
       lang.MODERATION.UNLOCK_SUCCES.replace("{channel}", channel)
     );
+    await client.emit("modlog", message.guild, "No one", "unlock", "None");
   },
 };

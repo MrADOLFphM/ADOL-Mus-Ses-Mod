@@ -38,5 +38,13 @@ module.exports = {
         lang.MODERATION_MUTE_SUCCES.replace("{user}", user.user.username)
       );
     }
+    await client.emit(
+      "modlog",
+      message.guild,
+      user.user.username,
+      "unmute",
+      "None",
+      message.member.user
+    );
   },
 };

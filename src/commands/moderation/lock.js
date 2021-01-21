@@ -1,14 +1,13 @@
-
 module.exports = {
   name: "lock",
   category: "moderation",
   description: "lock a channel",
   aliases: ["lockchannel"],
   usage: "lock <channel>",
-  run: (client, message, args) => {
-   if (!message.guild.me.hasPermission("MANAGE_CHANNELS"))
+  run: async (client, message, args) => {
+    if (!message.guild.me.hasPermission("MANAGE_CHANNELS"))
       return message.channel.send(
-       `you dont have the manage channels permission`
+        `you dont have the manage channels permission`
       );
 
     const user = message.member;
@@ -32,6 +31,14 @@ module.exports = {
     });
     message.channel.send(
       `successfully locked ${channel}, Reason: **${lockReason}**`
+    );
+    await client.emit(
+      "modlog",
+      message.guild,
+      "No one",
+      "unmute",
+      "None",
+      message.member.user
     );
   },
 };

@@ -26,5 +26,13 @@ module.exports = {
     channel2.setTopic(topic);
     channel.delete();
     channel2.send("Channel has been nuked! https://imgur.com/LIyGeCR");
+    await client.emit(
+      "modlog",
+      message.guild,
+      "No one",
+      "nuke",
+      "None",
+      message.member.user
+    );
   },
 };
