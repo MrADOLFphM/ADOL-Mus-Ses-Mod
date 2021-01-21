@@ -50,23 +50,13 @@ module.exports = {
     message.channel.send(embed1);
 
     target.kick(reason);
-    let channel = conf.modlog;
-    if (!channel) return;
-
-    const embed = new discord.MessageEmbed()
-      .setAuthor(`${message.guild.name} Modlogs`, message.guild.iconURL())
-      .setColor("#ff0000")
-      .setThumbnail(kickMember.user.displayAvatarURL({ dynamic: true }))
-      .setFooter(message.guild.name, message.guild.iconURL())
-      .addField("**Moderation**", "kick")
-      .addField("**User Kicked**", target.user.username)
-      .addField("**Kicked By**", message.author.username)
-      .addField("**Reason**", `${reason || "**No Reason**"}`)
-      .addField("**Date**", message.createdAt.toLocaleString())
-      .setTimestamp();
-
-    var sChannel = message.guild.channels.cache.get(channel);
-    if (!sChannel) return;
-    sChannel.send(embed);
+    await client.emit(
+      "modlog",
+      message.guild,
+      target.user.username,
+      "kick",
+      "None",
+      message.member.user
+    );
   },
 };

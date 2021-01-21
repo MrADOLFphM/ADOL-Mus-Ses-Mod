@@ -37,26 +37,13 @@ module.exports = {
         .send(`${client.check} Deleted ${args[0]} messages.`)
         .then((msg) => msg.delete({ timeout: 2000 }, true));
     });
-    const conf = await client.getConfig(message.guild);
-    let channel = conf.modlog;
-    if (channel == null) return;
-
-    if (!channel) return;
-
-    const embed = new MessageEmbed()
-      .setAuthor(`${message.guild.name} Modlogs`, message.guild.iconURL())
-      .setColor("#ff0000")
-      .setThumbnail(message.author.displayAvatarURL({ dynamic: true }))
-      .setFooter(message.guild.name, message.guild.iconURL())
-      .addField("Moderation", "Purge")
-      .addField("Messages", `${args[0]}`)
-      .addField("Channel", `${message.channel}`)
-      .addField("Used by:", message.author.username)
-      .addField("Date", message.createdAt.toLocaleString())
-      .setTimestamp();
-
-    var sChannel = message.guild.channels.cache.get(channel);
-    if (!sChannel) return;
-    sChannel.send(embed);
+    await client.emit(
+      "modlog",
+      message.guild,
+      "No one",
+      "purged-messages",
+      "None",
+      message.member.user
+    );
   },
 };

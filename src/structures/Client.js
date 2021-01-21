@@ -1,3 +1,6 @@
+
+const { Guild, GuildMember, Channel, Role, Collection } = require("discord.js");
+
 const {
   Guild,
   GuildMember,

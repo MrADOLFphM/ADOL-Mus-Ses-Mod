@@ -25,6 +25,14 @@ module.exports = {
     if (prefix) {
       await client.updateConfig(message.guild, { prefix: prefix });
       await message.channel.send(`Prefix is now ${prefix}`);
+      await client.emit(
+        "modlog",
+        message.guild,
+        "No one",
+        "prefix",
+        "None",
+        message.member.user
+      );
     }
   },
 };

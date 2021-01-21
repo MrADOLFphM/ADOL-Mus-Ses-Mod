@@ -42,5 +42,13 @@ module.exports = {
       );
       ee.deleteOne();
     }
+    await client.emit(
+      "modlog",
+      message.guild,
+      user.user.username,
+      "reset-warns",
+      "None",
+      message.member.user
+    );
   },
 };

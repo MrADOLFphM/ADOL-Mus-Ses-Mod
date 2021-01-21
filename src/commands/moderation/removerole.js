@@ -65,27 +65,17 @@ module.exports = {
       .setColor("GREEN")
       .setAuthor(message.guild.name, message.guild.iconURL())
       .setDescription(
-        `${client.check}Role has been removed from ${rMember.user.username}`
+        `${client.emotes.success}Role has been removed from ${rMember.user.username}`
       );
     message.channel.send(sembed);
 
-    let channel = conf.modlog;
-    if (!channel) return;
-
-    const embed = new MessageEmbed()
-      .setAuthor(`${message.guild.name} Modlogs`, message.guild.iconURL())
-      .setColor("#ff0000")
-      .setThumbnail(rMember.user.displayAvatarURL({ dynamic: true }))
-      .setFooter(message.guild.name, message.guild.iconURL())
-      .addField("**Moderation**", "removerole")
-      .addField("**Removed Role from**", rMember.user.username)
-      .addField("**Role Added**", role.name)
-      .addField("**Removed By**", message.author.username)
-      .addField("**Date**", message.createdAt.toLocaleString())
-      .setTimestamp();
-
-    var sChannel = message.guild.channels.cache.get(channel);
-    if (!sChannel) return;
-    sChannel.send(embed);
+    await client.emit(
+      "modlog",
+      message.guild,
+      rMember.user.username,
+      "remove-role",
+      "None",
+      message.member.user
+    );
   },
 };

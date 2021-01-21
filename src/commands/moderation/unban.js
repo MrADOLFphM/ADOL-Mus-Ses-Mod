@@ -35,5 +35,13 @@ module.exports = {
       .setFooter(`UnBanned by ${message.author.tag}`);
 
     message.channel.send(unBanEmbed);
+    await client.emit(
+      "modlog",
+      message.guild,
+      client.users.cache.get(target).tag,
+      "Unban",
+      "None",
+      message.member.user
+    );
   },
 };
