@@ -1,17 +1,26 @@
+
 const { Guild, GuildMember, Channel, Role, Collection } = require("discord.js");
+
+const {
+  Guild,
+  GuildMember,
+  Channel,
+  Role,
+  Collection,
+  Client,
+} = require("discord.js");
 const emotes = require("../JSON/emojis.json");
 const { Player } = require("discord-player");
 const filters = require("../JSON/filters.json");
 const imdb = require("imdb-api");
 const ItemManager = require("../modules/itemmanager");
-const { KlasaClient } = require("klasa");
 module.exports = class AndoiClient extends (
-  KlasaClient
+  Client
 ) {
   constructor() {
     super({
       disableMentions: "everyone",
-      partials: ["MESSAGE", "REACTION", "USER", "GUILD_MEMBER", "CHANNEL"],
+      partials: ["CHANNEL", "GUILD_MEMBER", "MESSAGE", "REACTION", "USER"],
     });
     const player = new Player(this, {
       leaveOnEmpty: true,
