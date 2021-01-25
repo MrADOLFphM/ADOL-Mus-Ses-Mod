@@ -1,6 +1,3 @@
-
-const { Guild, GuildMember, Channel, Role, Collection } = require("discord.js");
-
 const {
   Guild,
   GuildMember,
@@ -9,11 +6,13 @@ const {
   Collection,
   Client,
 } = require("discord.js");
+const { MonitorStore, utils } = require("andoi-util");
 const emotes = require("../JSON/emojis.json");
 const { Player } = require("discord-player");
 const filters = require("../JSON/filters.json");
 const imdb = require("imdb-api");
 const ItemManager = require("../modules/itemmanager");
+const path = require("path");
 module.exports = class AndoiClient extends (
   Client
 ) {
@@ -29,15 +28,29 @@ module.exports = class AndoiClient extends (
     this.commands = new Collection();
     this.utils = require("../utils/functions");
     this.emotes = emotes;
+    this.pieceStores = new Collection();
+
     this.cooldowns = new Collection();
     this.aliases = new Collection();
     this.player = player;
     this.filters = filters;
     this.items = new ItemManager();
+
     this.snipes = new Map();
     this.config = require("../../config.json");
     this.imdb = new imdb.Client({ apiKey: this.config.imdbKey });
+    this.monitors = new MonitorStore(this);
+    this.registerStore(this.monitors);
+    this.andoiUtils = utils;
+    const coreDirectory = path.join(__dirname, "../");
+    for (const store of this.pieceStores.values())
+      store.registerCoreDirectory(coreDirectory);
     require("../handlers/playerEvents")(this, this.player);
+  }
+
+  registerStore(store) {
+    this.pieceStores.set(store.name, store);
+    return this;
   }
   async resolveUser(search) {
     if (!search || typeof search !== "string") return null;

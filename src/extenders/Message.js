@@ -15,6 +15,14 @@ module.exports = Structures.extend(
       embed() {
         return new MessageEmbed();
       }
+      sendCode(lang, content, options) {
+        return this.send({
+          content: content,
+
+          options: options,
+          code: lang,
+        });
+      }
 
       async send(content, options) {
         const transformedOptions = APIMessage.transformOptions(
