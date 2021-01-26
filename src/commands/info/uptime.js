@@ -1,4 +1,4 @@
-const ms = require("ms");
+const { MessageEmbed } = require("discord.js");
 module.exports = {
   name: "uptime",
   category: "info",
@@ -6,8 +6,17 @@ module.exports = {
   aliases: ["up"],
   usage: "uptime",
   run: (client, message, args) => {
+    const moment = require("moment");
+    require("moment-duration-format");
+    const duration = moment
+      .duration(client.uptime)
+      .format(" D [days], H [hours], m [minutes], s [seconds]");
     message.channel.send(
-      `I have been online for: \`${ms(client.uptime, { long: true })}\``
+      new MessageEmbed()
+        .setAuthor(message.author.username, message.author.displayAvatarURL())
+        .setTitle("Uptime")
+        .setDescription(duration)
+        .setColor("BLURPLE")
     );
   },
 };

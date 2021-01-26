@@ -5,14 +5,12 @@ const Discord = require("discord.js");
 const games = new Map();
 const botModel = require("../models/bot");
 const Blacklist = require("../models/blacklistmodel");
-const d = require("dblapi.js");
 const { handleLevel } = require("../handlers/message");
 const memberVerification = require("../modules/verification");
 
 module.exports = {
   name: "message",
   async execute(client, message, nolevel = false) {
-    const dbl = new d(dblkey, client);
     const botDoc = await botModel.findOne({ name: "Andoi" });
 
     if (message.author.bot) return;
@@ -129,10 +127,22 @@ module.exports = {
     if (!command) command = client.commands.get(client.aliases.get(cmd));
     if (!command) return;
     if (command.category === "invites") return;
+    const getPr = await message.guild.premium();
+    if (command.premiumOnly && !getPr) {
+      const ember = new MessageEmbed()
+        .setTitle("This server does not have premium!")
+        .setDescription(
+          `${client.emotes.error} This server does not have a premium subscription!`
+        )
+        .setTimestamp();
+      return message.send(ember);
+    }
     if (command.votersOnly && command.votersOnly === true) {
       let hasVoted = false;
 
-      const voted = await dbl.hasVoted(message.author.id);
+      const voted = await client.voteManager.top_gg.api.hasVoted(
+        message.author.id
+      );
 
       const e = new MessageEmbed()
         .setTitle(`Click me`)

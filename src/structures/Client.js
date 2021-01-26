@@ -13,6 +13,8 @@ const filters = require("../JSON/filters.json");
 const imdb = require("imdb-api");
 const ItemManager = require("../modules/itemmanager");
 const path = require("path");
+const voteManager = require("./votes/voteManager");
+const { performance } = require("perf_hooks");
 module.exports = class AndoiClient extends (
   Client
 ) {
@@ -29,23 +31,44 @@ module.exports = class AndoiClient extends (
     this.utils = require("../utils/functions");
     this.emotes = emotes;
     this.pieceStores = new Collection();
-
+    this.version = require("../../package.json").version;
     this.cooldowns = new Collection();
     this.aliases = new Collection();
     this.player = player;
     this.filters = filters;
     this.items = new ItemManager();
-
+    this.premium = [];
     this.snipes = new Map();
     this.config = require("../../config.json");
     this.imdb = new imdb.Client({ apiKey: this.config.imdbKey });
     this.monitors = new MonitorStore(this);
     this.registerStore(this.monitors);
+    this.messages = { received: 0, sent: 0 };
     this.andoiUtils = utils;
     const coreDirectory = path.join(__dirname, "../");
     for (const store of this.pieceStores.values())
       store.registerCoreDirectory(coreDirectory);
     require("../handlers/playerEvents")(this, this.player);
+    this.voteManager = new voteManager(this);
+    this.voteManager.top_gg.webhook.on("vote", (vote) => {
+      this.emit("vote", vote.user, vote.isWeekend, vote);
+    });
+    /**
+     * Time took by the bot to start from loading files to the first `READY` state
+     * @type {?Number}
+     */
+    this.bootTime = null;
+    this.on("message", (message) => {
+      if (message.author.id === this.user.id) {
+        return this.messages.sent++;
+      } else {
+        return this.messages.received++;
+      }
+    });
+    this.once("ready", () => {
+      this.bootTime = Math.round(performance.now());
+      return;
+    });
   }
 
   registerStore(store) {
@@ -132,5 +155,8 @@ module.exports = class AndoiClient extends (
     super.login(this.config.Token);
     const { init } = require("../utils/mongoose");
     init();
+  }
+  shorten(text, maxLen = 2000) {
+    return text.length > maxLen ? `${text.substr(0, maxLen - 3)}...` : text;
   }
 };

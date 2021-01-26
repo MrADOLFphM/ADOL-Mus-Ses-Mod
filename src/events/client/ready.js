@@ -4,6 +4,7 @@ module.exports = {
   name: "ready",
   async execute(client) {
     console.log(`Hi, ${client.user.username} is now online!`);
+    client.voteManager.init(true);
     const vot = await botModel.findOne({ name: "Andoi" });
     await botModel.findOneAndUpdate({ name: "Andoi", commandssincerestart: 0 });
     setInterval(() => {
@@ -21,12 +22,42 @@ module.exports = {
     console.log(
       `Loaded ${client.utils.formatNumber(client.commands.size)} commands`
     );
+    const bot = client.user.username;
+    const icon = client.emotes.success;
+    const servers = client.utils.formatNumber(client.guilds.cache.size);
+    const members = client.utils.formatNumber(
+      client.guilds.cache.reduce((a, b) => a + b.memberCount, 0)
+    );
+    const commands = client.commands.size;
+    const boot = client.bootTime;
+    const message = `${icon} \`[ ${client.version} ]\` **REBOOT**`;
+    const embed = {
+      color: "GREY",
+      description: [
+        "```properties",
+        `Servers: ${servers}`,
+        `Members: ${members}`,
+        `Command: ${commands}`,
+        `Boot: ${boot}ms`,
+        "```",
+      ].join("\n"),
+    };
 
-    const w = await client.guilds.cache
-      .get("740295580886106233")
-      .fetchWebhooks();
-    const webhook = w.find((w) => w.name === "Dev logs");
-    webhook.send("Im online");
+    await client.channels.cache
+      .get("")
+      ?.createWebhook(bot, {
+        avatar: client.user.displayAvatarURL({
+          format: "png",
+          dynamic: true,
+          size: 128,
+        }),
+      })
+      .then((webhook) =>
+        Promise.all([webhook.send(message, { embeds: [embed] }), webhook])
+      )
+      .then(([_, webhook]) => webhook.delete())
+      .catch(() => {});
+
     for (const guild of client.guilds.cache) {
       setInterval(async () => {
         await autoCovid(client, guild.id);

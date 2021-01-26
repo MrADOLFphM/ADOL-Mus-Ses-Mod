@@ -11,6 +11,11 @@ Structures.extend("Guild", (Guild) => {
         levelconfig: false,
       };
     }
+    async premium() {
+      const config = await this.getConfig();
+      if (config?.premium === true) return true;
+      if (!config?.premium) return false;
+    }
     async getLevelConfig() {
       const doc = await level.findOne({ guildId: this.id });
       if (doc) {

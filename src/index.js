@@ -1,7 +1,4 @@
 const AndoiClient = require("./structures/Client");
-const Discord = require("discord.js");
-const remodel = require("./models/requirements");
-const token = require(`../config.json`);
 const { GiveawaysManager } = require("discord-giveaways");
 require("./extenders/Guild");
 require("./extenders/Message");
@@ -15,10 +12,10 @@ require("./utils/client")(client);
 require("./utils/member")(client);
 const { sendErrorLog } = require("./utils/functions");
 require("./utils/config.js")(client);
-require("./web/app")(client);
 Array.prototype.last = function () {
   return this[this.length - 1];
 };
+
 global.client = client;
 global.botIntl = Intl.DateTimeFormat("en", {
   weekday: "long",

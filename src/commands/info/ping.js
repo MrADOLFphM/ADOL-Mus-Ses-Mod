@@ -1,5 +1,4 @@
-const discord = require("discord.js");
-const mongoose = require("mongoose");
+const { MessageEmbed } = require("discord.js");
 module.exports = {
   name: "ping",
   aliases: ["pong"],
@@ -7,19 +6,26 @@ module.exports = {
   usage: "ping",
   description: "Get the bot's ping!",
   run: async (client, message, args) => {
-    let start = Date.now();
-    message.channel
-      .send({ embed: { description: "Getting the ping", color: "RANDOM" } })
-      .then((m) => {
-        let end = Date.now();
-
-        let embed = new discord.MessageEmbed()
-          .setAuthor("Ping!", message.author.avatarURL())
-          .addField("API Latency", Math.round(client.ws.ping) + "ms", true)
-          .addField("Message Latency", end - start + "ms", true)
-
-          .setColor("RANDOM");
-        m.edit(embed).catch((e) => message.channel.send(e));
-      });
+    message.channel.send("Testing ping...").then(async (m) => {
+      let randomColor = "RED";
+      let dataPing = Date.now();
+      await message.guild.getConfig();
+      let dataPingNow = Date.now();
+      let dataRealPing = dataPingNow - dataPing;
+      const embed = new MessageEmbed()
+        .setAuthor(message.author.username, message.author.displayAvatarURL())
+        .setTitle("🏓 Pong!")
+        .setDescription(
+          `Bot Evaluation Time - **${Math.round(
+            (m.createdAt - message.createdAt) / client.ws.ping
+          )}**ms \nBot Latency - **${Math.round(
+            m.createdAt - message.createdAt
+          )}**ms \nAPI Latency - **${Math.round(
+            client.ws.ping
+          )}**ms\nDatabase Latency - **${dataRealPing}**ms`
+        )
+        .setColor("RED");
+      m.edit(embed);
+    });
   },
 };
