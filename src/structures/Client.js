@@ -6,8 +6,9 @@ const {
   Collection,
   Client,
 } = require("discord.js");
-const { MonitorStore, utils } = require("andoi-util");
+const { utils } = require("andoi-util");
 const emotes = require("../JSON/emojis.json");
+const MonitorStore = require("./MonitorStore");
 const { Player } = require("discord-player");
 const filters = require("../JSON/filters.json");
 const imdb = require("imdb-api");
@@ -30,7 +31,6 @@ module.exports = class AndoiClient extends (
     this.commands = new Collection();
     this.utils = require("../utils/functions");
     this.emotes = emotes;
-    this.pieceStores = new Collection();
     this.version = require("../../package.json").version;
     this.cooldowns = new Collection();
     this.aliases = new Collection();
@@ -41,18 +41,16 @@ module.exports = class AndoiClient extends (
     this.snipes = new Map();
     this.config = require("../../config.json");
     this.imdb = new imdb.Client({ apiKey: this.config.imdbKey });
-    this.monitors = new MonitorStore(this);
-    this.registerStore(this.monitors);
     this.messages = { received: 0, sent: 0 };
     this.andoiUtils = utils;
-    const coreDirectory = path.join(__dirname, "../");
-    for (const store of this.pieceStores.values())
-      store.registerCoreDirectory(coreDirectory);
+    this.monitors = new MonitorStore(this);
+    this.categories = new Collection();
     require("../handlers/playerEvents")(this, this.player);
     this.voteManager = new voteManager(this);
-    this.voteManager.top_gg.webhook.on("vote", (vote) => {
-      this.emit("vote", vote.user, vote.isWeekend, vote);
-    });
+    const github = require("./github");
+    this.apis = {
+      github: new github(),
+    };
     /**
      * Time took by the bot to start from loading files to the first `READY` state
      * @type {?Number}
@@ -69,11 +67,6 @@ module.exports = class AndoiClient extends (
       this.bootTime = Math.round(performance.now());
       return;
     });
-  }
-
-  registerStore(store) {
-    this.pieceStores.set(store.name, store);
-    return this;
   }
   async resolveUser(search) {
     if (!search || typeof search !== "string") return null;
@@ -153,10 +146,31 @@ module.exports = class AndoiClient extends (
   }
   async start() {
     super.login(this.config.Token);
+    const [monitors] = await Promise.all([this.monitors.loadFiles()]);
     const { init } = require("../utils/mongoose");
+    console.log(monitors);
     init();
   }
   shorten(text, maxLen = 2000) {
     return text.length > maxLen ? `${text.substr(0, maxLen - 3)}...` : text;
+  }
+  reload(command) {
+    const cat = this.categories.get(command);
+    delete require.cache[require.resolve(`../commands/${cat}/${command}`)];
+    const cmd = require(`../commands/${cat}/${command}`);
+    if (!cmd) return false;
+    this.commands.delete(command);
+    cmd.aliases.forEach((cmd, alias) => {
+      if (cmd === command) this.aliases.delete(alias);
+    });
+    this.commands.set(command, cmd);
+    cmd.aliases.forEach((alias) => {
+      this.aliases.set(alias, cmd.name);
+    });
+    const cooldowns = client.cooldowns;
+
+    if (!cooldowns.has(command.name)) {
+      cooldowns.set(command.name, new Collection());
+    }
   }
 };

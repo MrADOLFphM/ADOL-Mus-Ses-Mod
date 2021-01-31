@@ -3,6 +3,10 @@ const fetch = require("node-fetch");
 const yes = ["yes", "y", "ye", "yea", "correct"];
 const no = ["no", "n", "nah", "nope", "fuck off"];
 const errorLogsChannelId = "749358808337481811";
+const {
+  promises: { lstat, readdir },
+} = require("fs");
+const path = require("path");
 async function verify(
   channel,
   user,
@@ -206,6 +210,23 @@ function moneyFormat(amount) {
 
   return formatter.format(amount);
 }
+async function walk(dir, options = {}, results = new Map(), level = -1) {
+  dir = path.resolve(dir);
+  const stats = await lstat(dir);
+  if (!options.filter || options.filter(stats, dir)) results.set(dir, stats);
+  if (
+    stats.isDirectory() &&
+    (typeof options.depthLimit === "undefined" || level < options.depthLimit)
+  ) {
+    await Promise.all(
+      (await readdir(dir)).map((part) =>
+        walk(path.join(dir, part), options, results, ++level)
+      )
+    );
+  }
+  return results;
+}
+
 module.exports = {
   verify,
   list,
@@ -227,4 +248,5 @@ module.exports = {
   binary,
   moneyFormat,
   makeid,
+  walk,
 };

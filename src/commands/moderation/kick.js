@@ -42,7 +42,7 @@ module.exports = {
     let embed1 = new discord.MessageEmbed()
       .setTitle("Action: Kick")
       .setDescription(
-        `${client.check}Kicked ${target} (${target.id}) for ${reason}`
+        `${client.emotes.check}Kicked ${target} (${target.id}) for ${reason}`
       )
       .setColor("#ff2050")
       .setFooter(`Kicked by ${message.author.username}`);

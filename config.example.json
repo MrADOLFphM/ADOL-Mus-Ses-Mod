@@ -18,5 +18,6 @@
   "dblkey": "",
   "fortnite": "fortnite tracker key here",
   "genius": "genius api key here",
-  "default_lang": "english"
+  "default_lang": "english",
+  "dev": false
 }

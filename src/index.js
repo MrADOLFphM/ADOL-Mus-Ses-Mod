@@ -2,6 +2,7 @@ const AndoiClient = require("./structures/Client");
 const { GiveawaysManager } = require("discord-giveaways");
 require("./extenders/Guild");
 require("./extenders/Message");
+require("./extenders/User");
 const client = new AndoiClient();
 client.start();
 

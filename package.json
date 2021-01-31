@@ -27,7 +27,7 @@
     "discord-fetch-all": "^3.0.2",
     "discord-giveaways": "github:Androz2091/discord-giveaways#develop",
     "discord-image-generation": "^1.4.5",
-    "discord-player": "^3.2.0",
+    "discord-player": "github:Snowflake107/discord-player#develop",
     "discord-rpc": "^3.1.4",
     "discord.js": "^12.5.1",
     "ejs": "^3.1.5",

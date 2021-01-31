@@ -1,5 +1,6 @@
 const { URLSearchParams } = require("url");
 const Top = require("@top-gg/sdk");
+const { dblkey } = require("../../../config.json");
 
 module.exports = class VoteManager {
   constructor(client) {
@@ -9,22 +10,20 @@ module.exports = class VoteManager {
      * @type {MaiClient}
      * @readonly
      */
-    Object.defineProperty(this, "client", { value: client });
+    this.client = client;
     this.top_gg = null;
 
-    if (typeof this.client.config.dblkey === "string") {
+    if (dblkey) {
       const app = require("express")();
 
       this.top_gg = {
-        api: new Top.Api(this.client.config.dblkey),
+        api: new Top.Api(dblkey),
         webhook: new Top.Webhook("AndoiBot"),
       };
 
-      app.post(
-        "/dblwebhook",
-        this.top_gg.webhook.middleware(),
-        (req, res) => {}
-      );
+      app.post("/dblwebhook", this.top_gg.webhook.middleware(), (req, res) => {
+        this.client.emit("vote", req.vote.user, req.vote.isWeekend, req.vote);
+      });
 
       app.listen(25635);
     } else {

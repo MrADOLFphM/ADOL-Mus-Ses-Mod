@@ -5,5 +5,9 @@ module.exports = model(
     guild: String,
     member: String,
     captcha: String,
+    invites: {
+      type: Object,
+      default: { total: 0, fake: 0, bonus: 0, regular: 0 },
+    },
   })
 );
