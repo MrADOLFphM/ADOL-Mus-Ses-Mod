@@ -13,7 +13,7 @@
     "@k3rn31p4nic/google-translate-api": "^1.1.1",
     "@top-gg/sdk": "^3.0.6",
     "aki-api": "^5.2.0",
-    "andoi-util": "^1.0.0",
+    "andoi-util": "^1.2.0",
     "canvacord": "^5.0.8",
     "canvas": "^2.6.1",
     "canvas-constructor": "^4.1.0",
