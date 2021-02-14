@@ -11,9 +11,9 @@ module.exports = Structures.extend("User", (User) => {
       return model;
     }
     async update(settings) {
-      const model = await this.settings();
-      const r = model.updateOne(settings);
-      return true;
+      console.log(await userModel.findOne({ userID: this.id }));
+
+      //return await data.updateOne(settings).catch((err) => console.log(err));
     }
   }
 

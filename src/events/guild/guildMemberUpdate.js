@@ -46,5 +46,21 @@ module.exports = {
         .setDescription(`${newMember} was **removed** from ${role} role.`);
       webhook.send(embed);
     }
+    if (!oldMember.premiumSince && newMember.premiumSince) {
+      embed
+        .setTitle("Member Update: `Boosting`")
+        .setDescription(
+          `${client.emotes.boost}${newMember.user.username} Started boosting!`
+        );
+      webhook.send(embed);
+    }
+    if (oldMember.premiumSince && !newMember.premiumSince) {
+      embed
+        .setTitle("Member Update: `Unboost`")
+        .setDescription(
+          `${client.emotes.boost}${newMember.user.username} has stopped boosting!`
+        );
+      webhook.send(embed);
+    }
   },
 };

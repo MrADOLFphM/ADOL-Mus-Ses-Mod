@@ -5,6 +5,9 @@ module.exports = {
   category: "image",
   description: "Ad a user LMAO!",
   run: async (client, message, args) => {
+    const lol = message.send(
+      `${client.emotes.loading}Loading image please wait.....`
+    );
     const m = client.findMember(message, args, true);
     let avatar = m.user.displayAvatarURL({
       dynamic: false,
@@ -14,6 +17,7 @@ module.exports = {
     let img = await new DIG.Ad().getImage(avatar);
 
     let attach = new Discord.MessageAttachment(img, "ad.png");
+    lol.delete();
     message.channel.send(attach);
   },
 };

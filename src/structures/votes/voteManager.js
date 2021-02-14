@@ -25,7 +25,7 @@ module.exports = class VoteManager {
         this.client.emit("vote", req.vote.user, req.vote.isWeekend, req.vote);
       });
 
-      app.listen(25635);
+      app.listen(25755);
     } else {
       // Do nothing..
     }

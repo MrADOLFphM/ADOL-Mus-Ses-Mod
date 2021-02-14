@@ -1,6 +1,7 @@
+const run = require("../../modules/messageFuntions");
 module.exports = {
   name: "message",
   async execute(client, message) {
-    await client.monitors.run(message);
+    await run(message);
   },
 };

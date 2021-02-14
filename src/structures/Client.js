@@ -8,7 +8,6 @@ const {
 } = require("discord.js");
 const { utils } = require("andoi-util");
 const emotes = require("../JSON/emojis.json");
-const MonitorStore = require("./MonitorStore");
 const { Player } = require("discord-player");
 const filters = require("../JSON/filters.json");
 const imdb = require("imdb-api");
@@ -16,9 +15,7 @@ const ItemManager = require("../modules/itemmanager");
 const path = require("path");
 const voteManager = require("./votes/voteManager");
 const { performance } = require("perf_hooks");
-module.exports = class AndoiClient extends (
-  Client
-) {
+module.exports = class AndoiClient extends Client {
   constructor() {
     super({
       disableMentions: "everyone",
@@ -43,11 +40,13 @@ module.exports = class AndoiClient extends (
     this.imdb = new imdb.Client({ apiKey: this.config.imdbKey });
     this.messages = { received: 0, sent: 0 };
     this.andoiUtils = utils;
-    this.monitors = new MonitorStore(this);
     this.categories = new Collection();
     require("../handlers/playerEvents")(this, this.player);
     this.voteManager = new voteManager(this);
+    const color = require("../utils/color");
+    this.color = new color();
     const github = require("./github");
+
     this.apis = {
       github: new github(),
     };
@@ -146,9 +145,8 @@ module.exports = class AndoiClient extends (
   }
   async start() {
     super.login(this.config.Token);
-    const [monitors] = await Promise.all([this.monitors.loadFiles()]);
     const { init } = require("../utils/mongoose");
-    console.log(monitors);
+
     init();
   }
   shorten(text, maxLen = 2000) {
@@ -160,14 +158,10 @@ module.exports = class AndoiClient extends (
     const cmd = require(`../commands/${cat}/${command}`);
     if (!cmd) return false;
     this.commands.delete(command);
-    cmd.aliases.forEach((cmd, alias) => {
-      if (cmd === command) this.aliases.delete(alias);
-    });
     this.commands.set(command, cmd);
-    cmd.aliases.forEach((alias) => {
-      this.aliases.set(alias, cmd.name);
-    });
-    const cooldowns = client.cooldowns;
+    if (cmd.aliases && Array.isArray(cmd.aliases))
+      cmd.aliases.forEach((alias) => this.aliases.set(alias, cmd.name));
+    const cooldowns = this.cooldowns;
 
     if (!cooldowns.has(command.name)) {
       cooldowns.set(command.name, new Collection());

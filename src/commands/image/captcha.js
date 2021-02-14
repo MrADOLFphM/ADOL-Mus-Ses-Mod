@@ -8,6 +8,9 @@ module.exports = {
   description: "Shows Captcha Image Of An User",
   usage: "[username | nickname | mention | ID](optional)",
   run: async (bot, message, args) => {
+    const lol = message.send(
+      `${client.emotes.loading}Loading image please wait.....`
+    );
     let user =
       (await message.mentions.members.first()) ||
       message.guild.members.cache.get(args[0]) ||
@@ -20,7 +23,7 @@ module.exports = {
           r.displayName.toLowerCase() === args.join(" ").toLocaleLowerCase()
       ) ||
       message.member;
-    let m = await message.channel.send("**Please Wait...**");
+
     try {
       let res = await fetch(
         encodeURI(
@@ -34,8 +37,8 @@ module.exports = {
         json.message,
         "captcha.png"
       );
+      lol.delete();
       message.channel.send(attachment);
-      m.delete({ timeout: 5000 });
     } catch (e) {
       console.log(e);
       m.edit("Error, Try Again! Mention Someone");

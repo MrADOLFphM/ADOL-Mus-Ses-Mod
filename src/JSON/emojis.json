@@ -20,5 +20,9 @@
   "disabled": "<:stop:793453455158935652>",
   "tickets": "<:supportticket:793432370912165899>",
   "custom": "<:custom:757978989926154411>",
-  "warn": "⚠️"
+  "warn": "<:atlanta_warn:598179558927106058>",
+  "loading": "<a:atlanta_loading:743090350490648727>",
+  "premium": "<:atlanta_crown:598174064183607317>",
+  "boost": "<:atlanta_boost:629316191797641248>",
+  "explicit": "<:explicit:807582053867454474>"
 }

@@ -6,7 +6,11 @@ const errorLogsChannelId = "749358808337481811";
 const {
   promises: { lstat, readdir },
 } = require("fs");
+const moment = require("moment");
 const path = require("path");
+function formatDuration(duration) {
+  return moment.duration(duration).format("hh:mm:ss", { stopTrim: "m" });
+}
 async function verify(
   channel,
   user,
@@ -249,4 +253,5 @@ module.exports = {
   moneyFormat,
   makeid,
   walk,
+  formatDuration,
 };
