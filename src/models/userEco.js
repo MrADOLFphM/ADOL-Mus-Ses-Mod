@@ -16,12 +16,9 @@ module.exports = model(
     afk: {
       type: Object,
       default: {
-        afk: false,
+        is_afk: false,
         reason: null,
       },
-    },
-    backups: {
-      type: Array,
     },
   })
 );

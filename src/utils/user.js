@@ -7,13 +7,7 @@ module.exports = (client) => {
   };
   client.updateUser = async (user, stats) => {
     let data = await client.getUser(user);
-    if (typeof data != "object") data = {};
-    for (const key in stats) {
-      if (stats.hasOwnProperty(key)) {
-        if (data[key] != stats[key]) data[key] = stats[key];
-        else return;
-      }
-    }
+
     return await data.updateOne(stats).catch((err) => console.log(err));
   };
   client.createUser = async (stats) => {

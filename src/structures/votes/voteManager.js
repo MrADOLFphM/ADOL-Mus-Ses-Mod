@@ -13,19 +13,16 @@ module.exports = class VoteManager {
     this.client = client;
     this.top_gg = null;
 
-    if (dblkey) {
-      const app = require("express")();
+    this.top_gg = {
+      api: new Top.Api(dblkey),
+      webhook: new Top.Webhook("AndoiBot"),
+    };
 
+    if (dblkey) {
       this.top_gg = {
         api: new Top.Api(dblkey),
         webhook: new Top.Webhook("AndoiBot"),
       };
-
-      app.post("/dblwebhook", this.top_gg.webhook.middleware(), (req, res) => {
-        this.client.emit("vote", req.vote.user, req.vote.isWeekend, req.vote);
-      });
-
-      app.listen(25755);
     } else {
       // Do nothing..
     }

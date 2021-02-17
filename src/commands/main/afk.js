@@ -6,40 +6,37 @@ module.exports = {
   category: "utility",
   description: "",
   run: async (client, message, args) => {
-    const lang = await message.guild.getLang();
-    const user = await client.getUser(message.author);
-    if (user.afk.afk) {
-      await client.updateUser(message.author, {
-        afk: { afk: false, reason: null },
-      });
-      return message.send("Your no longer afk");
-    }
+    try {
+      const guildId = message.guild?.id;
+      const userId = message.author;
+      const user = await client.getUser(userId);
 
-    let reason = args.join(" ");
+      if (user?.afk?.is_afk) {
+        await client.updateUser(message.author, {
+          afk: { is_afk: false, reason: null },
+        });
 
-    let options = {
-      reason: `${reason || lang.NONE}`,
-      afk: true,
-    };
-    await client.updateUser(message.author, {
-      afk: { afk: true, reason: options.reason },
-    });
+        const embed = new MessageEmbed()
+          .setTitle("Succes")
+          .setDescription("You are no longer afk!");
 
-    const embed = new MessageEmbed()
-      .setTimestamp()
-      .setDescription(
-        lang.MAIN.NOW_AFK.replace('{reason || "AFK"}', reason || options.reason)
-      )
-      .setColor("BLUE");
-
-    message.channel.send(embed);
-
-    if (message.member.nickname) {
-      if (!message.member.nickname.includes("[AFK] ")) {
-        message.member.setNickname(`[AFK] ${message.member.nickname}`);
+        return message.channel.send(embed);
       }
-    } else {
-      message.member.setNickname(`[AFK] ${message.author.username}`);
+
+      const reason = args.join(" ") || "None";
+
+      await client.updateUser(userId, {
+        afk: { is_afk: true, reason: reason },
+      });
+
+      const embed = new MessageEmbed()
+        .setTitle("Succes")
+        .setDescription(`You are afk for ${reason}`);
+
+      message.channel.send(embed);
+    } catch (err) {
+      console.log(err);
+      return message.channel.send("An error has occured.");
     }
   },
 };

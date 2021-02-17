@@ -6,6 +6,7 @@ const {
   Collection,
   Client,
 } = require("discord.js");
+const functions = require("./functions/message");
 const { utils } = require("andoi-util");
 const emotes = require("../JSON/emojis.json");
 const { Player } = require("discord-player");
@@ -43,6 +44,7 @@ module.exports = class AndoiClient extends Client {
     this.categories = new Collection();
     require("../handlers/playerEvents")(this, this.player);
     this.voteManager = new voteManager(this);
+    this.functions = new functions(this);
     const color = require("../utils/color");
     this.color = new color();
     const github = require("./github");

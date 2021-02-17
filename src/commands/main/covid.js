@@ -17,9 +17,9 @@ module.exports = {
   usage: "corona all or corona <country>",
   aliases: ["covid", "covid19"],
   run: async (client, message, args) => {
+    const lang = await message.guild.getLang();
     if (!args[0]) {
       const totalStats = await covid.getAll();
-      const lang = await message.guild.getLang();
 
       const updatedTime = new Date(totalStats.updated);
 

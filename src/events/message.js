@@ -5,7 +5,6 @@ const Discord = require("discord.js");
 const games = new Map();
 const botModel = require("../models/bot");
 const Blacklist = require("../models/blacklistmodel");
-const { handleLevel } = require("../handlers/message");
 const memberVerification = require("../modules/verification");
 
 module.exports = {
@@ -48,7 +47,6 @@ module.exports = {
           }
         });
     }
-    await handleLevel(message);
 
     const ignoredChannels = config.ignored_channels;
     if (ignoredChannels.includes(message.channel.id)) return;
