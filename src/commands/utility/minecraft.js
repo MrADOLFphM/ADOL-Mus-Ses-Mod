@@ -21,7 +21,7 @@ module.exports = {
     }
     e.setTitle(json.hostname || ip + " Info")
       .setThumbnail(
-        `https://eu.mc-api.net/v3/server/favicon/${ip.toLowerCaser()}`
+        `https://eu.mc-api.net/v3/server/favicon/${ip.toLowerCase()}`
       )
       .addField("IP", json.ip || "Not found", true)
       .addField("Port", json.port || "None", true)

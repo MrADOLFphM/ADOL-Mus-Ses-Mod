@@ -246,18 +246,21 @@ module.exports = {
       }
       if (command) {
         if (command.requiredArgs && args.length < command.requiredArgs.length) {
-          const cmdArgs = command.requiredArgs
-            .map((a) => `\`${a}\``)
-            .join(", ");
-          const cmdExample = `${prefix}${cmd.name} ${cmd.requiredArgs
-            .map((a) => `<${a}>`)
-            .join(" ")}`;
-
+          const ee = command.requiredArgs;
+          const ex = `${prefix}${command.name} ${ee
+            .map((e) => `<${e}>`)
+            .join(", ")}`;
           const embed = new MessageEmbed()
             .setTitle("Incorrect command usage")
             .setColor("RED")
-            .setDescription(`:x: You must provide more args: ${cmdArgs}`)
-            .addField("Example:", cmdExample);
+            .setDescription(
+              `${
+                client.emotes.error
+              } You must provide more args: ${command.requiredArgs.join(
+                "`, `"
+              )}`
+            )
+            .addField("Example", ex);
 
           return message.channel.send(embed);
         }
