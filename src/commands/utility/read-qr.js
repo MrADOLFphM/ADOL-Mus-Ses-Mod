@@ -5,7 +5,6 @@ module.exports = {
   aliases: ["rqr", "read-qr"],
   category: "utility",
   description: "Reads an qr code!",
-  requiredArgs: ["image"],
   run: async (client, message, args) => {
     const image = args.join(" ") || message.attachments.first();
     const body = await fetch(
