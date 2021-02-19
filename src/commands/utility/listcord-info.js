@@ -12,6 +12,7 @@ module.exports = {
     const bot = await api.getBot(id);
     if (!bot) return message.reply("That bot is not on listcord!");
     const embed = new MessageEmbed()
+      .setAuthor("Listcord", null, `https://listcord.xyz/bot/id`)
       .setTitle(`${bot.name}'s info!`)
       .setThumbnail(bot.avatar)
       .setDescription(bot.description.short)
@@ -28,7 +29,8 @@ module.exports = {
         "Created on",
         moment(bot.createdAt).format("dddd, Do MMMM YYYY"),
         true
-      );
+      )
+      .setFooter("Made with listcord api!");
     message.send(embed);
 
     function getDevelopers(ids) {
