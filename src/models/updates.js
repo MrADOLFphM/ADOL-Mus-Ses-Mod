@@ -4,6 +4,10 @@ module.exports = model(
   "updates",
   new Schema({
     name: { type: String, default: "Andoi" },
-    updates: Array,
+    version: String,
+    updates: {
+      type: Object,
+      default: { new: "None", fixed: "None", removed: "None" },
+    },
   })
 );

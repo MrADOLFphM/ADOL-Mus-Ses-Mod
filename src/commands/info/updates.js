@@ -6,10 +6,17 @@ module.exports = {
   category: "info",
   usage: "updates",
   run: async (client, message, args) => {
-    message.channel.send("Being upgraded at the moment.");
-
-    const updates = await updates
-      .findOne({ name: "andoi" })
+    const updates = await update
+      .findOne({ name: "Andoi" })
       .catch((err) => console.log(err));
+    console.log(updates);
+    const embed = new MessageEmbed()
+      .setTitle(`${updates.version}`)
+      .setDescription(
+        `new: ${updates.updates.new}\n fixed: ${updates.updates.fixed}\n removed: ${updates.updates.removed}`
+      )
+      .setColor("BLUE")
+      .setTimestamp();
+    message.send(embed);
   },
 };
