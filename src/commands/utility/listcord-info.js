@@ -9,7 +9,7 @@ module.exports = {
   run: async (client, message, args) => {
     const api = new listcord(client.config.listcord);
     const id = args[0];
-    const bot = api.getBot(id);
+    const bot = await api.getBot(id);
     if (!bot) return message.reply("That bot is not on listcord!");
     const embed = new MessageEmbed()
       .setTitle(`${bot.name}'s info!`)

@@ -246,10 +246,12 @@ module.exports = {
       }
       if (command) {
         if (command.requiredArgs && args.length < command.requiredArgs.length) {
-          const cmdArgs = cmd.requiredArgs.map((a) => `\`${a}\``).join(", ");
-          const cmdExample = `${matchedPrefix}${
-            cmd.name
-          } ${cmd.requiredArgs.map((a) => `<${a}>`).join(" ")}`;
+          const cmdArgs = command.requiredArgs
+            .map((a) => `\`${a}\``)
+            .join(", ");
+          const cmdExample = `${prefix}${cmd.name} ${cmd.requiredArgs
+            .map((a) => `<${a}>`)
+            .join(" ")}`;
 
           const embed = new MessageEmbed()
             .setTitle("Incorrect command usage")
