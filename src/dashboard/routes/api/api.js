@@ -48,7 +48,7 @@ router.get("/ad", async (req, res) => {
   const Canvas = canvas.createCanvas(550, 474);
   const ctx = Canvas.getContext("2d");
   let im = await canvas.loadImage(req.urlParams.image);
-  const back = await canvas.loadImage(`${__dirname}/../assets/img/ad.png`);
+  const back = await canvas.loadImage(`${__dirname}/../../assets/img/ad.png`);
   ctx.drawImage(im, 150, 75, 230, 230);
   ctx.drawImage(back, 0, 0, 550, 474);
   res.set("Content-Type", "image/png");
@@ -57,13 +57,14 @@ router.get("/ad", async (req, res) => {
 router.get("/", (req, res) => {
   res.json({
     note: "[] is required to let the endpoint function",
-    endpoints: "/affect?image=[image-url], /guilds/[GUILD-ID]/stats, /guilds, /ad?image=[image-url]",
+    endpoints:
+      "/affect?image=[image-url], /guilds/[GUILD-ID]/stats, /guilds, /ad?image=[image-url]",
   });
 });
 router.get("/affect", async (req, res) => {
   if (!req.urlParams.image)
     return res.json({ error: true, message: "No image was provided" });
-  const base = await jimp.read(`${__dirname}/../assets/img/affect.png`);
+  const base = await jimp.read(`${__dirname}/../../assets/img/affect.png`);
   const img = await jimp.read(req.urlParams.image);
   img.resize(200, 157);
   base.composite(img, 180, 383);
