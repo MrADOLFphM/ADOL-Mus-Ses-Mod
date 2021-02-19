@@ -16,6 +16,7 @@ const ItemManager = require("../modules/itemmanager");
 const path = require("path");
 const voteManager = require("./votes/voteManager");
 const { performance } = require("perf_hooks");
+const logger = require("../modules/logger");
 module.exports = class AndoiClient extends Client {
   constructor() {
     super({
@@ -45,6 +46,7 @@ module.exports = class AndoiClient extends Client {
     require("../handlers/playerEvents")(this, this.player);
     this.voteManager = new voteManager(this);
     this.functions = new functions(this);
+    this.logger = logger;
     const color = require("../utils/color");
     this.color = new color();
     const github = require("./github");
@@ -146,6 +148,7 @@ module.exports = class AndoiClient extends Client {
     return obj;
   }
   async start() {
+    require("../scripts/verifyConfig")(this.config);
     super.login(this.config.Token);
     const { init } = require("../utils/mongoose");
 

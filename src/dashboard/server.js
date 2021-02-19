@@ -1,5 +1,7 @@
 module.exports = (client) => {
   const express = require("express");
+  const api = require("./routes/api/api");
+  const url = require("url");
   const app = express();
   app.set("views", __dirname + "/views");
   app.set("view engine", "ejs");
@@ -26,8 +28,17 @@ module.exports = (client) => {
       client.emit("vote", req.vote.user, req.vote.isWeekend, req.vote);
     }
   );
-  const port = 25755;
+  const port = 2791;
   app.listen(port, () =>
     console.log(` Dashboard - Server is live on port ${port}`)
   );
+  const querystring = require("querystring");
+  app.use((req, res, next) => {
+    req.urlParams = querystring.parse(
+      url.parse("http://localhost:2791" + req.originalUrl).query
+    );
+
+    next();
+  });
+  app.use("/api", api);
 };

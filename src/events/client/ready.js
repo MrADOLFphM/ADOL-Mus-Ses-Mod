@@ -3,7 +3,7 @@ const autoCovid = require("../../helpers/autoCovid");
 module.exports = {
   name: "ready",
   async execute(client) {
-    console.log(`Hi, ${client.user.username} is now online!`);
+    client.logger.ready(`Hi, ${client.user.username} is now online!`);
     client.voteManager.init(true);
     const vot = await botModel.findOne({ name: "Andoi" });
     await botModel.findOneAndUpdate({ name: "Andoi", commandssincerestart: 0 });

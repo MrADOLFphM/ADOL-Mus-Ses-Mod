@@ -1,23 +1,21 @@
 const request = require("node-superfetch");
-let pornList = false;
+const fetch = require("node-fetch");
 const url = require("url");
 module.exports = {
   name: "capture-website",
   aliases: ["website", "webss", "web", "capture"],
   category: "utility",
   description: "Return a screenshot of the website",
+  pornList: [],
   run: async (client, message, args) => {
     const lang = await message.getLang();
 
     try {
       let site = args[0];
       try {
-        if (!pornList) await fetchPornList();
         const parsed = url.parse(site);
-        if (
-          pornList.some((pornURL) => parsed.host === pornURL) &&
-          !message.channel.nsfw
-        ) {
+
+        if (await nsfw(site)) {
           return message.reply(lang.UTILITY.SITE_NSFW);
         }
         const { body } = await request.get(
@@ -36,16 +34,28 @@ module.exports = {
       console.log(err);
       return message.reply(lang.ERROR);
     }
-    async function fetchPornList(force = false) {
-      if (!force && pornList) return pornList;
-      const { text } = await request.get(
+
+    async function nsfw(u) {
+      const text = await fetch(
         "https://raw.githubusercontent.com/blocklistproject/Lists/master/porn.txt"
-      );
-      pornList = text
-        .split("\n")
-        .filter((site) => site && !site.startsWith("#"))
-        .map((site) => site.replace(/^(0.0.0.0	)/, "")); // eslint-disable-line no-control-regex
-      return pornList;
+      ).then((res) => res.text());
+      const list = [
+        ...text
+          .split("\n")
+          .filter((s) => !s.startsWith("#"))
+          .map((s) => s.replace("0.0.0.0", "")),
+        "pornhub.com",
+      ].join("\n");
+      const parsed = url.parse(u);
+      const includes = list.includes(parsed.host);
+      const includesPorn = await (
+        await fetch(u).then((res) => res.text())
+      ).includes("porn");
+
+      if (!includes && !includesPorn) return false;
+      if (includes && includesPorn) return true;
+      if (includes || !includesPorn) return true;
+      if (!includes || includes) return true;
     }
   },
 };

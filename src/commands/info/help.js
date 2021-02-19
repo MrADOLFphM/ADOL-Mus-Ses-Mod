@@ -58,7 +58,10 @@ module.exports = {
       let embed = new MessageEmbed()
         .setAuthor(command.name, client.user.displayAvatarURL())
         .addField("Description", command.description || "Not Provided")
-        .addField("Usage", "`" + command.usage + "`" || "Not Provied")
+        .addField(
+          "Usage",
+          "`" + command.usage ? command.usage : "Not provided" + "`"
+        )
         .addField(
           "aliases",
           command.aliases ? "`" + command.aliases + "`" : "not provided"

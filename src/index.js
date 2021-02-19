@@ -16,8 +16,8 @@ require("./utils/config.js")(client);
 Array.prototype.last = function () {
   return this[this.length - 1];
 };
-require("./dashboard/server")(client);
 global.client = client;
+require("./dashboard/server")(client);
 global.botIntl = Intl.DateTimeFormat("en", {
   weekday: "long",
   year: "numeric",

@@ -265,6 +265,7 @@ module.exports = {
         await botDoc.save();
       }
     } catch (err) {
+      console.log(err.stack);
       message.channel.send(
         `${client.emotes.error}An unexpected error has occured!`
       );
