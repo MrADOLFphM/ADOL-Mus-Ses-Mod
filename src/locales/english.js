@@ -1,6 +1,9 @@
 module.exports = {
   //!if i dont do GLOBAL: {} or whatever then its global easy acces!!
   ERROR: "An unexpected error has ocurred...",
+  INCORRECT_USAGE: "Incorrect command usage!",
+  MORE_ARGS: "You must provide more args",
+  EXAMPLE: "example",
   NO_PERMS: "You need **{perm}** permissions to do this!",
   NONE: "None",
   I_PERMS: "I do not have {perm} permission",
@@ -53,6 +56,11 @@ module.exports = {
     MUTE_SUCCES: "{user} succesfully unmuted!",
     UNLOCK_SUCCES: "{channel} was succesfully unlocked",
     NO_ID: "You did not provide an id!",
+    UPLOADED_EMOJI_SUCCES: "Emoji: {name} has been succesfully uploaded!",
+    EMOJI_ADDED: "Emoji succesfully added [click me to view]({url})",
+    NORMAL_EMOJI: "You cant add a normal emoji!",
+    VALID_EMOJI: "Please provide a valid emoji!",
+    MAX_EMOJI: "DiscordAPIError: Maximum number of emojis reached (50)",
   },
   MAIN: {
     ALREADY_AFK: "You are already afk!",

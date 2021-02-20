@@ -6,7 +6,8 @@ module.exports = {
   category: "utility",
   description: "Reads an qr code!",
   run: async (client, message, args) => {
-    const image = args.join(" ") || message.attachments.first();
+    const image = args.join(" ") || message.attachments.first().url;
+
     const body = await fetch(
       `http://api.qrserver.com/v1/read-qr-code/?fileurl=${encodeURIComponent(
         image

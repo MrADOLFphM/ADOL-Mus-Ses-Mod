@@ -8,21 +8,19 @@ module.exports = {
   requiredArgs: ["ip"],
   run: async (client, message, [ip]) => {
     try {
-      await this.ipInfo(ip).then((r) => {
-        if (r.data.status === "succes") {
+      await ipInfo(ip).then((r) => {
+        if (r.status === "success") {
           let embed = new MessageEmbed()
             .setTitle("Ip information")
             .setColor("GREEN")
-            .setDescription(
-              `**Mobile:** ${r.data.mobile}\n**Proxy:** ${r.data.proxy}`
-            )
-            .addField("Internet service provider:", r.data.isp, true)
-            .addField("As numer and organization:", r.data.as, true)
-            .addField("continent:", r.data.continent, true)
-            .addField("Country", r.data.country, true)
-            .addField("City", r.data.city, true)
-            .addField("Timezone:", r.data.timezone, true)
-            .addField("Currency", r.data.currency, true)
+            .setDescription(`**Mobile:** ${r.mobile}\n**Proxy:** ${r.proxy}`)
+            .addField("Internet service provider:", r.isp, true)
+            .addField("As numer and organization:", r.as, true)
+            .addField("continent:", r.continent, true)
+            .addField("Country", r.country, true)
+            .addField("City", r.city, true)
+            .addField("Timezone:", r.timezone, true)
+            .addField("Currency", r.currency, true)
             .setTimestamp();
           return message.send(embed);
         } else {
@@ -35,10 +33,10 @@ module.exports = {
         "An unexpected error has occured please contact an developer!"
       );
     }
-  },
-  async ipInfo(ip) {
-    return await fetch(
-      `http://ip-api.com/json/${ip}?fields=status,message,continent,continentCode,country,countryCode,region,regionName,city,district,zip,timezone,currency,isp,org,as,asname,reverse,mobile,proxy,query`
-    ).then((res) => res.json());
+    async function ipInfo(ip) {
+      return await fetch(
+        `http://ip-api.com/json/${ip}?fields=status,message,continent,continentCode,country,countryCode,region,regionName,city,district,zip,timezone,currency,isp,org,as,asname,reverse,mobile,proxy,query`
+      ).then((res) => res.json());
+    }
   },
 };

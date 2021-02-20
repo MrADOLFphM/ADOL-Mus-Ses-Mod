@@ -8,16 +8,11 @@ module.exports = {
   description: "Steal an emoji from a different server",
   botPermissions: ["MANAGE_EMOJIS"],
   memberPermissions: ["MANAGE_EMOJIS"],
+  requiredArgs: ["emoji"],
   run: async (client, message, args) => {
     const emoji = args[0];
     const name = args.slice(1).join(" ");
     const lang = await message.guild.getLang();
-    if (!emoji) {
-      return message.channel.send(
-        `${client.emotes.error} Please Give Me A Emoji!`
-      );
-    }
-
     try {
       if (emoji.startsWith("https://cdn.discordapp.com")) {
         await message.guild.emojis.create(emoji, name || "give_name");
@@ -25,9 +20,12 @@ module.exports = {
         const embed = new MessageEmbed()
           .setTitle("Emoji Added")
           .setDescription(
-            `${client.emotes.succes} Emoji Has Been Added! | Name: ${
+            `${
+              client.emotes.succes
+            }${lang.MODERATION.UPLOADED_EMOJI_SUCCES.replace(
+              "{name}",
               name || "give_name"
-            } `
+            )}`
           );
         return message.channel.send(embed);
       }
@@ -43,23 +41,17 @@ module.exports = {
           `${link}`,
           `${name || `${customEmoji.name}`}`
         );
-        const embed = new MessageEmbed()
-          .setTitle("Emoji Added")
-          .setDescription(
-            `Emoji Has Been Added! | Name: ${
-              name || `${customEmoji.name}`
-            } | Preview: [Click me](${link})`
-          );
+        const embed = new MessageEmbed().setDescription(
+          lang.MODERATION.EMOJI_ADDED.replace("{url}", link)
+        );
         return message.channel.send(embed);
       } else {
         const foundEmoji = parse(emoji, { assetType: "png" });
         if (!foundEmoji[0]) {
-          return message.channel.send("Please provide a valid emoji");
+          return message.channel.send(lang.MODERATION.VALID_EMOJI);
         }
 
-        message.channel.send(
-          "You Can Use Normal Emoji Without Adding In Server!"
-        );
+        message.channel.send(lang.MODERATION.NORMAL_EMOJI);
       }
     } catch (e) {
       if (
@@ -67,9 +59,7 @@ module.exports = {
           "DiscordAPIError: Maximum number of emojis reached (50)"
         )
       ) {
-        return message.channel.send(
-          "Maximum emoji count reached for this guild!"
-        );
+        return message.channel.send(lang.MODERATION.MAX_EMOJI);
       } else {
         return message.channel.send(lang.ERROR);
       }

@@ -245,22 +245,21 @@ module.exports = {
         message.flags.push(args.shift().slice(1));
       }
       if (command) {
+        const lang = await message.getLang();
         if (command.requiredArgs && args.length < command.requiredArgs.length) {
           const ee = command.requiredArgs;
           const ex = `${prefix}${command.name} ${ee
             .map((e) => `<${e}>`)
             .join(", ")}`;
           const embed = new MessageEmbed()
-            .setTitle("Incorrect command usage")
+            .setTitle(lang.INCORRECT_USAGE)
             .setColor("RED")
             .setDescription(
-              `${
-                client.emotes.error
-              } You must provide more args: ${command.requiredArgs.join(
-                "`, `"
-              )}`
+              `${client.emotes.error} ${
+                lang.MORE_ARGS
+              } ${command.requiredArgs.join("`, `")}`
             )
-            .addField("Example", ex);
+            .addField(lang.EXAMPLE, ex);
 
           return message.channel.send(embed);
         }

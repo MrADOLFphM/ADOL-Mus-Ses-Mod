@@ -1,6 +1,6 @@
 const { EventEmitter } = require("events");
 const axios = require("axios");
-//! credits: listcord team
+
 /**
  * The main listcord api client class
  */
@@ -32,10 +32,12 @@ class Client extends EventEmitter {
   async getBot(id) {
     try {
       const { data } = await axios({
-        method: "POST",
+        method: "GET",
         url: this.baseURL + "/bot/" + id,
         headers: { token: this.token },
       });
+
+      console.log(data);
 
       return data.message == "not found" ? null : data;
     } catch (e) {
@@ -53,7 +55,7 @@ class Client extends EventEmitter {
   async getBotReviews(id) {
     try {
       const { data } = await axios({
-        method: "POST",
+        method: "GET",
         url: this.baseURL + "/bot/" + id + "/reviews",
         headers: { token: this.token },
       });
@@ -75,7 +77,7 @@ class Client extends EventEmitter {
   async getReview(userID, botID) {
     try {
       const { data } = await axios({
-        method: "POST",
+        method: "GET",
         url: this.baseURL + "/bot/" + botID + "/reviews",
         headers: { token: this.token },
       });
@@ -101,7 +103,7 @@ class Client extends EventEmitter {
   async hasVoted(userID, botID) {
     try {
       const { data } = await axios({
-        method: "POST",
+        method: "GET",
         url: this.baseURL + "/bot/" + botID + "/voted?user_id=" + userID,
         headers: { token: this.token },
       });
@@ -124,7 +126,7 @@ class Client extends EventEmitter {
 
     try {
       const { data } = await axios({
-        method: "POST",
+        method: "GET",
         url: this.baseURL + "/bots?q=" + encodeURIComponent(query),
         headers: { token: this.token },
       });
@@ -143,11 +145,14 @@ class Client extends EventEmitter {
   handleError(e) {
     if (e.response) {
       let data = e.response.data;
-      if (data.message == "rate limited") this.emit("rateLimit", e);
-      else if (data.message == "server error") this.emit("serverError", e);
+      if (data.message == "not found") return;
+      else if (data.message == "rate limited") this.emit("rateLimit", e);
+      else if (data.message == "server error" || !data.message)
+        this.emit("serverError", e);
+      else if (data.message == "invalid token") this.emit("invalidToken", e);
       else this.emit("error", e);
     } else this.emit("error", e);
   }
 }
 
-module.exports = Client;
+module.exports.Client = Client;
