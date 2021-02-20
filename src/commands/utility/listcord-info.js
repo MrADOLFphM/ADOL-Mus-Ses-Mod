@@ -7,7 +7,7 @@ module.exports = {
   category: "utility",
   requiredArgs: ["botID"],
   run: async (client, message, args) => {
-    const api = new listcord(client.config.listcord);
+    const api = new listcord.Client(client.config.listcord);
     const id = args[0] || message.mentions.users.first().id;
     const bot = await api.getBot(id);
     if (!bot) return message.reply("That bot is not on listcord!");
