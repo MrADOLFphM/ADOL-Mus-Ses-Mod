@@ -155,4 +155,6 @@ class Client extends EventEmitter {
   }
 }
 
-module.exports.Client = Client;
+module.exports = {
+  Client,
+};
