@@ -1,6 +1,7 @@
 const ms = require("ms");
 const { hostedBy, everyoneMention } = require("../../../config.json");
 const rModel = require("../../models/requirements");
+const Discord = require("discord.js");
 
 module.exports = {
   name: "start-giveaway",
