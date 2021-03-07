@@ -17,6 +17,7 @@ const path = require("path");
 const voteManager = require("./votes/voteManager");
 const { performance } = require("perf_hooks");
 const logger = require("../modules/logger");
+const dankmemer = require("dankmemer");
 module.exports = class AndoiClient extends Client {
   constructor() {
     super({
@@ -49,6 +50,7 @@ module.exports = class AndoiClient extends Client {
     this.logger = logger;
     const color = require("../utils/color");
     this.color = new color();
+    this.dankmemer = new dankmemer(this.config.dankmemer);
     const github = require("./github");
 
     this.apis = {
