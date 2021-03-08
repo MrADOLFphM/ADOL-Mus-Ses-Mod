@@ -46,7 +46,7 @@ module.exports = {
               break;
             }
             case "captcha": {
-              await dm.send(
+              await member.send(
                 new MessageEmbed()
                   .setTimestamp()
                   .setColor(0xd3d3d3)

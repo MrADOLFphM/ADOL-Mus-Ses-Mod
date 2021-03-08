@@ -2,6 +2,7 @@ const logBed = require("../../utils/logBed");
 module.exports = {
   name: "messageDelete",
   async execute(client, message) {
+    if (!message.channel.type === "dm") return;
     if (!message.author) return;
     client.snipes.set(message.channel.id, {
       content: message.content,

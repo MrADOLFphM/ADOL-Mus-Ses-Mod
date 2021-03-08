@@ -21,11 +21,5 @@ module.exports = {
     };
     await client.createConfig(newConfig).catch((err) => console.log(err));
     await new storeModel({ GuildID: guild.id });
-    for (const member of guild.members.cache) {
-      const newUser = {
-        userID: member.user.id,
-      };
-      await client.createUser(newUser);
-    }
   },
 };
