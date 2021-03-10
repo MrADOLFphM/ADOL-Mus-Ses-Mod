@@ -6,6 +6,13 @@ module.exports = {
     client.logger.ready(`Hi, ${client.user.username} is now online!`);
     client.voteManager.init(true);
     const vot = await botModel.findOne({ name: "Andoi" });
+    if (!vot) {
+      new botModel({
+        name: "Andoi",
+      }).save();
+
+      return console.log("Created botmodel as there was no bot model found");
+    }
     await botModel.findOneAndUpdate({ name: "Andoi", commandssincerestart: 0 });
     setInterval(() => {
       const statuses = [

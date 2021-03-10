@@ -9,7 +9,7 @@ module.exports = {
     const updates = await update
       .findOne({ name: "Andoi" })
       .catch((err) => console.log(err));
-    console.log(updates);
+    if (!updates) return message.send("No updates....");
     const embed = new MessageEmbed()
       .setTitle(`${updates.version}`)
       .setDescription(

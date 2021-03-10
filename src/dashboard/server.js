@@ -28,14 +28,14 @@ module.exports = (client) => {
       client.emit("vote", req.vote.user, req.vote.isWeekend, req.vote);
     }
   );
-  const port = 2791;
+  const port = 2314;
   app.listen(port, () =>
     console.log(` Dashboard - Server is live on port ${port}`)
   );
   const querystring = require("querystring");
   app.use((req, res, next) => {
     req.urlParams = querystring.parse(
-      url.parse("http://localhost:2791" + req.originalUrl).query
+      url.parse("https://bot.andoi.tk" + req.originalUrl).query
     );
 
     next();

@@ -15,6 +15,7 @@ module.exports = {
       let onServer = await client.starboardManager.starboards.filter(
         (s) => s.guildID === message.guild.id
       );
+      if (!onServer.length) return message.send("Theres no starboard channel!");
       await client.starboardManager.starboards.delete(onServer[0].channelID);
       return message.send("Resetted the starboard channel!");
     }

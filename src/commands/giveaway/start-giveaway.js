@@ -58,7 +58,7 @@ module.exports = {
     if (isNaN(msg2) || parseInt(msg2) <= 0)
       return message.channel.send("Thats not a valid number");
     if (msg2 === "cancel") return message.channel.send("Cancelled!");
-    let giveawayNumberWinners = msg2;
+    let giveawayNumberWinners = parseInt(msg2);
 
     // Giveaway prize
     const msg3 = await message.awaitReply(
