@@ -12,14 +12,18 @@ module.exports = {
     let channel = client.findChannel(message, args, false); //mentioned channel
 
     if (!channel) {
-      //if channel is not mentioned
-      await client.updateConfig(message.guild, { starboardchan: null });
-      message.channel.send(
-        "The starboard channel has been reset since no channel was provided"
+      let onServer = await client.starboardManager.starboards.filter(
+        (s) => s.guildID === message.guild.id
       );
+      await client.starboardManager.starboards.delete(onServer[0].channelID);
+      return message.send("Resetted the starboard channel!");
     }
 
-    await client.updateConfig(message.guild, { starboardchan: channel.id });
+    await client.starboardManager.create(channel, {
+      selfStar: false,
+      attachments: true,
+      allowNsfw: false,
+    });
 
     message.channel.send(`Starboard Channel is setted as ${channel}`); //send success message
   },

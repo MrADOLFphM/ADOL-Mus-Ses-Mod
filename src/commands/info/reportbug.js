@@ -1,4 +1,3 @@
-const { bugchannel } = require("../../../config.json");
 const { MessageEmbed } = require("discord.js");
 module.exports = {
   name: "report-bug",
@@ -7,18 +6,33 @@ module.exports = {
   aliases: ["bg"],
   usage: "report-bug <bug>",
   run: (client, message, args) => {
-    const bug = args.join(" ");
+    let timeInfo;
+    {
+      time = 0;
+      timeInfo = "is permanent!";
+    }
 
-    if (!bug) return message.channel.send("Please provide a bug");
+    const query = args.join(" ");
+    if (!query) return message.reply("Please specify a query");
 
-    const embed = new MessageEmbed()
-      .setColor("BLUE")
-      .setTitle(`${message.author.username} has reported a bug`)
-      .setDescription(bug)
-      .setFooter(message.author.username)
-      .setTimestamp();
+    message.channel
+      .createInvite({
+        unique: true,
+        maxAge: time,
+      })
+      .then((invite) => {
+        const reportEmbed = new MessageEmbed()
+          .setTitle("New Report")
+          .addField("Author", message.author.toString(), true)
+          .addField("Guild", message.guild.name, true)
+          .addField("Report", query)
+          .setDescription("Invite link: https://discord.gg/" + invite.code)
+          .setFooter(`This link ${timeInfo}`)
+          .setThumbnail(message.author.displayAvatarURL({ dynamic: true }))
+          .setTimestamp();
+        client.channels.cache.get(client.config.bugchannel).send(reportEmbed);
 
-    client.channels.cache.get(bugchannel).send(embed);
-    message.channel.send("bug reported thanks for your help");
+        message.channel.send(`${client.emotes.success}Bug Reported!`);
+      });
   },
 };

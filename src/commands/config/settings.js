@@ -14,7 +14,6 @@ module.exports = {
     const muteRole = message.guild.roles.cache.get(guild.muteRole) || "None";
     const suggestChannel =
       message.guild.channels.cache.get(guild.suggestChan) || "None";
-    const levelMessages = guild.levelMessage;
     const prefix = guild.prefix;
     const embed = new MessageEmbed()
       .setTitle(`Settings for ${message.guild.name}`)
@@ -23,7 +22,6 @@ module.exports = {
       .addField("Auto role", autoRole)
       .addField("Mute role", muteRole)
       .addField("Suggest channel", suggestChannel)
-      .addField("Level messages", levelMessages)
       .addField("Prefix", prefix)
       .addField("Disabled categorys", guild.disabled.join(", ") || "None")
       .addField("Disabled commands", guild.commands.join(", ") || "None");

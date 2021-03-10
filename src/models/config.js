@@ -29,8 +29,6 @@ module.exports = model(
       default: "Bye {user.username} we will miss you",
     },
     custom: { type: Array, default: [] },
-    starboardchan: { type: String, default: null },
-    starboardnum: { type: Number, default: 3 },
     premium: { type: Boolean, default: false },
     lan: { type: String, default: "english" },
     cases: { type: Number, default: 0 },

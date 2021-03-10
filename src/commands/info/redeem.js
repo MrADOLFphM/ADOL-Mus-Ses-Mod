@@ -10,7 +10,7 @@ module.exports = {
     if (find) {
       message.guild.updateConfig({ premium: true });
       const arr = client.premium.filter((ide) => ide !== id);
-      client.premium.set(arr);
+      client.premium = arr;
       return message.send("You have redeemed premium succesfully");
     }
   },

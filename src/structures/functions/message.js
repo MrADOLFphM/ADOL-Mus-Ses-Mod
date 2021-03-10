@@ -1,6 +1,7 @@
 const Levels = require("../../modules/discord-xp");
 const { Canvas } = require("canvas-constructor");
 const Discord = require("discord.js");
+const fs = require("fs");
 const timer = new Discord.Collection();
 class msgFuncs {
   constructor(client) {

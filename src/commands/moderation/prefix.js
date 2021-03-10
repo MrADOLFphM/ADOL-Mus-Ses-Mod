@@ -1,12 +1,9 @@
-const configModel = require("../../models/config");
-
 module.exports = {
   name: "prefix",
   category: "config",
   usage: "prefix <new-prefix>",
   description: "Change the guild prefix",
   run: async (client, message, args) => {
-    const config = await configModel.findOne({ GuildID: message.guild.id });
     if (!message.member.hasPermission("ADMINISTRATOR")) {
       return message.channel.send(
         "You are not allowed or do not have permission to change prefix"
@@ -18,7 +15,7 @@ module.exports = {
       await client.updateConfig(message.guild, {
         prefix: client.config.configDefaultSettings.prefix,
       });
-      message.channel.send("reseted prefix!");
+      return message.channel.send("reseted prefix!");
     }
     if (prefix.length > 5)
       return message.channel.send("Prefix must be less long than 5 characters");

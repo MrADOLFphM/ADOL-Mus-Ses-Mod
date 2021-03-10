@@ -18,6 +18,7 @@ const voteManager = require("./votes/voteManager");
 const { performance } = require("perf_hooks");
 const logger = require("../modules/logger");
 const dankmemer = require("dankmemer");
+const MongoStarboardsManager = require("../modules/MongoStarboard");
 module.exports = class AndoiClient extends Client {
   constructor() {
     super({
@@ -28,6 +29,7 @@ module.exports = class AndoiClient extends Client {
       leaveOnEmpty: true,
       autoSelfDeaf: true,
     });
+    this.starboardManager = new MongoStarboardsManager(this);
     this.commands = new Collection();
     this.utils = require("../utils/functions");
     this.emotes = emotes;

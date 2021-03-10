@@ -21,7 +21,7 @@ module.exports = {
           channelID: null,
         });
 
-        message.channel.send(
+        return message.channel.send(
           "The covid auto posting channel has been reset since no channel was provided"
         );
       } else {
@@ -31,7 +31,7 @@ module.exports = {
           channelID: null,
         });
         re.save();
-        message.channel.send(
+        return message.channel.send(
           "The covid auto posting channel has been reset since no channel was provided"
         );
       }

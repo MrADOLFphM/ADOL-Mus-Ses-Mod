@@ -24,9 +24,9 @@ module.exports = {
       });
       aaa.save();
     }
-    const disabled = config.disabled;
-    const commands = config.commands;
-    const blacklistedWords = config.badwords;
+    const disabled = config?.disabled;
+    const commands = config?.commands;
+    const blacklistedWords = config?.badwords;
     if (
       !message.author.bot &&
       !message.content.startsWith(`${config.prefix}blacklistedwords`)
