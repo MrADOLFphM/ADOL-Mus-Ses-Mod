@@ -16,16 +16,23 @@ module.exports = {
         (s) => s.guildID === message.guild.id
       );
       if (!onServer.length) return message.send("Theres no starboard channel!");
-      await client.starboardManager.starboards.delete(onServer[0].channelID);
+      await client.starboardManager.delete(onServer[0].channelID, "⭐");
       return message.send("Resetted the starboard channel!");
     }
+    try {
+      await client.starboardManager.create(channel, {
+        selfStar: false,
+        attachments: true,
+        allowNsfw: false,
+        color: {
+          colors: ["#ffe26c", "#ffcc00", "#ff7c00", "#ff5500", "#ff0000"],
+          max: 10,
+        },
+      });
 
-    await client.starboardManager.create(channel, {
-      selfStar: false,
-      attachments: true,
-      allowNsfw: false,
-    });
-
-    message.channel.send(`Starboard Channel is setted as ${channel}`); //send success message
+      message.channel.send(`Starboard Channel is setted as ${channel}`); //send success message
+    } catch (err) {
+      message.reply("A starboard already exist's in that channel!");
+    }
   },
 };

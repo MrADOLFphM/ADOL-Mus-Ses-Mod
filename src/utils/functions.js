@@ -2,7 +2,8 @@ const { MessageEmbed } = require("discord.js");
 const fetch = require("node-fetch");
 const yes = ["yes", "y", "ye", "yea", "correct"];
 const no = ["no", "n", "nah", "nope", "fuck off"];
-const errorLogsChannelId = "749358808337481811";
+const config = require("../../config");
+const errorLogsChannelId = config.error;
 const {
   promises: { lstat, readdir },
 } = require("fs");

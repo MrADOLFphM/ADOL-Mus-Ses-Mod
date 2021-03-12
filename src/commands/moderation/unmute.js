@@ -30,12 +30,12 @@ module.exports = {
     if (!m) return message.channel.send(lang.MODERATION.USER_NOT_MUTED);
     if (m) {
       for (const role of m.memberRoles) {
-        user.roles.add(role.id);
+        user.roles.add(role);
       }
       const c = await client.getConfig(message.guild);
       user.roles.remove(c.muteRole);
       await message.channel.send(
-        lang.MODERATION_MUTE_SUCCES.replace("{user}", user.user.username)
+        lang.MODERATION.MUTE_SUCCES.replace("{user}", user.user.username)
       );
     }
     await client.emit(

@@ -13,10 +13,11 @@ module.exports = {
     const msRegex = RegExp(/(\d+(s|m|h|w))/);
     if (!message.member.hasPermission("MANAGE_ROLES"))
       return message.reply("You need manage roles permissions!");
-    if (!message.member.me.hasPermission("MANAGE_ROLES"))
+    if (!message.guild.me.hasPermission("MANAGE_ROLES"))
       //i wrote this for a special server
       return message.reply("I need manage roles permissions!");
-    let muteRole = e.muteRole;
+    let muter = e?.muteRole;
+    const muteRole = message.guild.roles.cache.get(muter);
     if (!msRegex.test(args[1])) {
       return message.reply("That is not a valid time to mute a member!");
     }
@@ -44,39 +45,31 @@ module.exports = {
     if (isMuted) {
       return message.reply("This user is already muted!");
     }
-    for (const channel of message.guild.channels.cache) {
-      channel[1].updateOverwrite(muteRole, {
-        SEND_MESSAGES: false,
-        CONNECT: false,
-      });
-
-      const noEveryone = mentionedMember.roles.cache.filter(
-        (r) => r.name !== "@everyone"
-      );
-      await mentionedMember.roles.add(muteRole.id);
-
-      for (const role of noEveryone) {
-        await mentionedMember.roles.remove(role[0]);
-      }
-      let muteBe = new muteDoc({
-        guildID: message.guild.id,
-        memberID: mentionedMember.id,
-        length: Date.now() + ms(msRegex.exec(args[1])[1]),
-        memberRoles: noEveryone.map((r) => r),
-      });
-      await muteBe.save();
-      const reason = args.slice(2).join(" ");
-      message.channel.send(
-        `muted ${mentionedMember} ${reason ? `for **${reason}**` : "None"}`
-      );
-      await client.emit(
-        "modlog",
-        message.guild,
-        mentionedMember.user.username,
-        "mute",
-        reason || "None",
-        message.member.user
-      );
+    const noEveryone = mentionedMember.roles.cache.filter(
+      (r) => r.name !== "@everyone"
+    );
+    await mentionedMember.roles.add(muteRole.id);
+    for (const role of noEveryone) {
+      await mentionedMember.roles.remove(role[0]);
     }
+    let muteBe = new muteDoc({
+      guildID: message.guild.id,
+      memberID: mentionedMember.id,
+      length: Date.now() + ms(msRegex.exec(args[1])[1]),
+      memberRoles: noEveryone.map((r) => r),
+    });
+    await muteBe.save();
+    const reason = args.slice(2).join(" ");
+    message.channel.send(
+      `muted ${mentionedMember} ${reason ? `for **${reason}**` : "None"}`
+    );
+    await client.emit(
+      "modlog",
+      message.guild,
+      mentionedMember.user.username,
+      "mute",
+      reason || "None",
+      message.member.user
+    );
   },
 };
