@@ -13,13 +13,15 @@ module.exports = {
   run: async (client, message, args) => {
     const pollParameters = args.join(" ");
     const pollTitle = squigglyRegex.test(pollParameters)
-      ? squigglyRegex.exec(pollParameters)[1]
+      ? squigglyRegex.exec(pollParameters)[0]
       : null;
     console.log(squigglyRegex.exec(pollParameters));
 
     if (!pollTitle) {
       return message.channel
-        .send("You need to specify a poll title")
+        .send(
+          "You need to specify a poll title! EX: `a!poll {title} {time} [option 1] [option 2] [You can add up to 20 options]`"
+        )
         .catch((err) => console.log(err));
     }
 
@@ -28,11 +30,15 @@ module.exports = {
 
     if (!pollsArray) {
       return message.channel
-        .send("You need to specify poll options")
+        .send(
+          "You need to specify poll options!  EX: `a!poll {title} {time} [option 1] [option 2] [You can add up to 20 options]`"
+        )
         .catch((err) => console.log(err));
     } else if (pollsArray.length > 20) {
       return message.channel
-        .send("You can't have more than 20 poll options.")
+        .send(
+          "You can't have more than 20 poll options.  EX: `a!poll {title} {time} [option 1] [option 2] [You can add up to 20 options]` "
+        )
         .catch((err) => console.log(err));
     }
 

@@ -33,6 +33,7 @@ module.exports = {
         user.roles.add(role);
       }
       const c = await client.getConfig(message.guild);
+      await m.deleteOne();
       user.roles.remove(c.muteRole);
       await message.channel.send(
         lang.MODERATION.MUTE_SUCCES.replace("{user}", user.user.username)
