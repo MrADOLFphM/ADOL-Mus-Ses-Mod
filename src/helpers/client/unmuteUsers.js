@@ -1,4 +1,4 @@
-const muteModel = require("../models/mute");
+const muteModel = require("../../models/mute");
 module.exports = (client) => {
   setInterval(async () => {
     for (const guild of client.guilds.cache) {
