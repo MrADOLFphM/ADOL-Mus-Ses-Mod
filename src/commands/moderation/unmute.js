@@ -16,7 +16,7 @@ module.exports = {
       );
     }
 
-    const user = message.mentions.members.first();
+    const user = client.findMember(message, args, false);
 
     if (!user) {
       return message.channel.send(lang.NO_USER);

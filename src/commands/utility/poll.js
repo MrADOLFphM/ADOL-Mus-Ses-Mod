@@ -10,7 +10,7 @@ module.exports = {
   name: "poll",
   description: "Create a poll with ease!",
   category: "utility",
-  async execute(client, message, args) {
+  run: async (client, message, args) => {
     const pollParameters = args.join(" ");
     const pollTitle = squigglyRegex.test(pollParameters)
       ? squigglyRegex.exec(pollParameters)[1]
