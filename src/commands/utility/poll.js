@@ -15,7 +15,6 @@ module.exports = {
     const pollTitle = squigglyRegex.test(pollParameters)
       ? squigglyRegex.exec(pollParameters)[0]
       : null;
-    console.log(squigglyRegex.exec(pollParameters));
 
     if (!pollTitle) {
       return message.channel
