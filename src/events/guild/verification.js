@@ -28,7 +28,7 @@ module.exports = {
           const dm = await member.user.createDM();
           switch (verifier) {
             case "discrim": {
-              await dm.send(
+              await member.send(
                 new MessageEmbed()
                   .setTimestamp()
                   .setColor(0xd3d3d3)
@@ -57,7 +57,7 @@ module.exports = {
                   )
                   .setDescription(
                     `This server is protected by Andoi, a powerful bot that prevents servers from being raided\nTo get yourself verified use \`${
-                      gui.captcha
+                      gui.prefix
                     }verify [Captcha]\` at ${member.guild.channels.resolve(
                       guild.channel
                     )}.\nEg: \`${

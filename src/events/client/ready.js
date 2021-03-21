@@ -3,7 +3,13 @@ const autoCovid = require("../../helpers/autoCovid");
 module.exports = {
   name: "ready",
   async execute(client) {
-    client.logger.ready(`Hi, ${client.user.username} is now online!`);
+    console.log(`
+    ░█████╗░███╗░░██╗██████╗░░█████╗░██╗
+    ██╔══██╗████╗░██║██╔══██╗██╔══██╗██║
+    ███████║██╔██╗██║██║░░██║██║░░██║██║
+    ██╔══██║██║╚████║██║░░██║██║░░██║██║
+    ██║░░██║██║░╚███║██████╔╝╚█████╔╝██║
+    ╚═╝░░╚═╝╚═╝░░╚══╝╚═════╝░░╚════╝░╚═╝`);
     client.voteManager.init(true);
     const vot = await botModel.findOne({ name: "Andoi" });
     if (!vot) {
