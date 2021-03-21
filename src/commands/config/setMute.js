@@ -24,6 +24,6 @@ module.exports = {
 
     await client.updateConfig(message.guild, { muteRole: role.id || role });
 
-    message.channel.send(`mute  Role is seted as ${role}`); //send success message
+    message.channel.send(`The mute role is setted as ${role}`); //send success message
   },
 };
