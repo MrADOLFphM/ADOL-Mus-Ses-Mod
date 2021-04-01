@@ -4,7 +4,7 @@ module.exports = (client) => {
       client.guilds.cache.reduce((a, b) => a + b.memberCount, 0)
     );
     const servers = client.utils.formatNumber(client.guilds.cache.size);
-    const commands = client.utils.formatNumber(client.guilds.cache.size);
+    const commands = client.utils.formatNumber(client.commands.size);
     const channels = client.utils.formatNumber(client.channels.cache.size);
     const statuses = [
       `a!help || ${client.utils.formatNumber(servers)} servers.`,

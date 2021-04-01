@@ -26,6 +26,7 @@ module.exports = {
     require("../../helpers/client/unmuteUsers")(client);
     require("../../helpers/client/startMessage")(client);
     require("../../helpers/autoCovid")(client);
+    require("../../helpers/reminder")(client);
     const chan = vot?.channel;
     const ms = vot?.lastMsg;
     if (!ms) return;

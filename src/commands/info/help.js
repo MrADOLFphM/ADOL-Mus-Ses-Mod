@@ -75,7 +75,12 @@ module.exports = {
       return message.channel.send(embed);
     } else {
       //prefix variable is prefix
-
+      const infoEmbed = new MessageEmbed()
+        .setTitle("My help command.")
+        .setDescription(
+          "Here you can see all my commands!\nYou can simply move through pages by using the reactions below!"
+        )
+        .setTimestamp();
       const embeds = [];
 
       const categories = client.commands

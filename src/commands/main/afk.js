@@ -7,10 +7,14 @@ module.exports = {
   description: "",
   run: async (client, message, args) => {
     try {
-      const guildId = message.guild?.id;
       const userId = message.author;
       const user = await client.getUser(userId);
-
+      if (!user) {
+        message.send(
+          "You din't exist in my database therefore you need re-execute this command!"
+        );
+        return await client.createUser({ userID: message.author.id });
+      }
       if (user?.afk?.is_afk) {
         await client.updateUser(message.author, {
           afk: { is_afk: false, reason: null },

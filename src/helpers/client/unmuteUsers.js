@@ -24,9 +24,9 @@ module.exports = (client) => {
               await member.roles.add(role);
             }
           }
-          await muteDoc.dleeteOne();
+          await muteDoc.deleteOne();
         }
       }
     }
-  }, 15000);
+  }, 7000);
 };

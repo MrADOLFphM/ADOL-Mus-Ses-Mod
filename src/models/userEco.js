@@ -20,5 +20,12 @@ module.exports = model(
         reason: null,
       },
     },
+    reminder: {
+      type: Object,
+      default: {
+        hasReminder: false,
+        reminders: [], //Credits to CasperTheGhost
+      },
+    },
   })
 );
