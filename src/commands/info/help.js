@@ -80,8 +80,9 @@ module.exports = {
         .setDescription(
           "Here you can see all my commands!\nYou can simply move through pages by using the reactions below!"
         )
-        .setTimestamp();
-      const embeds = [];
+        .setTimestamp()
+        .setFooter("Andoi bot :copyright:");
+      const embeds = [infoEmbed];
 
       const categories = client.commands
         .map((c) => c.category)
@@ -91,7 +92,6 @@ module.exports = {
         }, [])
         .sort();
       for (const category of categories) {
-        console.log(categories);
         let commands = client.commands.filter(
           (c) => c.category.toLowerCase() === category
         );
