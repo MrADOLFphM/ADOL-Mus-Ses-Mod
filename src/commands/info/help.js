@@ -91,8 +91,9 @@ module.exports = {
         }, [])
         .sort();
       for (const category of categories) {
+        console.log(categories);
         let commands = client.commands.filter(
-          (c) => c.category.toLowerCase() === category.toLowerCase()
+          (c) => c.category.toLowerCase() === category
         );
 
         commands = commands.filter((c) => c.name).map((c) => `\`${c.name}\``);

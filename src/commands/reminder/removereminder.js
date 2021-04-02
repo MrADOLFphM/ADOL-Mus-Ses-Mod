@@ -1,7 +1,7 @@
 module.exports = {
   name: "remove-reminder",
   description: "Remove your reminder",
-  category: "reminders",
+  category: "reminder",
   requiredArgs: ["id"],
   run: async (client, message, args) => {
     const [id] = args;

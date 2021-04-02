@@ -2,7 +2,7 @@ const ms = require("ms");
 
 module.exports = {
   name: "edit-reminder",
-  category: "reminders",
+  category: "reminder",
   description: "Edit an active reminder",
   requiredArgs: ["id", "time", "message"],
   run: async (client, message, args) => {

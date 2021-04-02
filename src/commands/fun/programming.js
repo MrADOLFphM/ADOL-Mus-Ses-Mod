@@ -4,6 +4,7 @@ module.exports = {
   name: "pogramming",
   aliases: ["pquote"],
   description: "Random programming quote (i geuss).",
+  category: "fun",
   run: async (client, message, args) => {
     const quote = await fetch(
       "https:/programming-quotes-api.herokuapp.com/quotes/random"
