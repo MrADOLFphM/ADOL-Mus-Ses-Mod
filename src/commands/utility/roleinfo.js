@@ -2,13 +2,12 @@ const { MessageEmbed } = require("discord.js");
 
 module.exports = {
   name: "roleinfo",
-  category: "info",
+  category: "utility",
   aliases: ["rinfo"],
   description: "shows stats of the mentioned role",
   usage: "[role name | role mention | ID]",
   run: async (client, message, args) => {
     let role = client.findRole(message, args, true);
-
     const status = {
       false: "No",
       true: "Yes",

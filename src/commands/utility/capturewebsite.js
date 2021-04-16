@@ -12,6 +12,7 @@ module.exports = {
 
     try {
       let site = args[0];
+      if(!site) return message.send("What website do you want to screenshot?")
       try {
         const parsed = url.parse(site);
 

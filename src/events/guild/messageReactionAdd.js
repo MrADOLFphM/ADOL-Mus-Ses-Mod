@@ -27,7 +27,10 @@ module.exports = {
       createTicket(message, user, guildDoc);
     }
 
-    if (reaction.message.id === ticketDoc.msg && reaction.emoji.name === "🔒") {
+    if (
+      reaction.message.id === ticketDoc?.msg &&
+      reaction.emoji.name === "🔒"
+    ) {
       reaction.users.remove(user);
       message.channel.updateOverwrite(client.users.cache.get(ticketDoc.owner), {
         SEND_MESSAGES: false,
@@ -47,7 +50,7 @@ module.exports = {
 
       await ticketDoc.save();
     } else if (
-      reaction.message.id === ticketDoc.msg &&
+      reaction.message.id === ticketDoc?.msg &&
       reaction.emoji.name === "🔓"
     ) {
       message.channel.updateOverwrite(
@@ -80,13 +83,13 @@ module.exports = {
         },
       });
     } else if (
-      reaction.message.id === ticketDoc.msg &&
+      reaction.message.id === ticketDoc?.msg &&
       reaction.emoji.name == "⛔"
     ) {
       message.channel.delete();
       await ticketDoc.deleteOne();
     } else if (
-      reaction.message.id === ticketDoc.msg &&
+      reaction.message.id === ticketDoc?.msg &&
       reaction.emoji.name == "📰"
     ) {
       const msgsArray = await fetchAll.messages(message.channel, {

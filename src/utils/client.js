@@ -25,12 +25,16 @@ module.exports = (client) => {
     );
   };
   client.findRole = (message, args, allowChannel) => {
-    return (
+    let role;
+    role =
       message.mentions.roles.first() ||
       message.guild.roles.cache.get(args[0]) ||
       message.guild.roles.cache.find((r) => r.name === args[0]) ||
-      message.guild.roles.cache.find((r) => r.name.startsWith(args[0]))
-    );
+      message.guild.roles.cache.find((r) => r.name.startsWith(args[0]));
+    if (!role && allowChannel) {
+      role = message.member.roles.highest;
+    }
+    return role;
   };
   client.GetImage = (message, args) => {
     const fileTypes = ["png", "jpeg", "tiff", "jpg", "webp"];

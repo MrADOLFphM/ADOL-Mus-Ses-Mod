@@ -3,11 +3,9 @@ const { GiveawaysManager } = require("discord-giveaways");
 require("./extenders/Guild");
 require("./extenders/Message");
 require("./extenders/User");
+require("./extenders/TextChannel");
 const client = new AndoiClient();
 client.start();
-
-const { Collection, MessageEmbed } = require("discord.js");
-const { Database } = require("quickmongo");
 require("./utils/user")(client);
 require("./utils/client")(client);
 require("./utils/member")(client);

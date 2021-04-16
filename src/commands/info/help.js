@@ -95,7 +95,8 @@ module.exports = {
         let commands = client.commands.filter(
           (c) => c.category.toLowerCase() === category
         );
-
+        const isOwner = client.config.owners.includes(message.author.id);
+        const isOwerC = category === "owner";
         commands = commands.filter((c) => c.name).map((c) => `\`${c.name}\``);
         let emx = new MessageEmbed()
           .setTitle(`Viewing category: ${client.emotes[category]} ${category}`)
@@ -105,7 +106,16 @@ module.exports = {
             `[Join our support server](https://discord.gg/jqm4Ybh) | [or invite me](${Invite})`
           )
           .setThumbnail(client.user.displayAvatarURL());
-        emx.addField(category, `${commands.sort().join(", ")}`);
+        emx.addField(
+          category,
+          `${
+            isOwerC
+              ? isOwner
+                ? commands.sort().join(", ")
+                : "This category is only for my developers!"
+              : commands.sort().join(", ")
+          }`
+        );
         embeds.push(emx);
       }
       await paginate(message, embeds);

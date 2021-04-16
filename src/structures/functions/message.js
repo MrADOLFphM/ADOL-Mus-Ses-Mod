@@ -68,7 +68,7 @@ class msgFuncs {
             );
             const { roles } = msgDocument2;
             if (roles[user.level - 1]) {
-              const toadd = roles[user.level].filter(
+              const toadd = roles[user.level]?.filter(
                 (e) =>
                   message.guild.roles.cache.has(e) &&
                   message.guild.roles.cache.get(e).editable &&
