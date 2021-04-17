@@ -17,7 +17,7 @@ module.exports = {
         function (err, result) {
           if (err) message.channel.send(err.message);
 
-          if (result.length === 0 || !result) {
+          if (!result) {
             return message.channel.send("**Please Enter A Valid Location.**");
           }
 
