@@ -15,9 +15,7 @@ module.exports = {
       weather.find(
         { search: args.join(" "), degreeType: "C" },
         function (err, result) {
-          if (err) message.channel.send(err.message);
-
-          if (!result) {
+          if (!result || result.length === 0) {
             return message.channel.send("**Please Enter A Valid Location.**");
           }
 
