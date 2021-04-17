@@ -1,25 +1,33 @@
 const { MessageEmbed } = require("discord.js");
 
 module.exports = {
-    name: "emojis",
-    description: "Get the emojis from the current server!",
-    category: "utility",
-    run: (client, message) => {
-        const nonAnimated = [];
-        const animated = [];
+  name: "emojis",
+  description: "Get the emojis from the current server!",
+  category: "utility",
+  run: (client, message) => {
+    const nonAnimated = [];
+    const animated = [];
 
-        message.guild.emojis.cache.forEach(e => {
-            if (e.animated) animated.push(e.toString());
-            else nonAnimated.push(e.toString());
-        });
+    message.guild.emojis.cache.forEach((e) => {
+      if (e.animated) animated.push(e.toString());
+      else nonAnimated.push(e.toString());
+    });
+    const animatedE =
+      animated.join(" ").length > 1024
+        ? `${animated.join(" ").slice(1010)}...`
+        : animated.join(" ");
+    const nonAnimatedE =
+      nonAnimated.join(" ").length > 1024
+        ? `${nonAnimated.join(" ").slice(1010)}...`
+        : nonAnimated.join(" ");
 
-        const embed = new MessageEmbed()
-            .addField("Animated:", animated.length === 0 ? "None" : animated.join(" "))
-            .addField("Non Animated:", nonAnimated.length === 0 ? "None" : nonAnimated.join(" "))
-            .setColor("BLUE")
-            .setTimestamp()
-            .setFooter(message.author.username);
+    const embed = new MessageEmbed()
+      .addField("Animated:", animatedE)
+      .addField("Non Animated:", nonAnimatedE)
+      .setColor("BLUE")
+      .setTimestamp()
+      .setFooter(message.author.username);
 
-        message.channel.send(embed);
-    }
+    message.channel.send(embed);
+  },
 };

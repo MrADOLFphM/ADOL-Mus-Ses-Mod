@@ -20,8 +20,7 @@ module.exports = {
         if (err) message.channel.send(err.message);
 
         if (result.length === 0) {
-          message.channel.send("**Please Enter A Valid Location.**");
-          return undefined;
+          return message.channel.send("**Please Enter A Valid Location.**");
         }
 
         var current = result[0].current;
