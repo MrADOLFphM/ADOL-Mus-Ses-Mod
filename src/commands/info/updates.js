@@ -1,22 +1,19 @@
 const { MessageEmbed } = require("discord.js");
-const update = require("../../models/updates.js");
+const { getLastCommit } = require("git-last-commit");
 module.exports = {
   name: "updates",
   description: "Learn more about current and future updates.",
   category: "info",
   usage: "updates",
   run: async (client, message, args) => {
-    const updates = await update
-      .findOne({ name: "Andoi" })
-      .catch((err) => console.log(err));
-    if (!updates) return message.send("No updates....");
-    const embed = new MessageEmbed()
-      .setTitle(`${updates.version}`)
-      .setDescription(
-        `new: ${updates.updates.new}\n fixed: ${updates.updates.fixed}\n removed: ${updates.updates.removed}`
-      )
-      .setColor("BLUE")
-      .setTimestamp();
-    message.send(embed);
+    getLastCommit(function (err, commit) {
+      const embed = new MessageEmbed()
+        .setTitle("Updates!")
+        .setDescription(
+          `**Commit message:** [${commit.subject}](https://github.com/tovade/Andoi/commit/${commit.hash}) \n**Commit made by:** ${commit.author.name}\n **Branch:** ${commit.branch}`
+        )
+        .setTimestamp();
+      message.send(embed);
+    });
   },
 };

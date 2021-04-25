@@ -22,8 +22,8 @@ module.exports = {
         : nonAnimated.join(" ");
 
     const embed = new MessageEmbed()
-      .addField("Animated:", animatedE)
-      .addField("Non Animated:", nonAnimatedE)
+      .addField("Animated:", animatedE ? animatedE : "None")
+      .addField("Non Animated:", nonAnimatedE ? nonAnimatedE : "None")
       .setColor("BLUE")
       .setTimestamp()
       .setFooter(message.author.username);

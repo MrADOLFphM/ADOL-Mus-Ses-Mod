@@ -3,7 +3,7 @@ module.exports = {
   usage: "addcmd <cmd_name> <cmd_response>",
   description: "add guild custom commands",
   category: "config",
-  memberPermissions: ["ADMINISTRATOR"],
+  memberPermission: ["ADMINISTRATOR"],
   run: async (client, message, args) => {
     const cmdName = args[0];
     const cmdResponse = args.slice(1).join(" ");

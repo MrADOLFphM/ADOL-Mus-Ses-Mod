@@ -1,8 +1,9 @@
 const { MessageEmbed } = require("discord.js");
 const { Aki } = require("aki-api");
-const { list, verify } = require("../../utils/functions");
+const { list } = require("../../utils/functions");
 const regions = ["person", "object", "animal"];
-
+const emojis = ["👍", "👎", "❔", "🤔", "🙄", "❌"];
+const isPlaying = new Set();
 module.exports = {
   name: "akinator",
   aliases: ["aki", "guesswho"],
@@ -29,138 +30,105 @@ module.exports = {
       return message.channel.send(
         `**What Region Do You Want To Use? Either \`${list(regions, "or")}\`!**`
       );
-    const current = ops.games.get(message.channel.id);
-    if (current)
-      return message.channel.send(
-        `**Please Wait Until The Current Game of \`${current.name}\` is Finished!**`
-      );
-    try {
-      const aki = new Aki(region);
-      let ans = null;
-      let win = false;
-      let timesGuessed = 0;
-      let guessResetNum = 0;
-      let wentBack = false;
-      let forceGuess = false;
-      const guessBlacklist = [];
-      ops.games.set(message.channel.id, { name: "akinator" });
-      while (timesGuessed < 3) {
-        if (guessResetNum > 0) guessResetNum--;
-        if (ans === null) {
-          await aki.start();
-        } else if (wentBack) {
-          wentBack = false;
-        } else {
-          try {
-            await aki.step(ans);
-          } catch {
-            await aki.step(ans);
-          }
-        }
-        if (!aki.answers || aki.currentStep >= 79) forceGuess = true;
-        const answers = aki.answers.map((answer) => answer.toLowerCase());
-        answers.push("end");
-        if (aki.currentStep > 0) answers.push("back");
-        const embed = new MessageEmbed()
-          .setAuthor(message.author.username, message.author.displayAvatarURL())
-          .setColor("GREEN")
-          .setDescription(
-            `**Q${aki.currentStep + 1} - ${aki.question}**\n${aki.answers.join(
-              " | "
-            )}${aki.currentStep > 0 ? ` | Back` : ""} | End`
-          )
-          .setFooter(
-            `Yes/No To Confirm | Progress - ${Math.round(
-              Number.parseInt(aki.progress, 10)
-            )}%`
-          );
-        await message.channel.send(embed);
-        const filter = (res) =>
-          res.author.id === message.author.id &&
-          answers.includes(res.content.toLowerCase());
-        const messages = await message.channel.awaitMessages(filter, {
-          max: 1,
-          time: 30000,
-        });
-        if (!messages.size) {
-          await message.channel.send("**Time Up!**");
-          win = "time";
-          break;
-        }
-        const choice = messages.first().content.toLowerCase();
-        if (choice.toLowerCase() === "end".toLocaleLowerCase()) {
-          forceGuess = true;
-        } else if (choice.toLowerCase() === "back".toLocaleLowerCase()) {
-          if (guessResetNum > 0) guessResetNum++;
-          wentBack = true;
-          await aki.back();
-          continue;
-        } else {
-          ans = answers.indexOf(choice);
-        }
-        if ((aki.progress >= 90 && !guessResetNum) || forceGuess) {
-          timesGuessed++;
-          guessResetNum += 10;
-          await aki.win();
-          const guess = aki.answers.filter(
-            (g) => !guessBlacklist.includes(g.id)
-          )[0];
-          if (!guess) {
-            await message.channel.send("**I Can't Think of Anyone!**");
-            win = true;
-            break;
-          }
-          guessBlacklist.push(guess.id);
-          const embed = new MessageEmbed()
-            .setAuthor(
-              message.author.username,
-              message.author.displayAvatarURL()
-            )
-            .setColor("RED")
-            .setTitle(`I'm ${Math.round(guess.proba * 100)}% Sure It's...`)
-            .setDescription(
-              `**${guess.name}${
-                guess.description ? `\nProfession - ${guess.description}` : ""
-              }\nRanking - ${guess.ranking}\nType Yes/No To Confirm!**`
-            )
-            .setImage(guess.absolute_picture_path || null)
-            .setFooter(
-              forceGuess ? "Final Guess" : `Guesses - ${timesGuessed}`
-            );
-          await message.channel.send(embed);
-          const verification = await verify(message.channel, message.author);
-          if (verification === 0) {
-            win = "time";
-            break;
-          } else if (verification) {
-            win = false;
-            break;
-          } else {
-            const exmessage =
-              timesGuessed >= 3 || forceGuess
-                ? "I Give Up!"
-                : "I Can Keep Going!";
-            await message.channel.send(`**Hmm... Is That so? ${exmessage}**`);
-            if (timesGuessed >= 3 || forceGuess) {
-              win = true;
-              break;
-            }
-          }
-        }
-      }
-      ops.games.delete(message.channel.id);
-      if (win === "time")
-        return message.channel.send(
-          "**I Guess Your Silence Means I Have Won!**"
-        );
-      if (win)
-        return message.channel.send("**You Have Defeated Me This Time!**");
-      return message.channel.send(
-        "**Guessed Right One More Time! I Love Playing With You!**"
-      );
-    } catch (err) {
-      ops.games.delete(message.channel.id);
-      return message.channel.send(`**Server Down, Try again later!**`);
+    const aki = new Aki(region);
+    if (isPlaying.has(message.author.id)) {
+      return message.channel.send(":x: | The game already started..");
     }
+
+    isPlaying.add(message.author.id);
+
+    await aki.start();
+
+    const msg = await message.channel.send(
+      new MessageEmbed()
+        .setTitle(`${message.author.username}, Question ${aki.currentStep + 1}`)
+        .setColor("RANDOM")
+        .setDescription(
+          `**${aki.question}**\n${aki.answers
+            .map((an, i) => `${an} | ${emojis[i]}`)
+            .join("\n")}\n end | ${emojis.last()}`
+        )
+    );
+
+    for (const emoji of emojis) await msg.react(emoji);
+
+    const collector = msg.createReactionCollector(
+      (reaction, user) =>
+        emojis.includes(reaction.emoji.name) && user.id == message.author.id,
+      {
+        time: 60000 * 6,
+      }
+    );
+
+    collector
+      .on("end", () => isPlaying.delete(message.author.id))
+      .on("collect", async ({ emoji, users }) => {
+        users.remove(message.author).catch(() => null);
+
+        if (emoji.name == "❌") {
+          collector.stop();
+          return msg.edit(
+            new MessageEmbed()
+              .setTitle("Game finished")
+              .setDescription("**You stopped the game so i geuss i won!**")
+              .setTimestamp()
+          );
+        }
+
+        await aki.step(emojis.indexOf(emoji.name));
+
+        if (aki.progress >= 70 || aki.currentStep >= 78) {
+          await aki.win();
+
+          collector.stop();
+
+          message.channel.send(
+            new MessageEmbed()
+              .setTitle("Is this your character?")
+              .setDescription(
+                `**${aki.answers[0].name}**\n${aki.answers[0].description}\nRanking as **#${aki.answers[0].ranking}**\n\n[yes (**y**) / no (**n**)]`
+              )
+              .setImage(aki.answers[0].absolute_picture_path)
+              .setColor("RANDOM")
+          );
+
+          const filter = (m) =>
+            /(yes|no|y|n)/i.test(m.content) && m.author.id == message.author.id;
+
+          message.channel
+            .awaitMessages(filter, {
+              max: 1,
+              time: 30000,
+              errors: ["time"],
+            })
+            .then((collected) => {
+              const isWinner = /yes|y/i.test(collected.first().content);
+              message.channel.send(
+                new MessageEmbed()
+                  .setTitle(
+                    isWinner
+                      ? "Great! Guessed right one more time."
+                      : "Uh. you are win"
+                  )
+                  .setColor("RANDOM")
+                  .setDescription("I love playing with you!")
+              );
+            })
+            .catch(() => null);
+        } else {
+          msg.edit(
+            new MessageEmbed()
+              .setTitle(
+                `${message.author.username}, Question ${aki.currentStep + 1}`
+              )
+              .setColor("RANDOM")
+              .setDescription(
+                `**${aki.question}**\n${aki.answers
+                  .map((an, i) => `${an} | ${emojis[i]}`)
+                  .join("\n")}`
+              )
+          );
+        }
+      });
   },
 };
