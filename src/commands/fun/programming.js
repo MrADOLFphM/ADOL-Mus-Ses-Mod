@@ -7,7 +7,7 @@ module.exports = {
   category: "fun",
   run: async (client, message, args) => {
     const quote = await fetch(
-      "https:/programming-quotes-api.herokuapp.com/quotes/random"
+      "https://programming-quotes-api.herokuapp.com/quotes/random"
     ).then((r) => r.json());
     const embed = new MessageEmbed()
       .setColor("RANDOM")
