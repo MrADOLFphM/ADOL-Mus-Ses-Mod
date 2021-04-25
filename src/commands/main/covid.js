@@ -12,7 +12,7 @@ Object.defineProperty(String.prototype, "toProperCase", {
 
 module.exports = {
   name: "corona",
-  category: "main",
+  category: "utility",
   description: "Get the stats of corona",
   usage: "corona all or corona <country>",
   aliases: ["covid", "covid19"],
