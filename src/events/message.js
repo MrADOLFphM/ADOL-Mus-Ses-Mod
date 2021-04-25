@@ -95,17 +95,6 @@ module.exports = {
         }
       });
     }
-
-    const blacklistedUsers = await Blacklist.find();
-    if (blacklistedUsers) {
-      const isBlacklisted = blacklistedUsers.find(
-        (u) => u.user === message.author.id
-      );
-
-      if (isBlacklisted) {
-        return message.reply("You've been blacklisted from using this bot.");
-      }
-    }
     if (!message.content.startsWith(prefix)) return;
 
     if (!message.member)
@@ -134,6 +123,16 @@ module.exports = {
         )
         .setTimestamp();
       return message.send(ember);
+    }
+    const blacklistedUsers = await Blacklist.find();
+    if (blacklistedUsers) {
+      const isBlacklisted = blacklistedUsers.find(
+        (u) => u.user === message.author.id
+      );
+
+      if (isBlacklisted) {
+        return message.reply("You've been blacklisted from using this bot.");
+      }
     }
     if (command.votersOnly && command.votersOnly === true) {
       let hasVoted = false;
