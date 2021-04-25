@@ -5,9 +5,9 @@ module.exports = {
   run: (client, message, args) => {
     const id = args[0];
     if (!id) return message.send("You did not provide the premium key");
-    const find = find(client, id);
-    if (!find) return message.reply("This is an invalid premium key");
-    if (find) {
+    const findr = find(client, id);
+    if (!findr) return message.reply("This is an invalid premium key");
+    if (findr) {
       message.guild.updateConfig({ premium: true });
       const arr = client.premium.filter((ide) => ide !== id);
       client.premium = arr;
