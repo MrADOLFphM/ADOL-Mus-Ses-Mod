@@ -1,7 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const moment = require("moment");
 const ms = require("ms");
-const discord = require("discord.js");
 module.exports = {
   name: "tempban",
   description: "tempban someone for a time",
@@ -13,7 +11,7 @@ module.exports = {
     const regex = args.splice(1).join(" ");
 
     if (!message.member.hasPermission("BAN_MEMBERS")) {
-      return message.channel.send("U dont have perms to ban someone");
+      return message.send("You don't have permissions to ban this person!");
     }
     if (!message.guild.me.hasPermission("BAN_MEMBERS")) {
       return message.channel.send("I dont have permissions to ban someone");

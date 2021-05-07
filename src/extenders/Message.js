@@ -9,6 +9,19 @@ module.exports = Structures.extend(
         this.lastResponse = null;
         this.flags = [];
       }
+      async sendT(key, replace, val, cat) {
+        const lang = await this.getLang();
+        return this.send(this.translate(key, replace, val, cat));
+      }
+      async translate(key, replace, val, cat) {
+        const lang = await this.getLang();
+        const toRep = cat
+          ? replace
+            ? lang[cat[key]].replace(replace, val)
+            : lang[cat[key]]
+          : lang[key];
+        return toRep;
+      }
       async getLang() {
         return await this.guild.getLang();
       }
