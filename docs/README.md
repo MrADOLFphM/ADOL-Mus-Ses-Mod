@@ -12,6 +12,7 @@
 # Links
 
 [Add Andoi](https://discord.com/oauth2/authorize?client_id=728694375739162685&permissions=0&scope=bot%20applications.commands)
+
 [Andoi support server](https://discord.gg/uvapYj5Wrf)
 
 ##
