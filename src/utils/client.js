@@ -2,7 +2,7 @@ module.exports = (client) => {
   client.findMember = (message, args, allowAuthor) => {
     let member;
 
-    member = message.guild.member(
+    member = message.guild.members.cache.get(
       message.mentions.users.first() ||
         message.guild.members.cache.get(args[0]) ||
         message.guild.members.cache.find((m) => m.user.id === args[0]) ||
