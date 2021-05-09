@@ -11,7 +11,7 @@ module.exports = {
         ? message.attachments.first().proxyURL
         : null,
     });
-    if (!message.guild.me.hasPermission("MANAGE_WEBHOOKS")) return;
+    if (!message.guild.me?.hasPermission("MANAGE_WEBHOOKS")) return;
     if (message.author.id === client.user.id) return;
     if (!message.guild) return;
     if (!message) return;

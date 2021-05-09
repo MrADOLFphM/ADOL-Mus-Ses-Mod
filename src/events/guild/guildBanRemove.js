@@ -2,7 +2,7 @@ const logBed = require("../../utils/logBed");
 module.exports = {
   name: "guildBanRemove",
   async execute(client, guild, user) {
-    if (!guild.me.hasPermission("MANAGE_WEBHOOKS")) return;
+    if (!guild.me?.hasPermission("MANAGE_WEBHOOKS")) return;
     const w = await guild.fetchWebhooks();
     const webhook = w.find((w) => w.name === "Andoi");
     if (!webhook) return;
