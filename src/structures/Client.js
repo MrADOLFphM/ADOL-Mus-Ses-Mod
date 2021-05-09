@@ -50,6 +50,7 @@ module.exports = class AndoiClient extends Client {
     this.cooldowns = new Collection();
     this.aliases = new Collection();
     this.player = player;
+    this.slash = new Collection();
     this.filters = filters;
     this.items = new ItemManager();
     this.premium = [];
