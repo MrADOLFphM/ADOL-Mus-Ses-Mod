@@ -28,6 +28,9 @@ module.exports = {
     require("../../helpers/autoCovid")(client);
     require("../../helpers/reminder")(client);
     require("../../handlers/slash")(client);
+    if (client.config.dev) {
+      require("../../scripts/updateDocs")(client);
+    }
     const chan = vot?.channel;
     const ms = vot?.lastMsg;
     if (!ms) return;

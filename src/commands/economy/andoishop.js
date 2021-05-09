@@ -4,6 +4,7 @@ const itemss = require("../../utils/items");
 module.exports = {
   name: "andoishop",
   category: "economy",
+  description: "The shop of the bot.",
   run: async (client, message, args) => {
     if (!args.join(" ") || !isNaN(args.join(" "))) {
       let amount = 5 * parseInt(args[0]);

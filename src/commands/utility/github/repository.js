@@ -3,6 +3,7 @@ const moment = require("moment");
 module.exports = {
   name: "github-repository",
   category: "utility",
+  description: "Search an github repository",
   aliases: ["github-r"],
   run: async (client, message, args) => {
     const query = args.join(" ");

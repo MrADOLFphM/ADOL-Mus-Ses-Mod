@@ -2,6 +2,7 @@ module.exports = {
   name: "shuffle",
   aliases: ["sh"],
   category: "music",
+  description: "Shuffle music!",
 
   run: async (client, message) => {
     if (!message.member.voice.channel)

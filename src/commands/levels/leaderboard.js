@@ -2,7 +2,7 @@ const { MessageEmbed } = require("discord.js");
 const Levels = require("../../modules/discord-xp");
 module.exports = {
   name: "leaderboard",
-  description: "leaderboard!",
+  description: "Check current guild leaderboard.!",
   aliases: ["lb"],
   category: "levels",
   run: async (client, message, args) => {

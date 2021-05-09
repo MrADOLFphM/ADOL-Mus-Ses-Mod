@@ -27,9 +27,7 @@ class msgFuncs {
     const message = await msg.channel
       .send(`**${msg.author.username}** Your afk has been removed`)
       .then(async (msg) => {
-        return msg
-          .delete({ timeout: 10000, reason: "Andoi AFK Feature" })
-          .catch(() => null);
+        return setTimeout(() => msg.delete(), 1000).catch(() => null);
       });
   }
   async afkMentioned(msg) {

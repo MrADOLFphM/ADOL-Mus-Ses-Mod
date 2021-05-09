@@ -4,6 +4,7 @@ const rankimage = require("../../utils/rank");
 module.exports = {
   name: "rank",
   category: "levels",
+  description: "Check your current rank!",
   run: async (client, message, args) => {
     const msgDocument = message.guild.cache.levelconfig
       ? message.guild.levelconfig

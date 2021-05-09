@@ -10,7 +10,7 @@ const moment = require("moment");
 
 module.exports = {
   name: "work",
-  description: "work",
+  description: "Work for moneys!",
   category: "economy",
   run: async (client, message) => {
     const user = message.author;

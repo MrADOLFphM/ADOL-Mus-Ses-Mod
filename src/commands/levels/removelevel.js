@@ -1,6 +1,7 @@
 const Levels = require("../../modules/discord-xp");
 module.exports = {
   name: "removelevel",
+  description: "Remove somebody from the database!",
   category: "levels",
   memberPermission: ["ADMINISTRATOR"],
   run: async (client, message, args) => {

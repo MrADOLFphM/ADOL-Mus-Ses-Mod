@@ -1,6 +1,7 @@
 module.exports = {
   name: "binary",
   category: "utility",
+  description: "Binary code :D",
   run: async (client, message, args) => {
     const option = args[0];
     if (!option)

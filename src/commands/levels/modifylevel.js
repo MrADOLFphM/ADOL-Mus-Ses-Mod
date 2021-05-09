@@ -2,6 +2,7 @@ const Levels = require("../../modules/discord-xp");
 module.exports = {
   name: "modifylevel",
   category: "levels",
+  description: "Modify somebody's level.",
   memberPermission: ["MANAGE_MESSAGES"],
   run: async (client, message, args) => {
     const msgDocument = message.guild.cache.levelconfig

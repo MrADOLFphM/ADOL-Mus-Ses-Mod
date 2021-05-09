@@ -1,6 +1,7 @@
 const MessageModel = require("../../models/levelconfig");
 module.exports = {
   name: "setlevelroles",
+  description: "Add/remove level roles",
   category: "levels",
   memberPermission: ["ADMINISTRATOR"],
   run: async (client, message, args) => {

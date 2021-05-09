@@ -1,8 +1,8 @@
 module.exports = {
   name: "filter",
   aliases: [],
+  description: "Filters",
   category: "music",
-  utilisation: "{prefix}filter [filter name]",
 
   run: (client, message, args) => {
     if (!message.member.voice.channel)

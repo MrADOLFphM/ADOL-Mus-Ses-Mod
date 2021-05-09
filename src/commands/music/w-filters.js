@@ -1,6 +1,7 @@
 module.exports = {
   name: "filters",
   category: "music",
+  description: "Check current filters!",
 
   run: async (client, message) => {
     const conf = await client.getConfig(message.guild);

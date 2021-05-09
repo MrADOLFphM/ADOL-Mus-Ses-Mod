@@ -7,6 +7,7 @@ const soundsChoice = sounds.map((sound) =>
 module.exports = {
   name: "soundboard",
   category: "fun",
+  description: "fun meme sounds",
   run: async (client, message, args) => {
     if (client.player.isPlaying)
       return message.channel.send("Im playing music at the moment!");

@@ -3,6 +3,7 @@ const canvacord = require("canvacord");
 module.exports = {
   name: "affect",
   category: "image",
+  description: "No.. it doesnt affect my child",
   run: async (client, message, args) => {
     const lol = message.send(
       `${client.emotes.loading}Loading image please wait.....`

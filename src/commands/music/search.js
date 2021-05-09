@@ -1,6 +1,7 @@
 module.exports = {
   name: "search",
   category: "music",
+  description: "Search for music!",
   run: (client, message, args) => {
     if (!message.member.voice.channel)
       return message.channel.send(

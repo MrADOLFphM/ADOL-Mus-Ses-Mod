@@ -3,6 +3,7 @@ const fetch = require("node-fetch");
 module.exports = {
   name: "docs",
   category: "utility",
+  description: "Search on the docs of discord.js",
   run: async (client, message, args) => {
     let query = args.join(" ");
     if (!query) query = await awaitMessages(message);

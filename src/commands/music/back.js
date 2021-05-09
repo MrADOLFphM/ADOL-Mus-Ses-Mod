@@ -3,7 +3,7 @@
 module.exports = {
   name: "back",
   aliases: ["p"],
-  description: "/",
+  description: "Go back your going to fast!",
   category: "music",
   run: async (client, message, args) => {
     if (!message.member.voice.channel)

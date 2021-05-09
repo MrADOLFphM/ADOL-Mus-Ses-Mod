@@ -4,6 +4,7 @@ module.exports = {
   name: "github-user",
   aliases: ["github-u"],
   category: "utility",
+  description: "Search for an user on github.",
   run: async (client, message, args) => {
     if (!(await getUser(client, message, args.join(" "))))
       return message.send("Did not find the user on github!");

@@ -3,6 +3,7 @@ const Discord = require("discord.js");
 module.exports = {
   name: "drop",
   category: "giveaway",
+  description: "Quick giveaway",
   run: async (client, message, args) => {
     let hasPerm = message.member.hasPermission("MANAGE_MESSAGES");
 

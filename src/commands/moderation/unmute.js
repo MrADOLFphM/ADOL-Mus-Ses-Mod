@@ -2,6 +2,7 @@ const muteDoc = require("../../models/mute");
 module.exports = {
   name: "unmute",
   category: "moderation",
+  description: "Unmute someone :eyes:",
   run: async (client, message, args) => {
     const lang = await message.guild.getLang();
     if (!message.member.permissions.has("MANAGE_ROLES")) {

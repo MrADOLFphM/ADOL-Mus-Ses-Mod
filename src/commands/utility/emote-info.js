@@ -3,6 +3,7 @@ module.exports = {
   name: "emoji-info",
   category: "utility",
   aliases: ["emojiinfo", "emoteinfo", "emote-info", "ei"],
+  description: "Info of an emoji",
   run: async (bot, message, args) => {
     if (!message.guild)
       return message.channel.send("This command only works on servers.");

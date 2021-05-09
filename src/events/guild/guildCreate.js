@@ -19,6 +19,7 @@ module.exports = {
 
     const newConfig = {
       GuildID: guild.id,
+      prefix: "a!",
     };
     await client.createConfig(newConfig).catch((err) => console.log(err));
     await new storeModel({ GuildID: guild.id });

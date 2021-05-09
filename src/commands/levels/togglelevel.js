@@ -1,5 +1,6 @@
 module.exports = {
   name: "togglelevel",
+  description: "Toggles the level system",
   category: "levels",
   memberPermission: ["ADMINISTRATOR"],
   run: async (client, message, args) => {

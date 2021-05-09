@@ -3,6 +3,7 @@ module.exports = {
   name: "permissions",
   category: "utility",
   aliases: ["perms"],
+  description: "Your permissions.",
   run: async (client, message, args) => {
     const user = message.author;
     const member = await message.guild.members.fetch(user);

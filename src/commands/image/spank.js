@@ -3,6 +3,7 @@ const canvacord = require("canvacord");
 module.exports = {
   name: "spank",
   category: "image",
+  description: "Do i need to explain this?",
   run: async (client, message, args) => {
     const user = client.findMember(message, args);
 
