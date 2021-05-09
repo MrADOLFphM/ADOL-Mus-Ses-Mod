@@ -22,6 +22,7 @@ These api keys are not required for the bot to function. Only required for their
 - [mongodbUri](https://www.mongodb.com/cloud/atlas)
 - [ListCord](https://listcord.gg)
 - [giphyApiKey](https://developers.giphy.com/)
+- [news](https://newsapi.org/)
 
 ## config
 
