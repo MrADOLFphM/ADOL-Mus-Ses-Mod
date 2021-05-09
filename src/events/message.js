@@ -167,7 +167,8 @@ module.exports = {
       let neededPerms = [];
 
       command.botPermission.forEach((p) => {
-        if (!message.guild.me.hasPermission(p)) neededPerms.push("`" + p + "`");
+        if (!message.guild.me.permissions.has(p))
+          neededPerms.push("`" + p + "`");
       });
 
       if (neededPerms.length)
@@ -180,7 +181,7 @@ module.exports = {
       let neededPerms = [];
 
       command.memberPermission.forEach((p) => {
-        if (!message.member.hasPermission(p)) neededPerms.push("`" + p + "`");
+        if (!message.member.permissions.has(p)) neededPerms.push("`" + p + "`");
       });
 
       if (neededPerms.length)
