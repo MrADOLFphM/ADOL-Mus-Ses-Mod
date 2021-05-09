@@ -10,6 +10,7 @@ Structures.extend("Guild", (Guild) => {
       this.cache = {
         levelconfig: false,
       };
+      this.me = this.members.cache.get(client.user.id);
     }
     async premium() {
       const config = await this.getConfig();
