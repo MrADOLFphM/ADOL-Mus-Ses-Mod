@@ -5,7 +5,7 @@ module.exports = {
   category: "image",
   description: "Ad a user LMAO!",
   run: async (client, message, args) => {
-    const lol = message.send(
+    const lol = await message.send(
       `${client.emotes.loading}Loading image please wait.....`
     );
     const m = client.findMember(message, args, true);
