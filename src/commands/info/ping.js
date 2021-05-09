@@ -15,11 +15,7 @@ module.exports = {
         .setAuthor(message.author.username, message.author.displayAvatarURL())
         .setTitle("🏓 Pong!")
         .setDescription(
-          `Bot Evaluation Time - **${Math.round(
-            (m.createdAt - message.createdAt) / client.ws.ping
-          )}**ms \nBot Latency - **${Math.round(
-            m.createdAt - message.createdAt
-          )}**ms \nAPI Latency - **${Math.round(
+          `BOT Latency - **${Math.round(
             client.ws.ping
           )}**ms\nDatabase Latency - **${dataRealPing}**ms`
         )
