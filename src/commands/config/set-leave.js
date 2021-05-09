@@ -5,7 +5,7 @@ module.exports = {
   usage: "setleave <#channel>",
   description: "Set the leave channel",
   run: async (client, message, args) => {
-    if (!message.member.hasPermission("ADMINISTRATOR"))
+    if (!message.member.permissions.has("ADMINISTRATOR"))
       return message.channel.send(
         `${message.author.tag} You don't have perms to do that.`
       );

@@ -2,7 +2,7 @@ const logBed = require("../../utils/logBed");
 module.exports = {
   name: "voiceStateUpdate",
   async execute(client, oldState, newState) {
-    if (!oldState.guild.me?.hasPermission("MANAGE_WEBHOOKS")) return;
+    if (!oldState.guild.me?.permissions.has("MANAGE_WEBHOOKS")) return;
     const w = await oldState.guild.fetchWebhooks();
     const webhook = w.find((w) => w.name === "Andoi");
     if (!webhook) return;

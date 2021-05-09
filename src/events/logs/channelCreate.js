@@ -4,7 +4,7 @@ module.exports = {
   name: "channelCreate",
   async execute(client, channel) {
     if (channel.type === "dm") return;
-    if (!channel.guild.me?.hasPermission("MANAGE_WEBHOOKS")) return;
+    if (!channel.guild.me?.permissions.has("MANAGE_WEBHOOKS")) return;
     const w = await channel.guild.fetchWebhooks();
     const webhook = w.find((w) => w.name === "Andoi");
     if (!webhook) return;

@@ -7,7 +7,7 @@ module.exports = {
   usage: "setwelcomemsg",
   votersOnly: true,
   run: async (client, message, args) => {
-    if (!message.member.hasPermission("MANAGE_CHANNELS"))
+    if (!message.member.permissions.has("MANAGE_CHANNELS"))
       return message.reply("You need `MANAGE_CHANNELS` permission to use this");
 
     const filter = (res) => res.author.id === message.author.id;

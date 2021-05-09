@@ -11,8 +11,8 @@ module.exports = {
     const target = args[0];
 
     if (
-      !message.member.hasPermission("BAN_MEMBERS") ||
-      !message.member.hasPermission("ADMINISTRATOR")
+      !message.member.permissions.has("BAN_MEMBERS") ||
+      !message.member.permissions.has("ADMINISTRATOR")
     )
       return message.channel.send(
         lang.NO_PERMS.replace("{perm}", "BAN_MEMBERS")

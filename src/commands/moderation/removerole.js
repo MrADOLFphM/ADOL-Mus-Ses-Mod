@@ -7,12 +7,12 @@ module.exports = {
   usage: "removerole <role> <user> or removerole <id> <role>",
   run: async (client, message, args) => {
     const conf = await client.getConfig(message.guild);
-    if (!message.member.hasPermission("MANAGE_ROLES"))
+    if (!message.member.permissions.has("MANAGE_ROLES"))
       return message.channel.send(
         "**Your Dont Have The Permissions To Remove Role From Users! - [MANAGE_ROLES]**"
       );
 
-    if (!message.guild.me.hasPermission("MANAGE_ROLES"))
+    if (!message.guild.me.permissions.has("MANAGE_ROLES"))
       return message.channel.send(
         "**I Dont Have The Permissions To Remove Roles From Users! - [MANAGE_ROLES]**"
       );

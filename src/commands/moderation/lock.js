@@ -4,8 +4,9 @@ module.exports = {
   description: "lock a channel",
   aliases: ["lockchannel"],
   usage: "lock <channel>",
+  memberPermissions: ["MANAGE_CHANNELS"],
   run: async (client, message, args) => {
-    if (!message.guild.me.hasPermission("MANAGE_CHANNELS"))
+    if (!message.guild.me.permissions.has("MANAGE_CHANNELS"))
       return message.channel.send(
         `you dont have the manage channels permission`
       );
@@ -23,7 +24,7 @@ module.exports = {
     if (!lockReason)
       return message.reply("Please provide a reason to lock this channel");
 
-    if (!user.hasPermission(["MANAGE_CHANNELS"]))
+    if (!user.permissions.has(["MANAGE_CHANNELS"]))
       return message.channel.send("You don't have to correct permissions!");
 
     channel.updateOverwrite(message.guild.id, {

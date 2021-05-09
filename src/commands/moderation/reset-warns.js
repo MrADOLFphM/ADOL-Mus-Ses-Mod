@@ -6,7 +6,7 @@ module.exports = {
   category: "moderation",
   usage: "rwarns <@user>",
   run: async (client, message, args) => {
-    if (!message.member.hasPermission("ADMINISTRATOR")) {
+    if (!message.member.permissions.has("ADMINISTRATOR")) {
       return message.channel.send(
         "Yopu should have admin perms to use this command"
       );

@@ -6,12 +6,12 @@ module.exports = {
   category: "moderation",
   run: async (client, message, args) => {
     const conf = await client.getConfig(message.guild);
-    if (!message.member.hasPermission("MANAGE_ROLES")) {
+    if (!message.member.permissions.has("MANAGE_ROLES")) {
       return message.channel.send("You need `MANAGE_ROLES` permission.");
     }
     const roleName = args[0];
 
-    if (!message.guild.me.hasPermission("MANAGE_ROLES")) {
+    if (!message.guild.me.permissions.has("MANAGE_ROLES")) {
       return message.channel.send("I need `MANAGE_ROLES` permission.");
     }
 

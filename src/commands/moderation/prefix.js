@@ -4,7 +4,7 @@ module.exports = {
   usage: "prefix <new-prefix>",
   description: "Change the guild prefix",
   run: async (client, message, args) => {
-    if (!message.member.hasPermission("ADMINISTRATOR")) {
+    if (!message.member.permissions.has("MANAGE_MESSAGES")) {
       return message.channel.send(
         "You are not allowed or do not have permission to change prefix"
       );

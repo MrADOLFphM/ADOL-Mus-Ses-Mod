@@ -8,7 +8,7 @@ module.exports = {
   run: async (client, message, args) => {
     const conf = await client.getConfig(message.guild);
     const lang = await message.guild.getLang();
-    if (!message.member.hasPermission("ADMINISTRATOR")) {
+    if (!message.member.permissions.has("ADMINISTRATOR")) {
       return message.channel.send(
         lang.NO_PERMS.replace("{perm}", "ADMINISTRATOR")
       );

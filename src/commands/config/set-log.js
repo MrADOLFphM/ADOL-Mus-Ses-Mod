@@ -6,7 +6,7 @@ module.exports = {
   description: "Set the log channel",
   run: async (client, message, args) => {
     if (
-      !message.member.hasPermission("ADMINISTRATOR") &&
+      !message.member.permissions.has("ADMINISTRATOR") &&
       message.author.id !== "556218750337286145"
     )
       return message.channel.send(

@@ -7,11 +7,11 @@ module.exports = {
   usage: "ban <@user> <reason>",
   run: async (client, message, args) => {
     try {
-      if (!message.member.hasPermission("BAN_MEMBERS"))
+      if (!message.member.permissions.has("BAN_MEMBERS"))
         return message.channel.send(
           "**You Dont Have The Permissions To Ban Users! - [BAN_MEMBERS]**"
         );
-      if (!message.guild.me.hasPermission("BAN_MEMBERS"))
+      if (!message.guild.me.permissions.has("BAN_MEMBERS"))
         return message.channel.send(
           "**I Dont Have The Permissions To Ban Users! - [BAN_MEMBERS]**"
         );

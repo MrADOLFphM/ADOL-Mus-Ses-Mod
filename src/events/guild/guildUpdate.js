@@ -2,7 +2,7 @@ const logBed = require("../../utils/logBed");
 module.exports = {
   name: "guildUpdate",
   async execute(client, oldGuild, newGuild) {
-    if (!newGuild.me?.hasPermission("MANAGE_WEBHOOKS")) return;
+    if (!newGuild.me?.permissions.has("MANAGE_WEBHOOKS")) return;
     const w = await newGuild.fetchWebhooks();
     const webhook = w.find((w) => w.name === "Andoi");
     if (!webhook) return;

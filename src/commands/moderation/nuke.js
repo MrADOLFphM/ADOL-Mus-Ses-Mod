@@ -5,13 +5,13 @@ module.exports = {
   aliases: ["channelnuke"],
   category: "moderation",
   run: async (client, message) => {
-    if (!message.guild.me.hasPermission("MANAGE_CHANNELS"))
+    if (!message.guild.me.permissions.has("MANAGE_CHANNELS"))
       return message.channel.send(
         `I dont have the correct permissions for this!`
       );
 
     const user = message.member;
-    if (!user.hasPermission("MANAGE_CHANNELS"))
+    if (!user.permissions.has("MANAGE_CHANNELS"))
       return message.channel.send(
         "You don't have the correct permissions for that!"
       );

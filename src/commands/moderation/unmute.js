@@ -4,13 +4,13 @@ module.exports = {
   category: "moderation",
   run: async (client, message, args) => {
     const lang = await message.guild.getLang();
-    if (!message.member.hasPermission("MANAGE_ROLES")) {
+    if (!message.member.permissions.has("MANAGE_ROLES")) {
       return message.channel.send(
         lang.NO_PERMS.replace("{perm}", "MANAGE_ROLES")
       );
     }
 
-    if (!message.guild.me.hasPermission("MANAGE_ROLES")) {
+    if (!message.guild.me.permissions.has("MANAGE_ROLES")) {
       return message.channel.send(
         lang.I_PERMS.repalce("{perm}", "MANAGE_ROLES")
       );

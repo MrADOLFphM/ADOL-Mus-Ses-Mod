@@ -3,6 +3,7 @@ module.exports = {
   name: "setverify",
   description: "Configure verification settings",
   category: "config",
+  memberPermissions: ["ADMINISTRATOR"],
   run: async (client, message, args) => {
     const filter = (res) => res.author.id === message.author.id;
     if (message.flags[0]) {

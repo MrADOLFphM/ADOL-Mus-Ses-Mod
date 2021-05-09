@@ -4,7 +4,7 @@ const logBed = require("../../utils/logBed");
 module.exports = {
   name: "channelUpdate",
   async execute(client, oldChannel, channel) {
-    if (!oldChannel.guild.me?.hasPermission("MANAGE_WEBHOOKS")) return;
+    if (!oldChannel.guild.me?.permissions.has("MANAGE_WEBHOOKS")) return;
     const w = await oldChannel.guild.fetchWebhooks();
     const webhook = w.find((w) => w.name === "Andoi");
     if (!webhook) return;

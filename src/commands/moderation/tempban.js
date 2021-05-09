@@ -10,10 +10,10 @@ module.exports = {
     const tbuser = message.mentions.members.first();
     const regex = args.splice(1).join(" ");
 
-    if (!message.member.hasPermission("BAN_MEMBERS")) {
+    if (!message.member.permissions.has("BAN_MEMBERS")) {
       return message.send("You don't have permissions to ban this person!");
     }
-    if (!message.guild.me.hasPermission("BAN_MEMBERS")) {
+    if (!message.guild.me.permissions.has("BAN_MEMBERS")) {
       return message.channel.send("I dont have permissions to ban someone");
     }
     if (tbuser === message.guild.me) {

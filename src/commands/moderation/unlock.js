@@ -8,12 +8,12 @@ module.exports = {
     //code here
     const lang = await message.guild.getLang();
 
-    if (!message.guild.me.hasPermission("MANAGE_CHANNELS"))
+    if (!message.guild.me.permissions.has("MANAGE_CHANNELS"))
       return message.send(lang.I_PERM.replace("{perm}", "MANAGE_CHANNELS"));
     const user = message.member;
     const channel = message.mentions.channels.first() || message.channel;
 
-    if (!user.hasPermission(["MANAGE_CHANNELS"]))
+    if (!user.permissions.has(["MANAGE_CHANNELS"]))
       return message.channel.send(
         lang.NO_PERMS.replace("{perm}", "MANAGE_CHANNELS")
       );

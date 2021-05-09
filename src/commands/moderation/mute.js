@@ -11,9 +11,9 @@ module.exports = {
       message.guild.members.cache.get(args[0]);
 
     const msRegex = RegExp(/(\d+(s|m|h|w))/);
-    if (!message.member.hasPermission("MANAGE_ROLES"))
+    if (!message.member.permissions.has("MANAGE_ROLES"))
       return message.reply("You need manage roles permissions!");
-    if (!message.guild.me.hasPermission("MANAGE_ROLES"))
+    if (!message.guild.me.permissions.has("MANAGE_ROLES"))
       //i wrote this for a special server
       return message.reply("I need manage roles permissions!");
     let muter = e?.muteRole;

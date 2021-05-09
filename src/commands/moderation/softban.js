@@ -8,13 +8,13 @@ module.exports = {
   async run(client, message, args) {
     message.delete();
 
-    if (!message.member.hasPermission("BAN_MEMBERS"))
+    if (!message.member.permissions.has("BAN_MEMBERS"))
       return message.channel.send(
         "You do not have permission to perform this command!"
       );
-    if (!message.guild.me.hasPermission("BAN_MEMBERS"))
+    if (!message.guild.me.permissions.has("BAN_MEMBERS"))
       return message.channel.send(
-        "I dont have permission to perform this command"
+        "I don't have permission to perform this command"
       );
 
     let banMember =

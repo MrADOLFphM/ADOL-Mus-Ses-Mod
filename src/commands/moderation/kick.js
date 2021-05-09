@@ -6,13 +6,13 @@ module.exports = {
   description: "Kick anyone with one shot xD",
   usage: "kick <@user> <raeson>",
   run: async (client, message, args) => {
-    if (!message.member.hasPermission("KICK_MEMBERS")) {
+    if (!message.member.permissions.has("KICK_MEMBERS")) {
       return message.channel.send(
         `**${message.author.username}**, You do not have enough permission to use this command`
       );
     }
 
-    if (!message.guild.me.hasPermission("KICK_MEMBERS")) {
+    if (!message.guild.me.permissions.has("KICK_MEMBERS")) {
       return message.channel.send(
         `**${message.author.username}**, I do not have enough permission to use this command`
       );

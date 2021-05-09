@@ -7,12 +7,12 @@ module.exports = {
   aliases: ["purge"],
   usage: "clear <amount>",
   run: async (client, message, args) => {
-    if (!message.guild.me.hasPermission("MANAGE_MESSAGES"))
+    if (!message.guild.me.permissions.has("MANAGE_MESSAGES"))
       return message.channel.send(`i do not have permissions to do this`);
 
     const user = message.member;
     const amount = args[0];
-    if (!user.hasPermission("MANAGE_MESSAGES"))
+    if (!user.permissions.has("MANAGE_MESSAGES"))
       return message.channel.send(
         `${client.cross} **You do not have permissions for this!**`
       );

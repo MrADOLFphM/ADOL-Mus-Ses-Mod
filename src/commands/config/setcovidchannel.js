@@ -7,7 +7,7 @@ module.exports = {
   usage: "setcovid <#channel>",
   description: "Set the covid auto posting channel",
   run: async (client, message, args) => {
-    if (!message.member.hasPermission("ADMINISTRATOR"))
+    if (!message.member.permissions.has("ADMINISTRATOR"))
       return message.channel.send(
         `${message.author.tag} You don't have perms to do that.`
       );

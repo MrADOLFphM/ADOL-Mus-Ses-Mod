@@ -7,11 +7,11 @@ module.exports = {
   usage: "addrole <role> <user> or addrole <id> <role>",
   run: async (client, message, args, ops, emo) => {
     const conf = await client.getConfig(message.guild);
-    if (!message.member.hasPermission("MANAGE_ROLES"))
+    if (!message.member.permissions.has("MANAGE_ROLES"))
       return message.channel.send(
         "**You Dont Have The Permissions To Add Roles To Users! - [MANAGE_ROLES]**"
       );
-    if (!message.guild.me.hasPermission("MANAGE_ROLES"))
+    if (!message.guild.me.permissions.has("MANAGE_ROLES"))
       return message.channel.send(
         "**I Dont Have The Permissions To Add Roles To Users! - [MANAGE_ROLES]**"
       );
