@@ -22,7 +22,7 @@ const MongoStarboardsManager = require("../modules/MongoStarboard");
 module.exports = class AndoiClient extends Client {
   constructor() {
     super({
-      disableMentions: "everyone",
+      allowedMentions: { parse: ["users", "roles"], repliedUser: true },
       partials: ["CHANNEL", "GUILD_MEMBER", "MESSAGE", "REACTION", "USER"],
       intents: [
         Intents.FLAGS.GUILDS,
