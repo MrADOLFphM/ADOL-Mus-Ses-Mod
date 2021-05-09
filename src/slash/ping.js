@@ -9,7 +9,7 @@ module.exports = {
     let dataPingNow = Date.now();
     let dataRealPing = dataPingNow - dataPing;
     const embed = new MessageEmbed()
-      .setAuthor(message.author.username, message.author.displayAvatarURL())
+      .setAuthor(client.user.username, client.user.displayAvatarURL())
       .setTitle("🏓 Pong!")
       .setDescription(
         `BOT Latency - **${Math.round(
