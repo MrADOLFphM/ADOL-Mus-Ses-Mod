@@ -5,6 +5,7 @@ const {
   Role,
   Collection,
   Client,
+  Intents,
 } = require("discord.js");
 const functions = require("./functions/message");
 const { utils } = require("andoi-util");
@@ -13,7 +14,6 @@ const { Player } = require("discord-player");
 const filters = require("../JSON/filters.json");
 const imdb = require("imdb-api");
 const ItemManager = require("../modules/itemmanager");
-const path = require("path");
 const voteManager = require("./votes/voteManager");
 const { performance } = require("perf_hooks");
 const logger = require("../modules/logger");
@@ -24,6 +24,7 @@ module.exports = class AndoiClient extends Client {
     super({
       disableMentions: "everyone",
       partials: ["CHANNEL", "GUILD_MEMBER", "MESSAGE", "REACTION", "USER"],
+      intents: Intents.ALL,
     });
     const player = new Player(this, {
       leaveOnEmpty: true,

@@ -33,7 +33,7 @@
     "discord-player": "github:Snowflake107/discord-player#develop",
     "discord-rpc": "^3.2.0",
     "discord-starboards": "^2.2.3",
-    "discord.js": "^12.5.3",
+    "discord.js": "github:discordjs/discord.js#master",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
     "ffmpeg-static": "^4.3.0",

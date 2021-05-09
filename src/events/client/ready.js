@@ -27,6 +27,7 @@ module.exports = {
     require("../../helpers/client/startMessage")(client);
     require("../../helpers/autoCovid")(client);
     require("../../helpers/reminder")(client);
+    require("../../handlers/slash")(client);
     const chan = vot?.channel;
     const ms = vot?.lastMsg;
     if (!ms) return;

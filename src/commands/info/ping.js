@@ -7,7 +7,6 @@ module.exports = {
   description: "Get the bot's ping!",
   run: async (client, message, args) => {
     message.channel.send("Testing ping...").then(async (m) => {
-      let randomColor = "RED";
       let dataPing = Date.now();
       await message.guild.getConfig();
       let dataPingNow = Date.now();
