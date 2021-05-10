@@ -1,5 +1,5 @@
 # Andoi
-
+**NOTE** *website does not work as of now due to host limits*
 ## Information
 
 Andoi is a multipurpose bot made with javascript
