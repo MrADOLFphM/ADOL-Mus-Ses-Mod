@@ -81,33 +81,39 @@ class msgFuncs {
               message.guild.id
             );
             const plate = await fsn.readFile(
-              "./src/assets/images/level_up.png"
-            );
-            const username = message.author.username.substr(0, 30);
-            const body = message.author.displayAvatarURL({ format: "png" });
-            const e = new Canvas(640, 360)
-              .addImage(plate, 0, 0, 640, 360)
-              .setTextFont("23px Srisakdi")
-              .setTextAlign("center")
-              .addText(username, 350, 60)
-              .setTextFont("26px Srisakdi")
-              .setTextAlign("center")
-              .addText(user.level, 456, 201)
-              .setTextFont("26px Srisakdi")
-              .setTextAlign("center")
-              .addText(user.xp + "/" + user.level * 400, 426, 271)
-              .addImage(body, 58, 80, 200, 200, { type: "round", radius: 100 })
-              .resetTransformation()
-              .toBuffer();
+              "./src/assets/images/level_up.png",
+              "JSON",
+              (err, data) => {
+                const username = message.author.username.substr(0, 30);
+                const body = message.author.displayAvatarURL({ format: "png" });
+                const e = new Canvas(640, 360)
+                  .addImage(data, 0, 0, 640, 360)
+                  .setTextFont("23px Srisakdi")
+                  .setTextAlign("center")
+                  .addText(username, 350, 60)
+                  .setTextFont("26px Srisakdi")
+                  .setTextAlign("center")
+                  .addText(user.level, 456, 201)
+                  .setTextFont("26px Srisakdi")
+                  .setTextAlign("center")
+                  .addText(user.xp + "/" + user.level * 400, 426, 271)
+                  .addImage(body, 58, 80, 200, 200, {
+                    type: "round",
+                    radius: 100,
+                  })
+                  .resetTransformation()
+                  .toBuffer();
 
-            message.channel.send({
-              files: [
-                {
-                  attachment: e,
-                  name: "level_up.png",
-                },
-              ],
-            });
+                message.channel.send({
+                  files: [
+                    {
+                      attachment: e,
+                      name: "level_up.png",
+                    },
+                  ],
+                });
+              }
+            );
           }
         }
       }
