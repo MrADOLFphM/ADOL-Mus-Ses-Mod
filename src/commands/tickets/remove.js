@@ -6,7 +6,7 @@ module.exports = {
   category: "tickets",
   run: async (client, message, args) => {
     const guild = message.guild;
-    let member = guild.member(
+    let member = guild.members.cache.get(
       message.mentions.users.first() || guild.members.cache.get(args[0])
     );
 
@@ -17,7 +17,7 @@ module.exports = {
 
     if (!ticketDoc) return message.channel.send("This channel isnt a ticket!");
     try {
-      if (ticketDoc || message.member.hasPermission("MANAGE_CHANNELS")) {
+      if (ticketDoc || message.member.permissions.has("MANAGE_CHANNELS")) {
         message.channel.updateOverwrite(member.user, {
           VIEW_CHANNEL: false,
           SEND_MESSAGES: false,

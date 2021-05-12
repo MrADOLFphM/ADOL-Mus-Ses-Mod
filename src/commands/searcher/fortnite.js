@@ -12,10 +12,7 @@ module.exports = {
       return message.channel.send(
         "Incorrect format: supported game types: kbm, gamepad, touch"
       );
-    if (!args[1])
-      return message.channel
-        .send(`Please provide a user!`)
-        .then((m) => m.delete({ timeout: 5000 }));
+    if (!args[1]) return message.channel.send(`Please provide a user!`);
 
     // Get platform and user
     const platform = args.shift();

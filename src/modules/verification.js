@@ -12,7 +12,7 @@ module.exports = async (client, message) => {
     const enabled = db?.enabled;
     if (!enabled || !role || !channel_id) return false;
     if (channel_id !== message.channel.id) return false;
-    if (message.deletable) message.delete({ timeout: 1000 }).catch(() => {});
+    if (message.deletable) message.delete().catch(() => {});
     if (type === "react") return false;
     let verified = false;
     if (type === "discrim") {
@@ -30,7 +30,7 @@ module.exports = async (client, message) => {
           .setDescription(`<@${message.author.id}>, you have been verified!`)
       )
       .then((m) => {
-        m.delete({ timeout: 5000 }).catch(() => {});
+        m.delete().catch(() => {});
         if (!message.member.roles.cache.has(role))
           message.member.roles.add(role).catch(() => {});
         return true;

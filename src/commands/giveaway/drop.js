@@ -5,7 +5,7 @@ module.exports = {
   category: "giveaway",
   description: "Quick giveaway",
   run: async (client, message, args) => {
-    let hasPerm = message.member.hasPermission("MANAGE_MESSAGES");
+    let hasPerm = message.member.permissions.has("MANAGE_MESSAGES");
 
     if (hasPerm === false) {
       return message.channel.send(

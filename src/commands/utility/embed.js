@@ -31,7 +31,8 @@ module.exports = {
     } else {
       channel = message.channel;
     }
-    const linkregex = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()!@:%_+.~#?&/\\/=]*)/g;
+    const linkregex =
+      /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()!@:%_+.~#?&/\\/=]*)/g;
     const questions = [
       "To get out of here put `exit`\nTo omit something say `none` (except in the fields)\n\nTell me the content of the message that will not be in the embed.",
       "Tell me the embed author",
@@ -63,7 +64,7 @@ module.exports = {
       if (m.content === "preview")
         return message.channel
           .send("Here's a preview of your embed", embed)
-          .then((e) => e.delete({ timeout: 15000 }));
+          .then((e) => setTimeout(() => e.delete(), 15000));
       switch (i) {
         case 0:
           if (m.content === "none") {

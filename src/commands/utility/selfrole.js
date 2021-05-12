@@ -32,12 +32,12 @@ module.exports = {
         return message.channel.send("This server has no selfroles assigned.");
       }
     }
-    if (!message.guild.me.hasPermission("MANAGE_ROLES"))
+    if (!message.guild.me.permissions.has("MANAGE_ROLES"))
       return message.channel.send(
         "First give me the permissions to manage roles, okay?"
       );
     if (args[0] === "add") {
-      if (!message.member.hasPermission("ADMINISTRATOR"))
+      if (!message.member.permissions.has("ADMINISTRATOR"))
         return message.reply(
           `you do not have permission to execute this command.`
         );
@@ -150,7 +150,7 @@ module.exports = {
       }
     }
     if (args[0] === "remove") {
-      if (!message.member.hasPermission("ADMINISTRATOR"))
+      if (!message.member.permissions.has("ADMINISTRATOR"))
         return message.reply(
           `you do not have permission to execute this command.`
         );

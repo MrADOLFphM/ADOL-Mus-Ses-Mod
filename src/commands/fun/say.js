@@ -11,7 +11,7 @@ module.exports = {
     try {
       if (args.length === 0)
         return message.channel.send("**Enter Some Text!**");
-      message.delete({ timeout: 1000 });
+      setTimeout(() => message.delete(), 3000);
 
       const embed = new MessageEmbed()
         .setDescription(args.join(" "))

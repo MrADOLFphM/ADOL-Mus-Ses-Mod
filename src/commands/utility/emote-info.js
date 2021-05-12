@@ -21,7 +21,7 @@ module.exports = {
     let auth = emoji.author;
     if (
       !auth &&
-      message.guild.me.hasPermission("MANAGE_EMOJIS") &&
+      message.guild.me.permissions.has("MANAGE_EMOJIS") &&
       emoji.guild.id === message.guild.id
     ) {
       auth = await emoji.fetchAuthor();

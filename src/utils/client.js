@@ -56,7 +56,7 @@ module.exports = (client) => {
       if (file.length == 0)
         return message.channel
           .send("Invalid image/file")
-          .then((m) => m.delete({ timeout: 10000 }));
+          .then((m) => setTimeout(() => m.delete(), 10000));
     } else {
       // check user
       if (user != message.author) {

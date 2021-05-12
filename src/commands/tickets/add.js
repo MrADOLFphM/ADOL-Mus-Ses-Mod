@@ -6,7 +6,7 @@ module.exports = {
   category: "tickets",
   run: async (client, message, args) => {
     const guild = message.guild;
-    let member = guild.member(
+    let member = guild.members.cache.get(
       message.mentions.users.first() || guild.members.cache.get(args[0])
     );
 

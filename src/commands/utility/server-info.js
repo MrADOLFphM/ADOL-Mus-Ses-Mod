@@ -23,7 +23,8 @@ module.exports = {
     const createdAt = global.botIntl.format(guild.createdAt);
     const boosts = premiumSubscriptionCount;
     const boostLevel = premiumTier;
-    const owner = (guild.owner && guild.owner.user.tag) || "error";
+    const fetchedOwner = guild.fetchOwner();
+    const owner = (fetchedOwner && fetchedOwner.user.tag) || "error";
     const isVerified = verified
       ? lang.GUILD.IS_VERIFIED
       : lang.GUILD.NOT_VERIFIED;

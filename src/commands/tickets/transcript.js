@@ -17,7 +17,7 @@ module.exports = {
 
     if (
       user.id === ticketDoc.owner ||
-      message.member.hasPermission("MANAGE_MESSAGES")
+      message.member.permissions.has("MANAGE_MESSAGES")
     ) {
       const channel = await message.guild.channels.cache.get(
         ticketDoc.channelID

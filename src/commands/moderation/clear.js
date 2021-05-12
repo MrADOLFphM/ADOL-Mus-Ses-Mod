@@ -35,7 +35,7 @@ module.exports = {
     message.channel.bulkDelete(Number(amount) + 1).then(() => {
       message.channel
         .send(`${client.check} Deleted ${args[0]} messages.`)
-        .then((msg) => msg.delete({ timeout: 2000 }, true));
+        .then((msg) => setTimeout(() => msg.delete(true), 2000));
     });
     await client.emit(
       "modlog",

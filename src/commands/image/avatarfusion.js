@@ -9,7 +9,7 @@ module.exports = {
     "[first mention | first username | first ID | first nickname] <second mention | second username | second ID | second nickname>",
   description: "Draws A User's Avatar Over Other User's Avatar",
   run: async (client, message, args) => {
-    if (!message.guild.me.hasPermission("ATTACH_FILES"))
+    if (!message.guild.me.permissions.has("ATTACH_FILES"))
       return message.channel.send("**Missing Permissions - [ATTACH_FILES]!**");
     let base = message.member;
     let overlay = client.findMember(message, args, false);

@@ -24,7 +24,7 @@ module.exports = {
     if (option) {
       if (message.author.id === owners[0] && message.author.id === owners[1]) {
         updateStore(message, item, price, option, storeItems, guildId);
-      } else if (message.member.hasPermission("MANAGE_GUILD")) {
+      } else if (message.member.permissions.has("MANAGE_GUILD")) {
         updateStore(message, item, price, option, storeItems, guildId);
       } else {
         return message.channel.send(

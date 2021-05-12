@@ -54,12 +54,12 @@ module.exports = {
     if (
       message.content.startsWith("@someone") &&
       message.guild &&
-      message.member.hasPermission("MANAGE_CHANNELS")
+      message.member.permissions.has("MANAGE_CHANNELS")
     ) {
       const members = message.guild.members.cache.random();
 
       message.channel.send(members.user.toString()).then((msg) => {
-        msg.delete({ timeout: 1000 });
+        msg.delete();
       });
     }
     if (!message.guild) return;

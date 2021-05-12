@@ -6,11 +6,7 @@ module.exports = async (message, user, guildDoc) => {
     owner: user.id,
   });
   if (ticketDoc) {
-    message.channel
-      .send(`${user} You already have a ticket!`)
-      .then(async (msg) => {
-        msg.delete({ timeout: 5000 });
-      });
+    message.channel.send(`${user} You already have a ticket!`);
   } else {
     const ticketChannel = await message.guild.channels.create(
       `ticket-${user.username}`,

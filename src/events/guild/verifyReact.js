@@ -32,7 +32,7 @@ module.exports = {
               .setDescription(`You have been verified <@${user.id}>`)
           )
           .then(async (m) => {
-            await m.delete({ timeout: 5000 }).catch(() => {});
+            await setTimeout(() => m.delete().catch(() => {}), 5000);
           });
       }
     } catch (e) {
