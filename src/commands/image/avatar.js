@@ -17,17 +17,19 @@ module.exports = {
           r.displayName.toLowerCase() === args.join(" ").toLocaleLowerCase()
       ) ||
       message.member;
-
+    const webp = user.user.displayAvatarURL({ type: "webp", dynamic: true });
+    const png = user.user.displayAvatarURL({ type: "png", dynamic: true });
+    const jpg = user.user.displayAvatarURL({ type: "jpg", dynamic: true });
     if (args[0]) {
       message.channel.send({
         embed: {
           title: `${user.user.username}'s Avatar`,
 
           color: 0xffefd5,
+          description: `[PNG](${png}) | [JPG](${jpg}) | [WEBP](${webp})`,
 
           image: {
-            url:
-              `${user.user.displayAvatarURL({ dynamic: true })}` + "?size=4096",
+            url: png,
           },
 
           timestamp: new Date(),
@@ -44,10 +46,10 @@ module.exports = {
           title: `${user.user.username}'s Avatar`,
 
           color: 0xffefd5,
+          description: `[PNG](${png}) | [JPG](${jpg}) | [WEBP](${webp})`,
 
           image: {
-            url:
-              `${user.user.displayAvatarURL({ dynamic: true })}` + "?size=4096",
+            url: png,
           },
 
           timestamp: new Date(),
