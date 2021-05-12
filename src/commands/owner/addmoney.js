@@ -22,7 +22,7 @@ module.exports = {
       return message.channel.send("Please give an amount to give");
     }
 
-    message.channel.send(`Added ${amount} money to ${member.user.username}`);
+    message.channel.send(`Added ${amount} money to ${member.username}`);
     await addUserMoney(member.id, amount);
   },
 };

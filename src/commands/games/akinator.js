@@ -67,6 +67,7 @@ module.exports = {
 
         if (emoji.name == "❌") {
           collector.stop();
+          msg.reactions.removeAll();
           return msg.edit(
             new MessageEmbed()
               .setTitle("Game finished")
@@ -79,7 +80,7 @@ module.exports = {
 
         if (aki.progress >= 70 || aki.currentStep >= 78) {
           await aki.win();
-
+          msg.reactions.removeAll();
           collector.stop();
 
           message.channel.send(
@@ -108,7 +109,7 @@ module.exports = {
                   .setTitle(
                     isWinner
                       ? "Great! Guessed right one more time."
-                      : "Uh. you are win"
+                      : "Uh. you have won"
                   )
                   .setColor("RANDOM")
                   .setDescription("I love playing with you!")
