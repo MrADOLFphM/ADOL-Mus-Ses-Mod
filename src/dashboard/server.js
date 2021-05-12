@@ -28,7 +28,7 @@ module.exports = (client) => {
       client.emit("vote", req.vote.user, req.vote.isWeekend, req.vote);
     }
   );
-  const port = 2314;
+  const port = 27024;
   app.listen(port, () =>
     console.log(` Dashboard - Server is live on port ${port}`)
   );
