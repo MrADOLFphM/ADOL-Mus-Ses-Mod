@@ -23,17 +23,8 @@ module.exports = async (client) => {
 
     await client.channels.cache
       .get("803706448784785488")
-      ?.createWebhook(bot, {
-        avatar: client.user.displayAvatarURL({
-          format: "png",
-          dynamic: true,
-          size: 128,
-        }),
-      })
-      .then((webhook) =>
-        Promise.all([webhook.send(message, { embeds: [embed] }), webhook])
-      )
-      .then(([_, webhook]) => webhook.delete())
+      ?.send(message, { embed: embed })
+      .then((msg) => msg.crosspost())
       .catch(() => {});
   }
 };

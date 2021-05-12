@@ -4,9 +4,10 @@ const storeModel = require("../../models/store");
 module.exports = {
   name: "guildCreate",
   async execute(client, guild) {
+    const owner = guild.fetchOwner();
     const LogBed = new MessageEmbed()
       .setTitle(`New server ${guild.name} here is some info!`)
-      .addField("Owner", guild.owner.user.tag)
+      .addField("Owner", owner.user.tag)
       .addField("MemberCount", guild.memberCount)
       .addField("Name", guild.name)
       .addField("ID", guild.id)
