@@ -10,8 +10,7 @@ const inventorymodel = require("../models/inventory");
 const getUserMoney = async (userId) => {
   const user = await userModel.findOne({ userID: userId });
   if (!user) {
-    const aa = new userModel({ userID: userId });
-    aa.save();
+    return 0;
   }
 
   return user.money;
@@ -24,8 +23,7 @@ const getUserMoney = async (userId) => {
 const getUserBank = async (userId) => {
   const user = await userModel.findOne({ userID: userId });
   if (!user) {
-    const aa = new userModel({ userID: userId });
-    aa.save();
+    return 0;
   }
 
   return user.bank;
@@ -40,7 +38,7 @@ const addUserMoney = async (userId, amount) => {
   const user = await userModel.findOne({ userID: userId });
   if (!user) {
     const aa = new userModel({ userID: userId, money: amount });
-    aa.save();
+    return aa.save();
   }
   const currentMon = user.money;
   return user.updateOne({ userID: userId, money: currentMon + amount });
@@ -55,7 +53,7 @@ const addUserBank = async (userId, amount) => {
   const user = await userModel.findOne({ userID: userId });
   if (!user) {
     const aa = new userModel({ userID: userId });
-    aa.save();
+    return aa.save();
   }
   const current = user.bank;
   return user.updateOne({ userID: userId, bank: current + amount });
@@ -70,7 +68,7 @@ const removeUserBank = async (userId, amount) => {
   const user = await userModel.findOne({ userID: userId });
   if (!user) {
     const aa = new userModel({ userID: userId });
-    aa.save();
+    return aa.save();
   }
   const current = user.bank;
   return user.updateOne({ userID: userId, bank: current - amount });
@@ -85,7 +83,7 @@ const removeUserMoney = async (userId, amount) => {
   const user = await userModel.findOne({ userID: userId });
   if (!user) {
     const aa = new userModel({ userID: userId });
-    aa.save();
+    return aa.save();
   }
   const currentMon = user.money;
   return user.updateOne({ userID: userId, money: currentMon - amount });
@@ -99,7 +97,7 @@ const getUserDaily = async (userId) => {
   const user = await userModel.findOne({ userID: userId });
   if (!user) {
     const aa = new userModel({ userID: userId });
-    aa.save();
+    return aa.save();
   }
   return user.daily;
 };
@@ -113,9 +111,8 @@ const setUserDaily = async (userId, date) => {
   const user = await userModel.findOne({ userID: userId });
   if (!user) {
     const aa = new userModel({ userID: userId });
-    aa.save();
+    return aa.save();
   }
-  const currentMon = user.money;
   return user.updateOne({ userID: userId, daily: date });
 };
 /**
@@ -126,7 +123,7 @@ const getUserWork = async (userId) => {
   const user = await userModel.findOne({ userID: userId });
   if (!user) {
     const aa = new userModel({ userID: userId });
-    aa.save();
+    return aa.save();
   }
 
   return user.work;
@@ -141,7 +138,7 @@ const setUserWork = async (userId, date) => {
   const user = await userModel.findOne({ userID: userId });
   if (!user) {
     const aa = new userModel({ userID: userId });
-    aa.save();
+    return aa.save();
   }
   return user.updateOne({ userID: userId, work: date });
 };
@@ -171,7 +168,7 @@ const setUserJob = async (userId, job) => {
   const user = await userModel.findOne({ userID: userId });
   if (!user) {
     const aa = new userModel({ userID: userId });
-    aa.save();
+    return aa.save();
   }
   return user.updateOne({ userID: userId, job: job });
 };
@@ -188,7 +185,7 @@ const setUserInventory = async (guildId, userId, newItem) => {
       user: userId,
       inventory: [newItem],
     });
-    aa.save();
+    return aa.save();
   }
   const currentMon = user.money;
   return user.inventory.push(newItem).then(async () => {
@@ -203,7 +200,7 @@ const getStoreItems = async (guildId) => {
   const user = await storeModel.findOne({ GuildID: guildId });
   if (!user) {
     const aa = new storeModel({ GuildID: guildId });
-    aa.save();
+    return aa.save();
   }
   return user.items;
 };
@@ -216,7 +213,7 @@ const setStoreItems = async (guildId, newItem) => {
   const user = await storeModel.findOne({ GuildID: guildId });
   if (!user) {
     const aa = new storeModel({ GuildID: guildId });
-    aa.save();
+    return aa.save();
   }
   const e = user.items.push(newItem);
   user.save();
@@ -231,7 +228,7 @@ const removeStoreItem = async (guildId, item) => {
   const store = await storeModel.findOne({ GuildID: guildId });
   if (!store) {
     const aa = new storeModel({ GuildID: guildId });
-    aa.save();
+    return aa.save();
   }
   const current = store.items;
   await storeModel.findOneAndUpdate(
