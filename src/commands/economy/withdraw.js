@@ -7,7 +7,7 @@ module.exports = {
   usage: "withdraw <all | amount>",
   run: async (client, message, args, ops, emo) => {
     const user = message.author;
-    const data = client.getUser(user);
+    const data = await client.getUser(user);
     const member = message.member;
     if (args.join(" ") === "all") {
       if (data.bank === 0) {

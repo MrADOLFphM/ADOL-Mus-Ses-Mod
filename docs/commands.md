@@ -859,7 +859,7 @@ Description: deposit money to your bank
 
 Usage: !deposit <all | amount>
 
-Aliases: No aliases
+Aliases: dep
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 

@@ -29,9 +29,7 @@ module.exports = {
         let dep111embed = new MessageEmbed()
           .setColor("BLUE")
           .setDescription(
-            `${emo.check} **${
-              member.user.username
-            }** : Deposited **${data.bank.toLocaleString()}** coins.`
+            `${emo.check} **${member.user.username}** : Deposited **${max_deposit}** coins.`
           );
 
         data.bank = data.money;
