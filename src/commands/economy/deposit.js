@@ -8,6 +8,7 @@ module.exports = {
   name: "deposit",
   description: "deposit money to your bank",
   category: "economy",
+  aliases: ["dep"],
   usage: "!deposit <all | amount>",
   run: async (client, message, args, ops, emo) => {
     const user = message.author;
@@ -23,7 +24,7 @@ module.exports = {
       return message.channel.send(`${emo.cross} you cant deposit 0$`);
     if (args.join(" ") === "all") {
       if (data.money) {
-        const max_deposit = data.money + data.coinsInBank;
+        const max_deposit = data.money + data.bank;
         data.money = parseInt(max_deposit);
         let dep111embed = new MessageEmbed()
           .setColor("BLUE")
@@ -34,7 +35,7 @@ module.exports = {
           );
 
         data.bank = data.money;
-
+        data.money = 0;
         await data.save();
         return message.channel.send(dep111embed).catch();
       } else {
