@@ -14,7 +14,7 @@ module.exports = {
     const user = client.findMember(message, args, false);
     const random = Math.floor(Math.random() * 4) + 1;
     if (!user) {
-      return message.channel.send("Please provide a user mention");
+      return message.channel.send("Please provide a user to rob.");
     }
 
     if (user.id === message.author.id) {
