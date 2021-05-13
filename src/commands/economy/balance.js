@@ -18,9 +18,9 @@ module.exports = {
       .setTitle(`${user.username}'s Balance`)
       .setColor("BLUE")
       .setDescription(
-        `💳**Wallet**: ${money}\n🏦**Bank**: ${bank}/${
-          data.bankSpace
-        }\n🌐**Total Net Worth**: ${money + bank}`
+        `💳**Wallet**: ${money}\n🏦**Bank**: ${bank}\n🌐**Total Net Worth**: ${
+          money + bank
+        }`
       );
 
     message.channel.send(embed);

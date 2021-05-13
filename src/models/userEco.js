@@ -7,7 +7,6 @@ module.exports = model(
     userID: String,
     bank: { type: Number, default: userDefaultStats.bank },
     money: { type: Number, default: userDefaultStats.money },
-    bankSpace: { type: Number, default: 5000 },
     inventory: Array,
     daily: Date,
     work: Date,

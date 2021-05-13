@@ -24,33 +24,22 @@ module.exports = {
     if (args.join(" ") === "all") {
       if (data.money > data.bankSpace) {
         const max_deposit = data.money + data.coinsInBank - data.money;
-
-        if (data.bank - data.bankSpace === 0) {
-          let bankerrorembed = new MessageEmbed()
-            .setColor("RED")
-            .setDescription(
-              `${emo.cross} **${member.user.username}** : Your bank is full.`
-            );
-
-          return message.channel.send(bankerrorembed).catch();
-        }
         data.money = max_deposit;
         let dep111embed = new MessageEmbed()
           .setColor("BLUE")
           .setDescription(
-            `${emo.check} **${member.user.username}** : Deposited **${(
-              data.bankSpace - data.bank
-            ).toLocaleString()}** coins.`
+            `${emo.check} **${
+              member.user.username
+            }** : Deposited **${data.bank.toLocaleString()}** coins.`
           );
 
-        await message.channel.send(dep111embed).catch();
-
-        data.bank = data.money + data.bankSpace - max_deposit;
+        data.bank = data.money;
 
         await data.save();
+        return message.channel.send(dep111embed).catch();
       } else {
-        if (data.money + data.bank > data.bankSpace) {
-          const left = data.money + data.bank - data.bankSpace;
+        if (data.money + data.bank) {
+          const left = data.money + data.bank;
 
           let begembed = new MessageEmbed()
             .setColor("BLUE")
@@ -60,12 +49,11 @@ module.exports = {
               ).toLocaleString()}** coins`
             );
 
-          await message.channel.send(begembed).catch();
-
           data.bank += data.money - left;
           data.money = left;
 
           await data.save();
+          return message.channel.send(begembed).catch();
         } else {
           let dep111embed = new MessageEmbed()
             .setColor("BLUE")
@@ -92,23 +80,13 @@ module.exports = {
 
         return message.channel.send(numbererrorembed).catch();
       }
-
-      if (parseInt(args[0]) > data.bankSpace) {
-        let bankfullerrorembed = new MessageEmbed()
-          .setColor("RED")
-          .setDescription(
-            `${emo.cross} **${member.user.username}** : Your bank is not big enough.`
-          );
-
-        return message.channel.send(bankfullerrorembed).catch();
-      }
       if (parseInt(args[0]) > data.money) {
         let moneyerrorembed = new MessageEmbed()
           .setColor("RED")
           .setDescription(
-            `${client.cross} **${member.user.username}** : You don't have that much money.`
+            `${emo.cross} **${member.user.username}** : You don't have that much money.`
           );
-        message.channel.send(moneyerrorembed);
+        return message.channel.send(moneyerrorembed);
       }
 
       data.bank += parseInt(args[0]);
@@ -120,12 +98,10 @@ module.exports = {
           }** : Deposited **${args[0].toLocaleString()}** coins.`
         );
 
-      await message.channel.send(depamountembed).catch();
-      //await message.channel.send(`Deposited **${args[0]}** coins.`);
-
       data.money -= parseInt(args[0]);
 
       await data.save();
+      return message.channel.send(depamountembed).catch();
     }
   },
 };

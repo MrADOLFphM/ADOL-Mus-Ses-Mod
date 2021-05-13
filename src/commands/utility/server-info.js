@@ -24,7 +24,7 @@ module.exports = {
     const boosts = premiumSubscriptionCount;
     const boostLevel = premiumTier;
     const fetchedOwner = guild.fetchOwner();
-    const owner = (fetchedOwner && fetchedOwner.user.tag) || "error";
+    const owner = (fetchedOwner && fetchedOwner.tag) || "error";
     const isVerified = verified
       ? lang.GUILD.IS_VERIFIED
       : lang.GUILD.NOT_VERIFIED;

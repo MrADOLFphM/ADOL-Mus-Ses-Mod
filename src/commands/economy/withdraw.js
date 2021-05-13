@@ -71,7 +71,6 @@ module.exports = {
             }** : Withdrawed **${withAmount.toLocaleString()}** coins.`
           );
         await message.channel.send(with4embed);
-        ///await message.channel.send(`Withdrawed **${args[0]}** coins.`);
       }
 
       data.bank -= parseInt(withAmount);
