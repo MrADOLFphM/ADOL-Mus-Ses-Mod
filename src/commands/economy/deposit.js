@@ -24,7 +24,7 @@ module.exports = {
     if (args.join(" ") === "all") {
       if (data.money) {
         const max_deposit = data.money + data.coinsInBank;
-        data.money = max_deposit;
+        data.money = parseInt(max_deposit);
         let dep111embed = new MessageEmbed()
           .setColor("BLUE")
           .setDescription(
