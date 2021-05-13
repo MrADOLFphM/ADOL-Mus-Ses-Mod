@@ -82,7 +82,6 @@ class msgFuncs {
             );
             const plate = await fsn.readFile(
               "./src/assets/images/level_up.png",
-              "JSON",
               (err, data) => {
                 const username = message.author.username.substr(0, 30);
                 const body = message.author.displayAvatarURL({ format: "png" });
