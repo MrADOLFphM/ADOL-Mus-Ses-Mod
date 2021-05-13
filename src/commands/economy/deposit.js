@@ -22,8 +22,8 @@ module.exports = {
     if (data.money === 0)
       return message.channel.send(`${emo.cross} you cant deposit 0$`);
     if (args.join(" ") === "all") {
-      if (data.money > data.bankSpace) {
-        const max_deposit = data.money + data.coinsInBank - data.money;
+      if (data.money) {
+        const max_deposit = data.money + data.coinsInBank;
         data.money = max_deposit;
         let dep111embed = new MessageEmbed()
           .setColor("BLUE")
