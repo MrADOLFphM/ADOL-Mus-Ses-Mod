@@ -18,6 +18,7 @@ const voteManager = require("./votes/voteManager");
 const { performance } = require("perf_hooks");
 const logger = require("../modules/logger");
 const dankmemer = require("dankmemer");
+const Util = require("../utils/functions");
 const MongoStarboardsManager = require("../modules/MongoStarboard");
 module.exports = class AndoiClient extends Client {
   constructor() {
@@ -32,7 +33,7 @@ module.exports = class AndoiClient extends Client {
     });
     this.starboardManager = new MongoStarboardsManager(this);
     this.commands = new Collection();
-    this.utils = require("../utils/functions");
+    this.utils = new Util(this);
     this.emotes = emotes;
     this.version = require("../../package.json").version;
     this.cooldowns = new Collection();

@@ -9,7 +9,7 @@ client.start();
 require("./utils/user")(client);
 require("./utils/client")(client);
 require("./utils/member")(client);
-const { sendErrorLog } = require("./utils/functions");
+
 require("./utils/config.js")(client);
 Array.prototype.last = function () {
   return this[this.length - 1];
@@ -56,10 +56,12 @@ manager.on("giveawayEnded", (giveaway, winners) => {
 
 require("./handlers/event")(client);
 process.on("unhandledRejection", (error) =>
-  sendErrorLog(client, error, "error")
+  client.utils.sendErrorLog(error, "error")
 );
 
 process.on("uncaughtExceptionMonitor", (error) =>
-  sendErrorLog(client, error, "error")
+  client.utils.sendErrorLog(error, "error")
 );
-process.on("warning", (warning) => sendErrorLog(client, warning, "warning"));
+process.on("warning", (warning) =>
+  client.utils.sendErrorLog(warning, "warning")
+);
