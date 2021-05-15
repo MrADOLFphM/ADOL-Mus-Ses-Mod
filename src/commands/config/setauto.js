@@ -24,6 +24,6 @@ module.exports = {
 
     await client.updateConfig(message.guild, { autoRole: role.id || role });
 
-    message.channel.send(`Auto Role is setted as "${role}"`); //send success message
+    message.channel.send(`Auto role is set as: ${role.name}`); //send success message
   },
 };
