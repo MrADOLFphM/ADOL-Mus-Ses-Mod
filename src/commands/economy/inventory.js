@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const { getUserInventory } = require("../../utils/economy");
+const { getUserInventory, getGuildInventory } = require("../../utils/economy");
 
 module.exports = {
   name: "inventory",
@@ -8,11 +8,12 @@ module.exports = {
   usage: "inventory <user>",
   run: async (client, message) => {
     const user = message.mentions.users.first() || message.author;
-    const usersInventory = await getUserInventory(message.guild.id, user.id);
+    let usersInventory = await getUserInventory(message.guild.id, user.id);
 
     if (usersInventory === null || !usersInventory[0])
-      return message.channel.send("User's inventory is empty");
-
+      usersInventory = await getGuildInventory(message.guild.id, user.id);
+    if (usersInventory === null || !usersInventory[0])
+      return message.send("That user has an empty inventory.");
     const inventory = usersInventory.map((item) => item).join(",\n ");
 
     const embed = new MessageEmbed()

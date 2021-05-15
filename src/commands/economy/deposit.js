@@ -25,11 +25,12 @@ module.exports = {
     if (args.join(" ") === "all") {
       if (data.money) {
         const max_deposit = data.money + data.bank;
+        const deposited = data.money - data.bank;
         data.money = parseInt(max_deposit);
         let dep111embed = new MessageEmbed()
           .setColor("BLUE")
           .setDescription(
-            `${emo.check} **${member.user.username}** : Deposited **${max_deposit}** coins.`
+            `${emo.check} **${member.user.username}** : Deposited **${deposited}** coins.`
           );
 
         data.bank = data.money;

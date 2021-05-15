@@ -22,14 +22,15 @@ module.exports = {
     }
 
     const userId = user.id;
-    const mo = getUserMoney(message.author.id);
+    const mo = await getUserMoney(message.author.id);
 
     const inv = await getUserInventory(message.guild.id, message.author.id);
     const invR = await getUserInventory(message.guild.id, userId);
+    console.log(invR);
     let usersMoney = await getUserMoney(userId);
     if (random === 3 && !inv.includes("Lucky Clover")) {
       message.channel.send(
-        `You tried to rob **${member.user.tag}** but got caught and lost 250 coins! Better luck next time.`
+        `You tried to rob **${user.tag}** but got caught and lost 250 coins! Better luck next time.`
       );
       removeUserMoney(message.author.id, 250);
     } else if (random !== 3) {

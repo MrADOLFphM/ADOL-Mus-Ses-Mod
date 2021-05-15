@@ -22,28 +22,23 @@ module.exports = {
     const usersMoney = await getUserMoney(message.author.id);
     let query = args[0];
 
-    if (storeItems === null || !storeItems[0])
-      return message.channel.send(
-        `The store for this server is empty! Ask a moderator to add items to the store using \`${prefix}store add <item>\` `
-      );
-
     if (!query) return message.channel.send("Please provide an item to buy!");
 
     query = query.toLowerCase();
-    const item = storeItems.filter((storeItem) => storeItem.name === query)[0];
+    let item = storeItems?.filter((storeItem) => storeItem.name === query)[0];
     if (!item)
       item = itemss.find(
         (x) =>
           x.name.toLowerCase() === args.join(" ").toString().toLowerCase() ||
           x.name.toLowerCase() === args[0].toString().toLowerCase() ||
           x.name.toLowerCase() ===
-            `${args[0]
+            `${args[0].toString().toLowerCase()} ${args[1]
               .toString()
-              .toLowerCase()} ${args[1].toString().toLowerCase()}`
+              .toLowerCase()}`
       );
     if (!item)
       return message.channel.send(
-        `**${query}** wasn't found in the store, please use \`${prefix}store\` or \`${prefix}andoistore\` to see all items in the store`
+        `The store for this server is empty! Ask a moderator to add items to the store using \`${prefix}store add <item>\` `
       );
 
     if (usersInventory !== null && usersInventory.includes(item.name))
@@ -60,8 +55,10 @@ module.exports = {
         `Successfully bought **${item.name}** paid **${item.price}**`
       );
     } else {
-      const u = await client.getUser(user.id);
-      u.inventory.push(item);
+      const u = await client.getUser(message.author.id);
+      console.log(u);
+      console.log(item);
+      u.inventory.push(item.name);
       u.save();
       removeUserMoney(message.author.id, item.price);
       message.channel.send(

@@ -142,15 +142,23 @@ const setUserWork = async (userId, date) => {
   }
   return user.updateOne({ userID: userId, work: date });
 };
-
+const getGuildInventory = async (guildId, userId) => {
+  let user = await inventorymodel.findOne({ guild: guildId, user: userId });
+  if (!user) {
+    const aa = new inventorymodel({ guildId, user: userId });
+    aa.save();
+    return aa.inventory;
+  }
+  return user.inventory;
+};
 /**
  * @param {string} guildId
  * @param {string} userId
  */
 const getUserInventory = async (guildId, userId) => {
-  let user = await inventorymodel.findOne({ guild: guildId, user: userId });
+  let user = await userModel.findOne({ guild: guildId, user: userId });
   if (!user) {
-    const aa = new userModel({ guildId, user: userId });
+    const aa = new userModel({ user: userId });
     aa.save();
     return aa.inventory;
   }
@@ -172,17 +180,31 @@ const setUserJob = async (userId, job) => {
   }
   return user.updateOne({ userID: userId, job: job });
 };
+const setGuildInventory = async (guildId, userId, newItem) => {
+  const user = await inventorymodel.findOne({ guild: guildId, user: userId });
+  if (!user) {
+    const aa = new inventorymodel({
+      guild: guildId,
+      user: userId,
+      inventory: [newItem],
+    });
+    return aa.save();
+  }
+  const currentMon = user.money;
+  return user.inventory.push(newItem).then(async () => {
+    user.save();
+  });
+};
 /**
  * @param {string} guildId
  * @param {string} userId
  * @param {string} newItem
  */
 const setUserInventory = async (guildId, userId, newItem) => {
-  const user = await inventorymodel.findOne({ guild: guildId, user: userId });
+  const user = await userModel.findOne({ userID: userId });
   if (!user) {
     const aa = new userModel({
-      guild: guildId,
-      user: userId,
+      userID: userId,
       inventory: [newItem],
     });
     return aa.save();
@@ -258,4 +280,6 @@ module.exports = {
   setUserInventory,
   getUserJob,
   setUserJob,
+  getGuildInventory,
+  setGuildInventory,
 };
