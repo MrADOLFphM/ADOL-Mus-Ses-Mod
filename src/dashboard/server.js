@@ -7,6 +7,10 @@ module.exports = (client) => {
   app.set("view engine", "ejs");
   app.use(express.static(`${__dirname}/assets`));
   app.locals.basedir = `${__dirname}/assets`;
+  app.get("/logo.png", (req, res) => {
+    res.set("Content-Type", "image/png");
+    return res.send(require("./assets/img/logo.png"));
+  });
   app.get("/commands", (req, res) => {
     return res.render("commands", {
       djsclient: client,
@@ -20,6 +24,9 @@ module.exports = (client) => {
   });
   app.get("/about", (req, res) => {
     res.render("about");
+  });
+  app.get("/dblwebhook", (req, res) => {
+    res.json({ message: "Yeah no" });
   });
   app.post(
     "/dblwebhook",

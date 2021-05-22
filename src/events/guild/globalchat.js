@@ -3,6 +3,7 @@ module.exports = {
   name: "message",
   async execute(client, message) {
     if (message.author.bot) return;
+    if (message.channel.type === "dm") return;
     const ste = await client.getConfig(message.guild);
     if (message.channel.id !== ste.global) return;
     message.delete();

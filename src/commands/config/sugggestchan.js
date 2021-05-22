@@ -25,6 +25,6 @@ module.exports = {
 
     await client.updateConfig(message.guild, { suggestChan: channel.id });
 
-    message.channel.send(`suggestion Channel is set as ${channel}`); //send success message
+    message.channel.send(`The suggestion channel is now ${channel.name}.`); //send success message
   },
 };

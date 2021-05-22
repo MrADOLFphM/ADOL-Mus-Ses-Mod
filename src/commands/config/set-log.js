@@ -33,7 +33,7 @@ module.exports = {
         channel: channel,
       });
 
-      message.channel.send(`Done! setted log channel to ${channel}`); //send success message
+      message.channel.send(`Done! You will receive server logs in ${channel}`); //send success message
     }
   },
 };

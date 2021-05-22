@@ -109,11 +109,9 @@ module.exports = {
       if (customCmd) message.channel.send(customCmd.response);
     }
     // Get the command
-    let command = client.commands.get(cmd);
-    // If none is found, try to find it by alias
-    if (!command) command = client.commands.get(client.aliases.get(cmd));
+    let command =
+      client.commands.get(cmd) || client.commands.get(client.aliases.get(cmd));
     if (!command) return;
-    if (command.category === "invites") return;
     const getPr = await message.guild.premium();
     if (command.premiumOnly && !getPr) {
       const ember = new MessageEmbed()
