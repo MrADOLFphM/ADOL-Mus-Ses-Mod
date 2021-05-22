@@ -10,6 +10,10 @@ module.exports = {
         `CasperTheGhost`,
         "Casper has helped us fix alot of bugs and on the economy system"
       )
+      .addField(
+        "Poggy",
+        "A discord bot which has given us the application system."
+      )
       .addField(`Darkfang46`, "Has given some commands src to us!");
     message.send(embed);
   },

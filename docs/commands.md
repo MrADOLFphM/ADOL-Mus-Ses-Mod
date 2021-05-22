@@ -19,6 +19,21 @@
 
             
 
+### application [8] 
+| Name | Description | 
+| ---- | ----------- | 
+| [addQuestions](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#addQuestions) | Add's questions to the Database | 
+| [appConfig](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#appConfig) | Change config of the application system | 
+| [apply](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#apply) | Apply to get a staff rank | 
+| [approve](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#approve) | Approve an application | 
+| [deny](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#deny) | Deny an application | 
+| [questions](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#questions) | Get the questions! | 
+| [remquestion](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#remquestion) | Remove questions from the Database | 
+| [review](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#review) | Review applications. | 
+
+
+            
+
 ### config [22] 
 | Name | Description | 
 | ---- | ----------- | 
@@ -468,6 +483,118 @@ Description: Shows a picture of a panda
 Usage: No usage
 
 Aliases: No aliases
+
+[Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
+## application | 8 Commands
+
+### Addquestions
+Command: addQuestions
+
+Category: application
+
+Description: Add's questions to the Database
+
+Usage: No usage
+
+Aliases: aq, addquestion
+
+[Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
+
+
+### Appconfig
+Command: appConfig
+
+Category: application
+
+Description: Change config of the application system
+
+Usage: No usage
+
+Aliases: appc, appconfig, appcof
+
+[Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
+
+
+### Apply
+Command: apply
+
+Category: application
+
+Description: Apply to get a staff rank
+
+Usage: No usage
+
+Aliases: No aliases
+
+[Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
+
+
+### Approve
+Command: approve
+
+Category: application
+
+Description: Approve an application
+
+Usage: No usage
+
+Aliases: No aliases
+
+[Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
+
+
+### Deny
+Command: deny
+
+Category: application
+
+Description: Deny an application
+
+Usage: No usage
+
+Aliases: decline
+
+[Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
+
+
+### Questions
+Command: questions
+
+Category: application
+
+Description: Get the questions!
+
+Usage: No usage
+
+Aliases: No aliases
+
+[Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
+
+
+### Remquestion
+Command: remquestion
+
+Category: application
+
+Description: Remove questions from the Database
+
+Usage: No usage
+
+Aliases: rq, removequestions
+
+[Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
+
+
+### Review
+Command: review
+
+Category: application
+
+Description: Review applications.
+
+Usage: No usage
+
+Aliases: rev
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 ## config | 22 Commands
