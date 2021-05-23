@@ -1,5 +1,6 @@
-# Bot-12 Command List
-> :heart: Command list generated [here](https://github.com/Tovade/Andoi/blob/main/scripts/updateDocs.js)
+# Andoi's Command List
+ Total commands: 224 
+> ❤ Command list generated [here](https://github.com/Tovade/Andoi/blob/main/scripts/updateDocs.js)
 
             
 
@@ -368,9 +369,9 @@ Category: animal
 
 Description: Shows a picture of a bear
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -382,9 +383,9 @@ Category: animal
 
 Description: Shows a picture of a birb
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -396,9 +397,9 @@ Category: animal
 
 Description: Shows a picture of a bunny
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -410,9 +411,9 @@ Category: animal
 
 Description: Shows a picture of a cat
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -424,9 +425,9 @@ Category: animal
 
 Description: Returns a cat fact
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -438,9 +439,9 @@ Category: animal
 
 Description: Shows a picture of a dog
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -452,9 +453,9 @@ Category: animal
 
 Description: Returns a dog fact
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -466,9 +467,9 @@ Category: animal
 
 Description: Shows a picture of a whale
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -480,9 +481,9 @@ Category: animal
 
 Description: Shows a picture of a panda
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 ## application | 8 Commands
@@ -494,7 +495,7 @@ Category: application
 
 Description: Add's questions to the Database
 
-Usage: No usage
+Usage: N/A
 
 Aliases: aq, addquestion
 
@@ -508,7 +509,7 @@ Category: application
 
 Description: Change config of the application system
 
-Usage: No usage
+Usage: N/A
 
 Aliases: appc, appconfig, appcof
 
@@ -522,9 +523,9 @@ Category: application
 
 Description: Apply to get a staff rank
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -536,9 +537,9 @@ Category: application
 
 Description: Approve an application
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -550,7 +551,7 @@ Category: application
 
 Description: Deny an application
 
-Usage: No usage
+Usage: N/A
 
 Aliases: decline
 
@@ -564,9 +565,9 @@ Category: application
 
 Description: Get the questions!
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -578,7 +579,7 @@ Category: application
 
 Description: Remove questions from the Database
 
-Usage: No usage
+Usage: N/A
 
 Aliases: rq, removequestions
 
@@ -592,7 +593,7 @@ Category: application
 
 Description: Review applications.
 
-Usage: No usage
+Usage: N/A
 
 Aliases: rev
 
@@ -608,7 +609,7 @@ Description: add guild custom commands
 
 Usage: addcmd <cmd_name> <cmd_response>
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -620,7 +621,7 @@ Category: config
 
 Description: Add/remove blacklisted words
 
-Usage: No usage
+Usage: N/A
 
 Aliases: wordsfilter, filterwords
 
@@ -648,9 +649,9 @@ Category: config
 
 Description: Disables a command
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -662,9 +663,9 @@ Category: config
 
 Description: Enables a command
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -692,7 +693,7 @@ Description: Set the leave channel
 
 Usage: setleave <#channel>
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -706,7 +707,7 @@ Description: Set the log channel
 
 Usage: setlog <#channel>
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -720,7 +721,7 @@ Description: Set the starboard channel
 
 Usage: setstarboard <#channel>
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -734,7 +735,7 @@ Description: Set the welcome channel
 
 Usage: setwelcome <#channel>
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -748,7 +749,7 @@ Description: Set the andoi chat channel
 
 Usage: setandoichat <#channel>
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -762,7 +763,7 @@ Description: Set the role people get uppon joining
 
 Usage: setautor <@role>
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -776,7 +777,7 @@ Description: Set the covid auto posting channel
 
 Usage: setcovid <#channel>
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -790,7 +791,7 @@ Description: Set the leave channel
 
 Usage: setleave <#channel>
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -818,7 +819,7 @@ Description: Set the modlog channel
 
 Usage: setmodlog <#channel>
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -832,7 +833,7 @@ Description: Set the mute role
 
 Usage: setMute <@role>
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -844,9 +845,9 @@ Category: config
 
 Description: Show the config!
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -858,9 +859,9 @@ Category: config
 
 Description: Configure verification settings
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -888,7 +889,7 @@ Description: Set the suggestion channel
 
 Usage: setsuggest <#channel>
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -902,7 +903,7 @@ Description: Change the guild prefix
 
 Usage: prefix <new-prefix>
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 ## economy | 15 Commands
@@ -914,9 +915,9 @@ Category: economy
 
 Description: The shop of the bot.
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -928,7 +929,7 @@ Category: economy
 
 Description: balance
 
-Usage: No usage
+Usage: N/A
 
 Aliases: bal
 
@@ -942,9 +943,9 @@ Category: economy
 
 Description: beg someone for money
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -958,7 +959,7 @@ Description: Buy an item from the store
 
 Usage: buy <item name>
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -970,9 +971,9 @@ Category: economy
 
 Description: daily
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -998,9 +999,9 @@ Category: economy
 
 Description: Roll a dice
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -1014,7 +1015,7 @@ Description: View your or a user inventory
 
 Usage: inventory <user>
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -1026,9 +1027,9 @@ Category: economy
 
 Description: Assign a job!
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -1040,9 +1041,9 @@ Category: economy
 
 Description: See the full profile of a user
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -1054,9 +1055,9 @@ Category: economy
 
 Description: Richest people on the bot
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -1068,9 +1069,9 @@ Category: economy
 
 Description: Rob up to 1000coins from somebody
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -1098,7 +1099,7 @@ Description: Withdraw money to your bank
 
 Usage: withdraw <all | amount>
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -1110,9 +1111,9 @@ Category: economy
 
 Description: Work for moneys!
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 ## fun | 18 Commands
@@ -1124,9 +1125,9 @@ Category: fun
 
 Description: Gives you an achievment
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -1138,9 +1139,9 @@ Category: fun
 
 Description: Gives you advice
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -1196,7 +1197,7 @@ Description: Sending random fact
 
 Usage: [text]
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -1210,7 +1211,7 @@ Description: Sending random joke
 
 Usage: [text]
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -1224,7 +1225,7 @@ Description: get a funny meme
 
 Usage: meme
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -1250,9 +1251,9 @@ Category: fun
 
 Description: undefined
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -1266,7 +1267,7 @@ Description: Remind You ;)!
 
 Usage: Remind <Time> | <Reason>
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -1278,7 +1279,7 @@ Category: fun
 
 Description: Reverses the supplied text
 
-Usage: No usage
+Usage: N/A
 
 Aliases: r
 
@@ -1294,7 +1295,7 @@ Description: Roasts people
 
 Usage: [username | nickname | mention | ID]
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -1308,7 +1309,7 @@ Description: Says your input via the bot
 
 Usage: [text]
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -1320,9 +1321,9 @@ Category: fun
 
 Description: fun meme sounds
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -1336,7 +1337,7 @@ Description: Shows status of users
 
 Usage:  
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -1348,9 +1349,9 @@ Category: fun
 
 Description: why
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -1362,9 +1363,9 @@ Category: fun
 
 Description: get deleted messages
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 ## games | 7 Commands
@@ -1376,9 +1377,9 @@ Category: games
 
 Description: 8Ball
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -1404,9 +1405,9 @@ Category: games
 
 Description: Transform text to ascii
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -1420,7 +1421,7 @@ Description: Test Your Memory
 
 Usage: [number](1 - 20)
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -1432,7 +1433,7 @@ Category: games
 
 Description: Rock Paper Scissors Game. React to one of the emojis to play the game.
 
-Usage: No usage
+Usage: N/A
 
 Aliases: rockpaperscissors
 
@@ -1475,9 +1476,9 @@ Category: giveaway
 
 Description: Quick giveaway
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -1531,9 +1532,9 @@ Category: image
 
 Description: Ad a user LMAO!
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -1545,9 +1546,9 @@ Category: image
 
 Description: No.. it doesnt affect my child
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -1587,9 +1588,9 @@ Category: image
 
 Description: undefined
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -1601,9 +1602,9 @@ Category: image
 
 Description: Blur a user LMAO!
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -1617,7 +1618,7 @@ Description: Shows Captcha Image Of An User
 
 Usage: [username | nickname | mention | ID](optional)
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -1631,7 +1632,7 @@ Description: tell someone to change your mind
 
 Usage: changemymind <text>
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -1645,7 +1646,7 @@ Description: let clyde say something
 
 Usage: clyde <text>
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -1657,9 +1658,9 @@ Category: image
 
 Description: Crab rave with text!
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -1671,9 +1672,9 @@ Category: image
 
 Description: Dab!
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -1685,9 +1686,9 @@ Category: image
 
 Description: Delete a user LMAO!
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -1699,9 +1700,9 @@ Category: image
 
 Description: Fakenews alert!
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -1713,9 +1714,9 @@ Category: image
 
 Description: Gay a user LMAO!
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -1727,9 +1728,9 @@ Category: image
 
 Description: Greyscale a user LMAO!
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -1741,9 +1742,9 @@ Category: image
 
 Description: Jail somoene!
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -1757,7 +1758,7 @@ Description: Shows Image of 2 Lovers, 3 persons!
 
 Usage: [mention(1) | ID(1) | name(1) | nickname(1)] [mention(2) | ID(2) | name(2) | nickname(2)
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -1769,9 +1770,9 @@ Category: image
 
 Description: Shows a picture of yourself
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -1783,9 +1784,9 @@ Category: image
 
 Description: notstonk a user LMAO!
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -1797,9 +1798,9 @@ Category: image
 
 Description: Slapped
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -1811,9 +1812,9 @@ Category: image
 
 Description: Do i need to explain this?
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -1825,9 +1826,9 @@ Category: image
 
 Description: stonk a user LMAO!
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -1839,9 +1840,9 @@ Category: image
 
 Description: Thomas a user LMAO!
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -1853,9 +1854,9 @@ Category: image
 
 Description: Trash a user LMAO!
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -1867,9 +1868,9 @@ Category: image
 
 Description: trigger a user LMAO!
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -1883,7 +1884,7 @@ Description: tweet for fun without twitter
 
 Usage: tweet <message>
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 ## info | 10 Commands
@@ -1909,9 +1910,9 @@ Category: info
 
 Description: People who have helped Andoi
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -1939,7 +1940,7 @@ Description: Get list of all command and even get to know every command detials
 
 Usage: help <cmd>
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -1951,9 +1952,9 @@ Category: info
 
 Description: Shush
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -1965,9 +1966,9 @@ Category: info
 
 Description: All the links for andoi!
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -1993,9 +1994,9 @@ Category: info
 
 Description: Redeem an premium key
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -2009,7 +2010,7 @@ Description: Learn more about current and future updates.
 
 Usage: updates
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -2049,7 +2050,7 @@ Category: utility
 
 Description: 
 
-Usage: No usage
+Usage: N/A
 
 Aliases: setafk
 
@@ -2077,9 +2078,9 @@ Category: utility
 
 Description: Get the information about series and movie
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -2091,7 +2092,7 @@ Category: utility
 
 Description: Get a random color
 
-Usage: No usage
+Usage: N/A
 
 Aliases: color
 
@@ -2105,9 +2106,9 @@ Category: utility
 
 Description: Returns a random reddit post
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -2119,9 +2120,9 @@ Category: utility
 
 Description: Shorten an url!
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -2133,7 +2134,7 @@ Category: utility
 
 Description: Shows status of users
 
-Usage: No usage
+Usage: N/A
 
 Aliases: spot
 
@@ -2149,7 +2150,7 @@ Description: Send your Suggestion
 
 Usage: suggest <message>
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -2163,7 +2164,7 @@ Description: Translate a sentence
 
 Usage: !translate <language> <sentence>
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -2175,9 +2176,9 @@ Category: utility
 
 Description: Set the slowmode for the channel
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -2189,9 +2190,9 @@ Category: utility
 
 Description: Binary code :D
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -2203,7 +2204,7 @@ Category: utility
 
 Description: Return a screenshot of the website
 
-Usage: No usage
+Usage: N/A
 
 Aliases: website, webss, web, capture
 
@@ -2217,9 +2218,9 @@ Category: utility
 
 Description: Get information about a channel
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -2231,9 +2232,9 @@ Category: utility
 
 Description: Search on the docs of discord.js
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -2245,9 +2246,9 @@ Category: utility
 
 Description: Create an embed :D
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -2259,9 +2260,9 @@ Category: utility
 
 Description: Get the emojis from the current server!
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -2273,7 +2274,7 @@ Category: utility
 
 Description: Info of an emoji
 
-Usage: No usage
+Usage: N/A
 
 Aliases: emojiinfo, emoteinfo, emote-info, ei
 
@@ -2301,7 +2302,7 @@ Category: utility
 
 Description: Generates a qr code!
 
-Usage: No usage
+Usage: N/A
 
 Aliases: genqr
 
@@ -2315,7 +2316,7 @@ Category: utility
 
 Description: Search an github repository
 
-Usage: No usage
+Usage: N/A
 
 Aliases: github-r
 
@@ -2329,7 +2330,7 @@ Category: utility
 
 Description: Search for an user on github.
 
-Usage: No usage
+Usage: N/A
 
 Aliases: github-u
 
@@ -2343,7 +2344,7 @@ Category: utility
 
 Description: Creates an invite for the server
 
-Usage: No usage
+Usage: N/A
 
 Aliases: serverinvite
 
@@ -2357,7 +2358,7 @@ Category: utility
 
 Description: Gets info about an ip adress
 
-Usage: No usage
+Usage: N/A
 
 Aliases: ip
 
@@ -2385,9 +2386,9 @@ Category: utility
 
 Description: List the members who joined this server in a leaderboard
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -2399,7 +2400,7 @@ Category: utility
 
 Description: Get info about a minecraft server
 
-Usage: No usage
+Usage: N/A
 
 Aliases: mc
 
@@ -2427,9 +2428,9 @@ Category: utility
 
 Description: Check for packages on npm!
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -2441,7 +2442,7 @@ Category: utility
 
 Description: Your permissions.
 
-Usage: No usage
+Usage: N/A
 
 Aliases: perms
 
@@ -2469,9 +2470,9 @@ Category: utility
 
 Description: Create a poll with ease!
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -2483,7 +2484,7 @@ Category: utility
 
 Description: Reads an qr code!
 
-Usage: No usage
+Usage: N/A
 
 Aliases: rqr, read-qr
 
@@ -2511,9 +2512,9 @@ Category: utility
 
 Description: See all the roles for this server
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -2527,7 +2528,7 @@ Description: undefined
 
 Usage: example: a!selfrole add - testing <Role ID or mention>
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -2583,7 +2584,7 @@ Description: Shows weather of a city
 
 Usage: [city name]
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 ## levels | 6 Commands
@@ -2595,7 +2596,7 @@ Category: levels
 
 Description: Check current guild leaderboard.!
 
-Usage: No usage
+Usage: N/A
 
 Aliases: lb
 
@@ -2609,9 +2610,9 @@ Category: levels
 
 Description: Modify somebody's level.
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -2623,9 +2624,9 @@ Category: levels
 
 Description: Check your current rank!
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -2637,9 +2638,9 @@ Category: levels
 
 Description: Remove somebody from the database!
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -2651,9 +2652,9 @@ Category: levels
 
 Description: Add/remove level roles
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -2665,9 +2666,9 @@ Category: levels
 
 Description: Toggles the level system
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 ## moderation | 18 Commands
@@ -2681,7 +2682,7 @@ Description: Steal an emoji from a different server
 
 Usage: stealemoji <emoji> <custom name>
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -2709,7 +2710,7 @@ Description: Ban anyone with one shot whithout knowing anyone xD
 
 Usage: ban <@user> <reason>
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -2735,9 +2736,9 @@ Category: moderation
 
 Description: This command creates a role with the name of what you say
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -2751,7 +2752,7 @@ Description: Kick anyone with one shot xD
 
 Usage: kick <@user> <raeson>
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -2777,9 +2778,9 @@ Category: moderation
 
 Description: mute a user
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -2821,7 +2822,7 @@ Description: Reset warnings of mentioned person
 
 Usage: rwarns <@user>
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -2833,9 +2834,9 @@ Category: moderation
 
 Description: Soft Ban a User
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -2849,7 +2850,7 @@ Description: tempban someone for a time
 
 Usage: tempban @user 1s 1m 1h 1d
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -2863,7 +2864,7 @@ Description: unban an member with their id
 
 Usage: unban <userID>
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -2889,9 +2890,9 @@ Category: moderation
 
 Description: Unmute someone :eyes:
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -2905,7 +2906,7 @@ Description: Warn anyone who do not obey the rules
 
 Usage: warn <@mention> <reason>
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -2917,9 +2918,9 @@ Category: moderation
 
 Description: Get the warnings of yours or mentioned person
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 ## music | 14 Commands
@@ -2931,7 +2932,7 @@ Category: music
 
 Description: Go back your going to fast!
 
-Usage: No usage
+Usage: N/A
 
 Aliases: p
 
@@ -2945,7 +2946,7 @@ Category: music
 
 Description: Filters
 
-Usage: No usage
+Usage: N/A
 
 Aliases: 
 
@@ -2959,7 +2960,7 @@ Category: music
 
 Description: Toggle music loop
 
-Usage: No usage
+Usage: N/A
 
 Aliases: l
 
@@ -2973,9 +2974,9 @@ Category: music
 
 Description: Show now playing song
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -2987,9 +2988,9 @@ Category: music
 
 Description: Pause the currently playing music
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -3001,7 +3002,7 @@ Category: music
 
 Description: Plays audio from YouTube or Soundcloud
 
-Usage: No usage
+Usage: N/A
 
 Aliases: p
 
@@ -3015,7 +3016,7 @@ Category: music
 
 Description: Show the music queue and now playing.
 
-Usage: No usage
+Usage: N/A
 
 Aliases: q
 
@@ -3029,7 +3030,7 @@ Category: music
 
 Description: Resume currently playing music
 
-Usage: No usage
+Usage: N/A
 
 Aliases: r
 
@@ -3043,9 +3044,9 @@ Category: music
 
 Description: Search for music!
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -3057,7 +3058,7 @@ Category: music
 
 Description: Shuffle music!
 
-Usage: No usage
+Usage: N/A
 
 Aliases: sh
 
@@ -3071,7 +3072,7 @@ Category: music
 
 Description: Skip the currently playing song
 
-Usage: No usage
+Usage: N/A
 
 Aliases: s
 
@@ -3085,9 +3086,9 @@ Category: music
 
 Description: Stops the music
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -3099,7 +3100,7 @@ Category: music
 
 Description: Change volume of currently playing music
 
-Usage: No usage
+Usage: N/A
 
 Aliases: v
 
@@ -3113,9 +3114,9 @@ Category: music
 
 Description: Check current filters!
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 ## tickets | 6 Commands
@@ -3127,9 +3128,9 @@ Category: tickets
 
 Description: Remove an user from the ticket!
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -3141,9 +3142,9 @@ Category: tickets
 
 Description: Add a user to a ticket 
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -3155,9 +3156,9 @@ Category: tickets
 
 Description: closes a ticket!
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -3169,9 +3170,9 @@ Category: tickets
 
 Description: makes a ticket channel!
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -3183,9 +3184,9 @@ Category: tickets
 
 Description: Get the pannel!
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -3197,9 +3198,9 @@ Category: tickets
 
 Description: get a transcript of a ticket!
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 ## owner | 11 Commands
@@ -3211,9 +3212,9 @@ Category: owner
 
 Description: Add money to a user
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -3227,7 +3228,7 @@ Description: Remove/add blacklist from a user
 
 Usage: blacklist <option> <level> <user>
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -3239,7 +3240,7 @@ Category: owner
 
 Description: Eval
 
-Usage: No usage
+Usage: N/A
 
 Aliases: e
 
@@ -3253,7 +3254,7 @@ Category: owner
 
 Description: Eval
 
-Usage: No usage
+Usage: N/A
 
 Aliases: ex
 
@@ -3267,7 +3268,7 @@ Category: owner
 
 Description: View all guilds the bot is in
 
-Usage: No usage
+Usage: N/A
 
 Aliases: servers
 
@@ -3281,9 +3282,9 @@ Category: owner
 
 Description: Leaves a guid by the provided Id
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -3297,7 +3298,7 @@ Description: Make a premium code
 
 Usage: premium <option>
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -3309,7 +3310,7 @@ Category: owner
 
 Description: lol
 
-Usage: No usage
+Usage: N/A
 
 Aliases: rel
 
@@ -3323,9 +3324,9 @@ Category: owner
 
 Description: Remove money from a user
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -3337,9 +3338,9 @@ Category: owner
 
 Description: Add money to a user
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -3351,9 +3352,9 @@ Category: owner
 
 Description: restart to trigger people
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 ## premium | 2 Commands
@@ -3365,9 +3366,9 @@ Category: premium
 
 Description: Morse code
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -3379,9 +3380,9 @@ Category: premium
 
 Description: Use an emoji thats ment for nitro users
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 ## reminder | 4 Commands
@@ -3393,9 +3394,9 @@ Category: reminder
 
 Description: Edit an active reminder
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -3407,9 +3408,9 @@ Category: reminder
 
 Description: Check you're reminders
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -3421,9 +3422,9 @@ Category: reminder
 
 Description: Remove your reminder
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -3435,9 +3436,9 @@ Category: reminder
 
 Description: set a reminder for later...
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 ## search | 2 Commands
@@ -3449,9 +3450,9 @@ Category: search
 
 Description: get info about a fortnite user
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -3463,9 +3464,9 @@ Category: search
 
 Description: Find the lyrics of a song!
 
-Usage: No usage
+Usage: N/A
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 ## reactions | 2 Commands
@@ -3479,7 +3480,7 @@ Description: Add a reaction role
 
 Usage: ?rradd <channel id> <role id> <emoji>
 
-Aliases: No aliases
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 

@@ -3,3 +3,4 @@ config.json
 andoi.json
 src/giveaways.json
 index.js
+package-lock.json

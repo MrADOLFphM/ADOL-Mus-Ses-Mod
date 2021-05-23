@@ -5,10 +5,6 @@ module.exports = {
   usage: "vote",
   aliases: ["invite", "support"],
   run: async (client, message, args) => {
-    if (client.config.dblkey.length === 0) {
-      message.channel.send("Your gay");
-      throw new Error("Nothing");
-    }
     const embed = message
       .embed()
       .setTitle("Vote for me on top.gg")
