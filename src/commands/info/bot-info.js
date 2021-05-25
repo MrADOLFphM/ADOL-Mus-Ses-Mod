@@ -7,7 +7,7 @@ const MemoryLimit = 2048;
 module.exports = {
   name: "botinfo",
   description: "get info about the  bot",
-  aliases: ["stats"],
+  aliases: ["stats", "bot"],
   category: "info",
   usage: "botinfo",
   run: async (client, message, args) => {

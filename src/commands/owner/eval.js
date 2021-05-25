@@ -7,14 +7,16 @@ module.exports = {
   aliases: ["e"],
   botOwnersOnly: true,
   run: async (client, message, args) => {
-    const toEval = args.join(" ");
-    if (!toEval) return message.channel.send("Please provide text");
-
     try {
+      const toEval = args.join(" ");
+      if (!toEval) return message.channel.send("Please provide text");
+      const time = Date.now();
       eval("(async () =>  { " + toEval + " } )();").then((e) => {
         let evaluated = e;
-        evaluated = util.inspect(evaluated, { depth: 0 });
+        evaluated = util.inspect(evaluated, { depth: 0, maxArrayLength: null });
+        const timeNow = Date.now();
         const type = typeof evaluated;
+        const totaltime = timeNow - time;
         const embed = new MessageEmbed()
           .setTitle("Eval Command")
           .addField("**Input:**", `\`\`\`js\n${toEval}\`\`\``)
@@ -23,11 +25,12 @@ module.exports = {
             "**Type:**",
             ` \`\`\`js\n${client.utils.firstUpperCase(type)}\`\`\``
           )
+          .addField("**Time taken:**", `\`\`\`js\n${totaltime}ms\`\`\``)
           .setColor("BLUE")
           .setTimestamp()
           .setFooter(message.author.username);
 
-        message.channel.send(embed);
+        return message.channel.send(embed);
       });
     } catch (e) {
       return message.channel.send(`Something went wrong!  \`\`\`${e}\`\`\`  `);

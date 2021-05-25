@@ -15,7 +15,7 @@ module.exports = {
         .setAuthor(message.author.username, message.author.displayAvatarURL())
         .setTitle("🏓 Pong!")
         .setDescription(
-          `BOT Latency - **${Math.round(
+          `Discord api Latency - **${Math.round(
             client.ws.ping
           )}**ms\nDatabase Latency - **${dataRealPing}**ms`
         )
