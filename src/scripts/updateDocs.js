@@ -3,8 +3,7 @@ module.exports = async (client) => {
   //made by Raccoon#7867
   let categories = [];
 
-  let docs =
-    "# Bot-12 Command List\n> :heart: Command list generated [here](https://github.com/Tovade/Andoi/blob/main/scripts/updateDocs.js)\n";
+  let docs = `# Andoi's Command List\n Total commands: ${commands.size} \n> ❤ Command list generated [here](https://github.com/Tovade/Andoi/blob/main/scripts/updateDocs.js)\n`;
 
   commands.forEach((command) => {
     if (!categories.includes(command.category)) {
@@ -40,8 +39,8 @@ ${tCommands
 Command: ${command.name}\n
 Category: ${command.category}\n
 Description: ${command.description}\n
-Usage: ${command.usage || "No usage"}\n
-Aliases: ${command.aliases ? command.aliases.join(", ") : "No aliases"}\n
+Usage: ${command.usage || "N/A"}\n
+Aliases: ${command.aliases ? command.aliases.join(", ") : "N/A"}\n
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)`;
   })
   .join("\n\n")}`;

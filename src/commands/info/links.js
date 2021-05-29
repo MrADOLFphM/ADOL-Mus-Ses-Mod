@@ -1,6 +1,7 @@
 const { MessageEmbed } = require("discord.js");
 module.exports = {
   name: "links",
+  aliases: ["vote", "invite"],
   category: "info",
   description: "All the links for andoi!",
   run: async (client, message, args) => {

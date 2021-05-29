@@ -6,7 +6,10 @@ module.exports = {
   category: "application",
   memberPermission: ["MANAGE_GUILD"],
   run: async (client, message, args) => {
-    const guiild = await app.findOne({ guildID: message.guild.id });
+    let guiild = await app.findOne({ guildID: message.guild.id });
+    if (!guiild) {
+      guiild = new app({ guildID: message.guild.id });
+    }
     const filter = (res) => res.author.id === message.author.id;
     const option = args[0];
 

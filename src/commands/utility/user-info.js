@@ -3,25 +3,25 @@ const Discord = require("discord.js");
 const moment = require("moment");
 
 const serverflags = {
-  DISCORD_EMPLOYEE: ` <:757681878064169051:757978989691404389> \`Discord Employee\``,
-  DISCORD_PARTNER: `<:753221825525317704:757982754687156287> \`Discord Partner\``,
-  BUGHUNTER_LEVEL_1: `<:757680380018032733:757978990144258228> \`Bug Hunter (Level 1)\``,
-  BUGHUNTER_LEVEL_2: `<:757680312712036395:757978989938868306> \`Bug Hunter (Level 2)\``,
-  HYPESQUAD_EVENTS: `<:757679125673803936:757978989619838976> \`HypeSquad Events\``,
-  HOUSE_BRAVERY: `<:753663697963974806:757978990064566395> \`House of Bravery\``,
-  HOUSE_BRILLIANCE: `<:753709461910061140:757978990110834799> \`House of Brilliance\``,
-  HOUSE_BALANCE: `<:753662723300130817:757978989745668108> \`House of Balance\``,
-  EARLY_SUPPORTER: `<:757682137469288590:757978989976617112> \`Early Supporter\``,
+  DISCORD_EMPLOYEE: `  \`Discord Employee\``,
+  DISCORD_PARTNER: ` \`Discord Partner\``,
+  BUGHUNTER_LEVEL_1: ` \`Bug Hunter (Level 1)\``,
+  BUGHUNTER_LEVEL_2: `\`Bug Hunter (Level 2)\``,
+  HYPESQUAD_EVENTS: ` \`HypeSquad Events\``,
+  HOUSE_BRAVERY: ` \`House of Bravery\``,
+  HOUSE_BRILLIANCE: ` \`House of Brilliance\``,
+  HOUSE_BALANCE: ` \`House of Balance\``,
+  EARLY_SUPPORTER: `\`Early Supporter\``,
   TEAM_USER: `\`Team User\``,
   SYSTEM: `\`System\``,
-  VERIFIED_BOT: `<:753702142136549476:757978989846331512> \`Verified Bot\``,
-  VERIFIED_DEVELOPER: `<:753702339793256588:757978990064435335> \`Verified Bot Developer\``,
+  VERIFIED_BOT: ` \`Verified Bot\``,
+  VERIFIED_DEVELOPER: ` \`Verified Bot Developer\``,
 };
 const st = {
-  online: "<:755519938118156400:757978989577896018> Online",
-  idle: "<:755520201055010846:757978989817233459> IDLE",
-  offline: "<:755520068451827824:757978989946994769> Offline",
-  dnd: "<:755519807490621552:757978989380763729> Do Not Disturb",
+  online: " Online",
+  idle: "Idle",
+  offline: " Offline",
+  dnd: " Do Not Disturb",
 };
 
 module.exports = {
