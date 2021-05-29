@@ -1,5 +1,5 @@
 # Andoi's Command List
- Total commands: 224 
+ Total commands: 223 
 > ❤ Command list generated [here](https://github.com/Tovade/Andoi/blob/main/scripts/updateDocs.js)
 
             
@@ -187,14 +187,14 @@
 
             
 
-### utility [40] 
+### utility [39] 
 | Name | Description | 
 | ---- | ----------- | 
 | [report-bug](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#report-bug) | report a bug to us | 
 | [afk](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#afk) |  | 
 | [corona](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#corona) | Get the stats of corona | 
 | [imdb](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#imdb) | Get the information about series and movie | 
-| [randomcolor](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#randomcolor) | Get a random color | 
+| [color](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#color) | Color. | 
 | [subreddit](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#subreddit) | Returns a random reddit post | 
 | [shorturl](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#shorturl) | Shorten an url! | 
 | [spotify](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#spotify) | Shows status of users | 
@@ -228,7 +228,6 @@
 | [selfrole](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#selfrole) | undefined | 
 | [serverinfo](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#serverinfo) | Get Info About The Server. | 
 | [userinfo](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#userinfo) | Shows the info about an user account | 
-| [vote](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#vote) | vote for me! | 
 | [weather](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#weather) | Shows weather of a city | 
 
 
@@ -1898,7 +1897,7 @@ Description: get info about the  bot
 
 Usage: botinfo
 
-Aliases: stats
+Aliases: stats, bot
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -1968,7 +1967,7 @@ Description: All the links for andoi!
 
 Usage: N/A
 
-Aliases: N/A
+Aliases: vote, invite
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -2027,7 +2026,7 @@ Usage: uptime
 Aliases: up
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
-## utility | 40 Commands
+## utility | 39 Commands
 
 ### Report-Bug
 Command: report-bug
@@ -2085,16 +2084,16 @@ Aliases: N/A
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
 
-### Randomcolor
-Command: randomcolor
+### Color
+Command: color
 
 Category: utility
 
-Description: Get a random color
+Description: Color.
 
 Usage: N/A
 
-Aliases: color
+Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
@@ -2557,20 +2556,6 @@ Description: Shows the info about an user account
 Usage: info
 
 Aliases: whois, ui
-
-[Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
-
-
-### Vote
-Command: vote
-
-Category: utility
-
-Description: vote for me!
-
-Usage: vote
-
-Aliases: invite, support
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 

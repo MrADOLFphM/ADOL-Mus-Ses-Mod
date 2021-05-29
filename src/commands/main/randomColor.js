@@ -1,19 +1,22 @@
 const { MessageEmbed } = require("discord.js");
-
+const chroma = require("chroma-js");
 module.exports = {
-  name: "randomcolor",
-  description: "Get a random color",
+  name: "color",
+  description: "Color.",
   category: "utility",
-  aliases: ["color"],
-  run: (client, message) => {
-    const color = Math.floor(Math.random() * 16777215).toString(16);
-    const preview = `https://api.no-api-key.com/api/v2/color?hex=${color}`;
-
+  run: (client, message, args) => {
+    const color = chroma(args[0]);
+    const preview = `https://api.no-api-key.com/api/v2/color?hex=${
+      color.hex().split("#")[1]
+    }`;
     const embed = new MessageEmbed()
       .setThumbnail(preview)
       .setTimestamp()
+      .addField("Hex", color.hex())
+      .addField("Rgb", `rgb(${color.rgb().join(", ")})`)
+      .addField("Rgba", `rgba(${color.rgba().join(", ")})`)
       .setFooter(message.author.username)
-      .setColor(color)
+      .setColor(color.num())
       .setTitle(color);
 
     message.channel.send(embed);

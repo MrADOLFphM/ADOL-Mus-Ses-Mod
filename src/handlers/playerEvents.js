@@ -51,19 +51,15 @@ module.exports = async (client, player) => {
 
     // Send a message when the music is stopped
     .on("queueEnd", (message, queue) =>
-      message.channel.send(
-        "Music stopped as there is no more music in the queue!"
-      )
+      message.channel.send("The queue was empty so i left the voice channel.")
     )
     .on("channelEmpty", (message, queue) =>
       message.channel.send(
-        "Music stopped as there is no more members in the voice channel!"
+        "The music has ended due to no one inside the voice channel."
       )
     )
     .on("botDisconnect", (message) =>
-      message.channel.send(
-        "Music stopped as I have been disconnected from the channel!"
-      )
+      message.channel.send("Music stopped as someone disconnected me.")
     )
 
     // Error handling
