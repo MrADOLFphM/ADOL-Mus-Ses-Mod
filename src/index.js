@@ -6,6 +6,7 @@ require("./extenders/User");
 require("./extenders/TextChannel");
 const client = new AndoiClient();
 client.start();
+const disbut = require("discord-buttons")(client);
 require("./utils/user")(client);
 require("./utils/client")(client);
 require("./utils/member")(client);
