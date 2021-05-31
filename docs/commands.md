@@ -1409,7 +1409,6 @@ Description: Transform text to ascii
 Usage: N/A
 
 Aliases: N/A
-
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
 
 
