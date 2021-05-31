@@ -1,5 +1,5 @@
 # Andoi's Command List
- Total commands: 223 
+ Total commands: 225 
 > ❤ Command list generated [here](https://github.com/Tovade/Andoi/blob/main/scripts/updateDocs.js)
 
             
@@ -111,12 +111,14 @@
 
             
 
-### games [7] 
+### games [9] 
 | Name | Description | 
 | ---- | ----------- | 
 | [8ball](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#8ball) | 8Ball | 
 | [akinator](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#akinator) | Think About A Real or Fictional Character, I Will Try To Guess It | 
 | [ascii](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#ascii) | Transform text to ascii | 
+| [fasttype](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#fasttype) | How fast can you type? | 
+| [fight](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#fight) | Fight someone. | 
 | [memory](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#memory) | Test Your Memory | 
 | [rps](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#rps) | Rock Paper Scissors Game. React to one of the emojis to play the game. | 
 | [tictactoe](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#tictactoe) | Play A Game Of TicTacToe With Another User | 
@@ -1367,7 +1369,7 @@ Usage: N/A
 Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
-## games | 7 Commands
+## games | 9 Commands
 
 ### 8ball
 Command: 8ball
@@ -1403,6 +1405,33 @@ Command: ascii
 Category: games
 
 Description: Transform text to ascii
+
+Usage: N/A
+
+Aliases: N/A
+[Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
+
+
+### Fasttype
+Command: fasttype
+
+Category: games
+
+Description: How fast can you type?
+
+Usage: N/A
+
+Aliases: N/A
+
+[Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
+
+
+### Fight
+Command: fight
+
+Category: games
+
+Description: Fight someone.
 
 Usage: N/A
 

@@ -11,7 +11,7 @@ module.exports = {
       const toEval = args.join(" ");
       if (!toEval) return message.channel.send("Please provide text");
       const time = Date.now();
-      eval("(async () =>  { " + toEval + " } )();").then((e) => {
+      await eval("(async () =>  { " + toEval + " } )();").then((e) => {
         let evaluated = e;
         evaluated = util.inspect(evaluated, { depth: 0, maxArrayLength: null });
         const timeNow = Date.now();
