@@ -162,7 +162,7 @@ class fight {
                 if (player === 1) {
                   player = 0;
                 } else {
-                  player = +1;
+                  player = 1;
                 }
               } else if (msg.customID === this.heal) {
                 msg.defer();
@@ -197,7 +197,7 @@ class fight {
                 if (player === 1) {
                   player = 0;
                 } else {
-                  player = +1;
+                  player = 1;
                 }
               } else if (msg.customID === this.cancel) {
                 msg.defer();
