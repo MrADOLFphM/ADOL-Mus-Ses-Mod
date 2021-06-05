@@ -124,103 +124,137 @@ class fight {
         gameFilter,
         { time: 30000 }
       );
+      try {
+        gameCollector.on("collect", (msg) => {
+          if (msg.member.id === gameData[player].member.id) {
+            if (!checkHealth(player)) {
+              const btn = msg.member;
 
-      gameCollector.on("collect", (msg) => {
-        if (msg.member.id === gameData[player].member.id) {
-          if (!checkHealth(player)) {
-            const btn = msg.member;
+              if (msg.customID === this.hit) {
+                msg.defer();
+                if (btn.id !== gameData[player].member.id)
+                  return msg.reply(
+                    gameData[player].member + "please wait for enemy's move...",
+                    true
+                  );
+                msg.deleteReply();
+                let randNumb = Math.floor(Math.random() * (60 - 12) + 12);
+                const tempPlayer = (player + 1) % 2;
+                if (gameData[tempPlayer].lastAttack === "heal")
+                  randNumb = Math.floor(randNumb / 2);
+                gameData[tempPlayer].health -= randNumb;
+                gameData[player].lastAttack = "attack";
+                if (gameData[player].member.id == this.message.author.id) {
+                  DaBaby.edit(
+                    `(hitted) ${gameData[player].member.username} — ${gameData[player].health} HP                     VS                     **${gameData[tempPlayer].member.username}** — ${gameData[tempPlayer].health}`,
+                    {
+                      components: [{ type: 1, components: [btn1, btn2, btn3] }],
+                    }
+                  );
+                } else if (gameData[player].member.id == this.opponent.id) {
+                  DaBaby.edit(
+                    `**${gameData[tempPlayer].member.username}** — ${gameData[tempPlayer].health} HP                              VS                              **${gameData[player].member.username}** — ${gameData[player].health} (hitted)`,
+                    {
+                      components: [{ type: 1, components: [btn1, btn2, btn3] }],
+                    }
+                  );
+                }
+                if (player === 1) {
+                  player = 0;
+                } else {
+                  player = +1;
+                }
+              } else if (msg.customID === this.heal) {
+                msg.defer();
+                if (btn.id !== gameData[player].member.id)
+                  return msg.reply(
+                    gameData[player].member + "please wait for enemy's move...",
+                    true
+                  );
+                msg.deleteReply();
 
-            if (msg.customID === this.hit) {
-              msg.defer();
-              if (btn.id !== gameData[player].member.id)
-                return msg.reply(
-                  gameData[player].member + "please wait for enemy's move...",
-                  true
-                );
-              msg.deleteReply();
-              let randNumb = Math.floor(Math.random() * (60 - 12) + 12);
-              const tempPlayer = (player + 1) % 2;
-              if (gameData[tempPlayer].lastAttack === "heal")
-                randNumb = Math.floor(randNumb / 2);
-              gameData[tempPlayer].health -= randNumb;
-              gameData[player].lastAttack = "attack";
-              if (gameData[player].member.id == this.message.author.id) {
+                let randrNumb = Math.floor(Math.random() * (20 - 12) + 12);
+                const tempPlayer = (player + 1) % 2;
+                if (gameData[tempPlayer].lastAttack === "heal")
+                  randrNumb = Math.floor(randrNumb / 2);
+                gameData[player].health += randrNumb;
+                gameData[player].lastAttack = "attack";
+                if (gameData[player].member.id == this.message.author.id) {
+                  DaBaby.edit(
+                    `(healed) ${gameData[player].member.username} — ${gameData[player].health} HP                     VS                     **${gameData[tempPlayer].member.username}** — ${gameData[tempPlayer].health}`,
+                    {
+                      components: [{ type: 1, components: [btn1, btn2, btn3] }],
+                    }
+                  );
+                } else if (gameData[player].member.id == this.opponent.id) {
+                  DaBaby.edit(
+                    `**${gameData[tempPlayer].member.username}** — ${gameData[tempPlayer].health} HP                              VS                              **${gameData[player].member.username}** — ${gameData[player].health} (healed)`,
+                    {
+                      components: [{ type: 1, components: [btn1, btn2, btn3] }],
+                    }
+                  );
+                }
+                if (player === 1) {
+                  player = 0;
+                } else {
+                  player = +1;
+                }
+              } else if (msg.customID === this.cancel) {
+                msg.defer();
+                if (btn.id !== gameData[player].member.id)
+                  return msg.reply(
+                    gameData[player].member + "please wait for enemy's move...",
+                    true
+                  );
+                msg.deleteReply();
+                btn1 = new MessageButton()
+                  .setLabel(this.hitButtonText)
+                  .setCustomID(this.hit)
+                  .setStyle(this.hitButtonColor)
+                  .setDisabled();
+                btn2 = new MessageButton()
+                  .setLabel(this.healButtonText)
+                  .setCustomID(this.heal)
+                  .setStyle(this.healButtonColor)
+                  .setDisabled();
+                btn3 = new MessageButton()
+                  .setLabel(this.cancelButtonText)
+                  .setCustomID(this.cancel)
+                  .setStyle(this.cancelButtonColor)
+                  .setDisabled();
+                gameCollector.stop();
+                DaBaby.edit(`Game stopped.`, {
+                  components: [{ type: 1, components: [btn1, btn2, btn3] }],
+                });
+              }
+
+              if (checkHealth(player)) {
+                msg.defer();
+                btn1 = new MessageButton()
+                  .setLabel(this.hitButtonText)
+                  .setCustomID(this.hit)
+                  .setStyle(this.hitButtonColor)
+                  .setDisabled();
+                btn2 = new MessageButton()
+                  .setLabel(this.healButtonText)
+                  .setCustomID(this.heal)
+                  .setStyle(this.healButtonColor)
+                  .setDisabled();
+                btn3 = new MessageButton()
+                  .setLabel(this.cancelButtonText)
+                  .setCustomID(this.cancel)
+                  .setStyle(this.cancelButtonColor)
+                  .setDisabled();
+                gameCollector.stop();
+                const tempPlayer = (player + 1) % 2;
                 DaBaby.edit(
-                  `(hitted) ${gameData[player].member.username} — ${gameData[player].health} HP                     VS                     **${gameData[tempPlayer].member.username}** — ${gameData[tempPlayer].health}`,
-                  { components: [{ type: 1, components: [btn1, btn2, btn3] }] }
-                );
-              } else if (gameData[player].member.id == this.opponent.id) {
-                DaBaby.edit(
-                  `**${gameData[tempPlayer].member.username}** — ${gameData[tempPlayer].health} HP                              VS                              **${gameData[player].member.username}** — ${gameData[player].health} (hitted)`,
-                  { components: [{ type: 1, components: [btn1, btn2, btn3] }] }
+                  `🏆 ${gameData[tempPlayer].member} has won the game!`,
+                  {
+                    components: [{ type: 1, components: [btn1, btn2, btn3] }],
+                  }
                 );
               }
-              if (player === 1) {
-                player = 0;
-              } else {
-                player = +1;
-              }
-            } else if (msg.customID === this.heal) {
-              msg.defer();
-              if (btn.id !== gameData[player].member.id)
-                return msg.reply(
-                  gameData[player].member + "please wait for enemy's move...",
-                  true
-                );
-              msg.deleteReply();
-
-              let randrNumb = Math.floor(Math.random() * (20 - 12) + 12);
-              const tempPlayer = (player + 1) % 2;
-              if (gameData[tempPlayer].lastAttack === "heal")
-                randrNumb = Math.floor(randrNumb / 2);
-              gameData[player].health += randrNumb;
-              gameData[player].lastAttack = "attack";
-              if (gameData[player].member.id == this.message.author.id) {
-                DaBaby.edit(
-                  `(healed) ${gameData[player].member.username} — ${gameData[player].health} HP                     VS                     **${gameData[tempPlayer].member.username}** — ${gameData[tempPlayer].health}`,
-                  { components: [{ type: 1, components: [btn1, btn2, btn3] }] }
-                );
-              } else if (gameData[player].member.id == this.opponent.id) {
-                DaBaby.edit(
-                  `**${gameData[tempPlayer].member.username}** — ${gameData[tempPlayer].health} HP                              VS                              **${gameData[player].member.username}** — ${gameData[player].health} (healed)`,
-                  { components: [{ type: 1, components: [btn1, btn2, btn3] }] }
-                );
-              }
-              if (player === 1) {
-                player = 0;
-              } else {
-                player = +1;
-              }
-            } else if (msg.customID === this.cancel) {
-              msg.defer();
-              if (btn.id !== gameData[player].member.id)
-                return msg.reply(
-                  gameData[player].member + "please wait for enemy's move...",
-                  true
-                );
-              msg.deleteReply();
-              btn1 = new MessageButton()
-                .setLabel(this.hitButtonText)
-                .setCustomID(this.hit)
-                .setStyle(this.hitButtonColor)
-                .setDisabled();
-              btn2 = new MessageButton()
-                .setLabel(this.healButtonText)
-                .setCustomID(this.heal)
-                .setStyle(this.healButtonColor)
-                .setDisabled();
-              btn3 = new MessageButton()
-                .setLabel(this.cancelButtonText)
-                .setCustomID(this.cancel)
-                .setStyle(this.cancelButtonColor)
-                .setDisabled();
-              gameCollector.stop();
-              DaBaby.edit(`Game stopped.`, {
-                components: [{ type: 1, components: [btn1, btn2, btn3] }],
-              });
-            }
-
-            if (checkHealth(player)) {
+            } else {
               msg.defer();
               btn1 = new MessageButton()
                 .setLabel(this.hitButtonText)
@@ -241,34 +275,14 @@ class fight {
               const tempPlayer = (player + 1) % 2;
               DaBaby.edit(
                 `🏆 ${gameData[tempPlayer].member} has won the game!`,
-                { components: [{ type: 1, components: [btn1, btn2, btn3] }] }
+                {
+                  components: [{ type: 1, components: [btn1, btn2, btn3] }],
+                }
               );
             }
-          } else {
-            msg.defer();
-            btn1 = new MessageButton()
-              .setLabel(this.hitButtonText)
-              .setCustomID(this.hit)
-              .setStyle(this.hitButtonColor)
-              .setDisabled();
-            btn2 = new MessageButton()
-              .setLabel(this.healButtonText)
-              .setCustomID(this.heal)
-              .setStyle(this.healButtonColor)
-              .setDisabled();
-            btn3 = new MessageButton()
-              .setLabel(this.cancelButtonText)
-              .setCustomID(this.cancel)
-              .setStyle(this.cancelButtonColor)
-              .setDisabled();
-            gameCollector.stop();
-            const tempPlayer = (player + 1) % 2;
-            DaBaby.edit(`🏆 ${gameData[tempPlayer].member} has won the game!`, {
-              components: [{ type: 1, components: [btn1, btn2, btn3] }],
-            });
           }
-        }
-      });
+        });
+      } catch (err) {}
     }
   }
 }
