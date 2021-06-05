@@ -1,49 +1,5 @@
 class fight {
   constructor(options) {
-    if (!options.acceptMessage)
-      throw new Error("Weky Error: Missing argument acceptMessage");
-    if (typeof options.acceptMessage !== "string")
-      throw new Error("Weky Error: Accept message must be a string");
-
-    if (!options.hitButtonText)
-      throw new TypeError("Weky Error: Missing argument hitButtonText");
-    if (typeof options.hitButtonText !== "string")
-      throw new Error("Weky Error: hitButtonText must be in a string");
-
-    if (!options.hitButtonColor)
-      throw new TypeError("Weky Error: Missing argument hitButtonColor");
-    if (typeof options.hitButtonColor !== "string")
-      throw new Error("Weky Error: hitButtonColor must be in a string");
-
-    if (!options.healButtonText)
-      throw new TypeError("Weky Error: Missing argument healButtonText");
-    if (typeof options.healButtonText !== "string")
-      throw new Error("Weky Error: healButtonText must be in a string");
-
-    if (!options.healButtonColor)
-      throw new TypeError("Weky Error: Missing argument healButtonColor");
-    if (typeof options.healButtonColor !== "string")
-      throw new Error("Weky Error: healButtonColor must be in a string");
-
-    if (!options.cancelButtonText)
-      throw new TypeError("Weky Error: Missing argument cancelButtonText");
-    if (typeof options.cancelButtonText !== "string")
-      throw new Error("Weky Error: cancelButtonText must be in a string");
-
-    if (!options.cancelButtonColor)
-      throw new TypeError("Weky Error: Missing argument cancelButtonColor");
-    if (typeof options.cancelButtonColor !== "string")
-      throw new Error("Weky Error: cancelButtonColor must be in a string");
-
-    if (!options.message)
-      throw new Error("Weky Error: Missing argument message");
-
-    if (!options.client) throw new Error("Weky Error: Missing argument client");
-
-    if (!options.challenger) throw new Error("Missing argument: challenger");
-
-    if (!options.opponent)
-      throw new Error("Weky Error: Missing argument opponent");
     function getRandomString(length) {
       var randomChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
       var result = "";
@@ -144,41 +100,44 @@ class fight {
         if (gameData[member].health <= 0) return true;
         else return false;
       };
-      const { MessageButton } = require("discord-buttons");
+      const MessageButton = require("../../extenders/MessageButton");
       let btn1 = new MessageButton()
         .setLabel(this.hitButtonText)
-        .setID(this.hit)
+        .setCustomID(this.hit)
         .setStyle(this.hitButtonColor);
       let btn2 = new MessageButton()
         .setLabel(this.healButtonText)
-        .setID(this.heal)
+        .setCustomID(this.heal)
         .setStyle(this.healButtonColor);
       let btn3 = new MessageButton()
         .setLabel(this.cancelButtonText)
-        .setID(this.cancel)
+        .setCustomID(this.cancel)
         .setStyle(this.cancelButtonColor);
 
       let DaBaby = await this.message.channel.send(
         `${challenger}, you go first`,
-        { buttons: [btn1, btn2, btn3] }
+        { components: [{ type: 1, components: [btn1, btn2, btn3] }] }
       );
       const gameFilter = (m) =>
-        m.clicker.user.id === challenger.id ||
-        m.clicker.user.id === oppenent.id;
-      const gameCollector = DaBaby.createButtonCollector(gameFilter);
+        m.user.id === challenger.id || m.user.id === oppenent.id;
+      const gameCollector = DaBaby.createMessageComponentInteractionCollector(
+        gameFilter,
+        { time: 30000 }
+      );
 
       gameCollector.on("collect", (msg) => {
-        if (msg.clicker.member.id === gameData[player].member.id) {
+        if (msg.member.id === gameData[player].member.id) {
           if (!checkHealth(player)) {
-            const btn = msg.clicker.member;
+            const btn = msg.member;
 
-            if (msg.id === this.hit) {
+            if (msg.customID === this.hit) {
               msg.defer();
               if (btn.id !== gameData[player].member.id)
-                return msg.reply.send(
+                return msg.reply(
                   gameData[player].member + "please wait for enemy's move...",
                   true
                 );
+              msg.deleteReply();
               let randNumb = Math.floor(Math.random() * (60 - 12) + 12);
               const tempPlayer = (player + 1) % 2;
               if (gameData[tempPlayer].lastAttack === "heal")
@@ -188,22 +147,27 @@ class fight {
               if (gameData[player].member.id == this.message.author.id) {
                 DaBaby.edit(
                   `(hitted) ${gameData[player].member.username} — ${gameData[player].health} HP                     VS                     **${gameData[tempPlayer].member.username}** — ${gameData[tempPlayer].health}`,
-                  { buttons: [btn1, btn2, btn3] }
+                  { components: [{ type: 1, components: [btn1, btn2, btn3] }] }
                 );
               } else if (gameData[player].member.id == this.opponent.id) {
                 DaBaby.edit(
                   `**${gameData[tempPlayer].member.username}** — ${gameData[tempPlayer].health} HP                              VS                              **${gameData[player].member.username}** — ${gameData[player].health} (hitted)`,
-                  { buttons: [btn1, btn2, btn3] }
+                  { components: [{ type: 1, components: [btn1, btn2, btn3] }] }
                 );
               }
-              player = (player + 1) % 2;
-            } else if (msg.id === this.heal) {
+              if (player === 1) {
+                player = 0;
+              } else {
+                player = +1;
+              }
+            } else if (msg.customID === this.heal) {
               msg.defer();
               if (btn.id !== gameData[player].member.id)
-                return msg.reply.send(
+                return msg.reply(
                   gameData[player].member + "please wait for enemy's move...",
                   true
                 );
+              msg.deleteReply();
 
               let randrNumb = Math.floor(Math.random() * (20 - 12) + 12);
               const tempPlayer = (player + 1) % 2;
@@ -214,86 +178,93 @@ class fight {
               if (gameData[player].member.id == this.message.author.id) {
                 DaBaby.edit(
                   `(healed) ${gameData[player].member.username} — ${gameData[player].health} HP                     VS                     **${gameData[tempPlayer].member.username}** — ${gameData[tempPlayer].health}`,
-                  { buttons: [btn1, btn2, btn3] }
+                  { components: [{ type: 1, components: [btn1, btn2, btn3] }] }
                 );
               } else if (gameData[player].member.id == this.opponent.id) {
                 DaBaby.edit(
                   `**${gameData[tempPlayer].member.username}** — ${gameData[tempPlayer].health} HP                              VS                              **${gameData[player].member.username}** — ${gameData[player].health} (healed)`,
-                  { buttons: [btn1, btn2, btn3] }
+                  { components: [{ type: 1, components: [btn1, btn2, btn3] }] }
                 );
               }
-              player = (player + 1) % 2;
-            } else if (msg.id === this.cancel) {
+              if (player === 1) {
+                player = 0;
+              } else {
+                player = +1;
+              }
+            } else if (msg.customID === this.cancel) {
               msg.defer();
               if (btn.id !== gameData[player].member.id)
-                return msg.reply.send(
+                return msg.reply(
                   gameData[player].member + "please wait for enemy's move...",
                   true
                 );
+              msg.deleteReply();
               btn1 = new MessageButton()
                 .setLabel(this.hitButtonText)
-                .setID(this.hit)
+                .setCustomID(this.hit)
                 .setStyle(this.hitButtonColor)
                 .setDisabled();
               btn2 = new MessageButton()
                 .setLabel(this.healButtonText)
-                .setID(this.heal)
+                .setCustomID(this.heal)
                 .setStyle(this.healButtonColor)
                 .setDisabled();
               btn3 = new MessageButton()
                 .setLabel(this.cancelButtonText)
-                .setID(this.cancel)
+                .setCustomID(this.cancel)
                 .setStyle(this.cancelButtonColor)
                 .setDisabled();
               gameCollector.stop();
-              DaBaby.edit(`Game stopped.`, { buttons: [btn1, btn2, btn3] });
+              DaBaby.edit(`Game stopped.`, {
+                components: [{ type: 1, components: [btn1, btn2, btn3] }],
+              });
             }
 
             if (checkHealth(player)) {
               msg.defer();
               btn1 = new MessageButton()
                 .setLabel(this.hitButtonText)
-                .setID(this.hit)
+                .setCustomID(this.hit)
                 .setStyle(this.hitButtonColor)
                 .setDisabled();
               btn2 = new MessageButton()
                 .setLabel(this.healButtonText)
-                .setID(this.heal)
+                .setCustomID(this.heal)
                 .setStyle(this.healButtonColor)
                 .setDisabled();
               btn3 = new MessageButton()
                 .setLabel(this.cancelButtonText)
-                .setID(this.cancel)
+                .setCustomID(this.cancel)
                 .setStyle(this.cancelButtonColor)
                 .setDisabled();
               gameCollector.stop();
               const tempPlayer = (player + 1) % 2;
               DaBaby.edit(
                 `🏆 ${gameData[tempPlayer].member} has won the game!`,
-                { buttons: [btn1, btn2, btn3] }
+                { components: [{ type: 1, components: [btn1, btn2, btn3] }] }
               );
             }
           } else {
             msg.defer();
             btn1 = new MessageButton()
               .setLabel(this.hitButtonText)
-              .setID(this.hit)
+              .setCustomID(this.hit)
               .setStyle(this.hitButtonColor)
               .setDisabled();
             btn2 = new MessageButton()
               .setLabel(this.healButtonText)
-              .setID(this.heal)
+              .setCustomID(this.heal)
               .setStyle(this.healButtonColor)
               .setDisabled();
             btn3 = new MessageButton()
               .setLabel(this.cancelButtonText)
-              .setID(this.cancel)
+              .setCustomID(this.cancel)
               .setStyle(this.cancelButtonColor)
               .setDisabled();
             gameCollector.stop();
             const tempPlayer = (player + 1) % 2;
             DaBaby.edit(`🏆 ${gameData[tempPlayer].member} has won the game!`, {
-              buttons: [btn1, btn2, btn3],
+              components: [{ type: 1, components: [btn1, btn2, btn3] }],
             });
           }
         }

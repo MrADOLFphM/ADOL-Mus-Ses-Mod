@@ -1,7 +1,6 @@
 const Levels = require("../../modules/discord-xp");
 const { Canvas } = require("canvas-constructor");
 const Discord = require("discord.js");
-const fsn = require("fs");
 const timer = new Discord.Collection();
 class msgFuncs {
   constructor(client) {
@@ -80,39 +79,14 @@ class msgFuncs {
               message.author.id,
               message.guild.id
             );
-            const plate = await fsn.readFile(
-              "./src/assets/images/level_up.png",
-              (err, data) => {
-                const username = message.author.username.substr(0, 30);
-                const body = message.author.displayAvatarURL({ format: "png" });
-                const e = new Canvas(640, 360)
-                  .addImage(data, 0, 0, 640, 360)
-                  .setTextFont("23px Srisakdi")
-                  .setTextAlign("center")
-                  .addText(username, 350, 60)
-                  .setTextFont("26px Srisakdi")
-                  .setTextAlign("center")
-                  .addText(user.level, 456, 201)
-                  .setTextFont("26px Srisakdi")
-                  .setTextAlign("center")
-                  .addText(user.xp + "/" + user.level * 400, 426, 271)
-                  .addImage(body, 58, 80, 200, 200, {
-                    type: "round",
-                    radius: 100,
-                  })
-                  .resetTransformation()
-                  .toBuffer();
-
-                message.channel.send({
-                  files: [
-                    {
-                      attachment: e,
-                      name: "level_up.png",
-                    },
-                  ],
-                });
-              }
-            );
+            const body = message.author.displayAvatarURL({ format: "png" });
+            const embed = new MessageEmbed()
+              .setTitle("Level up!")
+              .setDescription(`You have leveled up to ${user.level}! :tada:`)
+              .setThumbnail(body)
+              .setTimestamp();
+            const msg = await message.channel.send(embed);
+            setTimeout(() => msg.delete(), 6000);
           }
         }
       }
