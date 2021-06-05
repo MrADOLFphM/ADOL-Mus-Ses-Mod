@@ -26,7 +26,7 @@ module.exports = class Utils {
     const embed = new MessageEmbed()
       .setTitle("An error occurred")
       .addField("Name", name, true)
-      .addField("Code", `${code}`, true)
+      .addField("Code", `: ${code}`, true)
       .addField("httpStatus", httpStatus, true)
       .addField("Command executed", content, true)
       .setDescription(`\`\`\`${stack}\`\`\` `)
