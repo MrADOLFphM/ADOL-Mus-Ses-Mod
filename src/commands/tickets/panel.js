@@ -1,11 +1,14 @@
 const { MessageEmbed } = require("discord.js");
 const panelModel = require("../../models/config");
+const configModel = require("../../models/ticketcf");
 module.exports = {
   name: "panel",
   description: "Get the pannel!",
   cooldown: 3,
   category: "tickets",
   run: async (client, message, args) => {
+    const modd = await configModel.findOne({ guild: message.guild.id });
+    if (!modd) return message.send("The ticket system is not setup!");
     const panel = await panelModel.findOne({
       GuildID: message.guild.id,
     });

@@ -1,11 +1,14 @@
 const guildModel = require("../../models/config");
 const ticketModel = require("../../models/ticket");
+const configModel = require("../../models/ticketcf");
 module.exports = {
   name: "close",
   description: "closes a ticket!",
   cooldown: 3,
   category: "tickets",
   run: async (client, message) => {
+    const modd = await configModel.findOne({ guild: message.guild.id });
+    if (!modd) return message.send("The ticket system is not setup!");
     const ticketDoc = await ticketModel.findOne({
       guild: message.guild.id,
       channelID: message.channel.id,
@@ -21,10 +24,6 @@ module.exports = {
       const channel = await message.guild.channels.cache.get(
         ticketDoc.channelID
       );
-      if (message.channel.id !== channel.id)
-        return message.channel.send(
-          "Please only use this command in a ticket!"
-        );
       channel.updateOverwrite(message.client.users.cache.get(ticketDoc.owner), {
         SEND_MESSAGES: false,
         VIEW_CHANNEL: false,

@@ -1,10 +1,11 @@
 const createTicket = require("../../utils/ticket");
 const guildModel = require("../../models/config");
-const { MessageEmbed, MessageAttachment } = require("discord.js");
+const { MessageEmbed } = require("discord.js");
 const fetchAll = require("discord-fetch-all");
 const ticketModel = require("../../models/ticket");
-const hastebin = require("hastebin.js");
-const haste = new hastebin({ url: "https://hastebin.com" });
+const PasteClient = require("pastebin-api").default;
+const config = require("../../../config.json");
+const pclient = new PasteClient(config.paste);
 module.exports = {
   name: "messageReactionAdd",
   async execute(client, reaction, user) {
@@ -20,9 +21,8 @@ module.exports = {
       guild: reaction.message.guild.id,
       channelID: message.channel.id,
     });
-    const panelmsg = guildDoc?.msg;
-    if (!panelmsg) return;
-    if (reaction.message.id === panelmsg) {
+
+    if (reaction.message.id === guildDoc?.msg) {
       reaction.users.remove(user);
       createTicket(message, user, guildDoc);
     }
@@ -36,10 +36,18 @@ module.exports = {
         SEND_MESSAGES: false,
         VIEW_CHANNEL: false,
       });
+      await client.emit(
+        "ticketLog",
+        "closed",
+        message.channel,
+        ticketDoc.owner,
+        message.guild.id
+      );
       const msg = await message.channel.send({
         embed: {
           color: "RED",
           description: "🔓 Reopen Ticket \n⛔ Close Ticket \n📰 Transcript!",
+          footer: "Ticket Bot | made by syd's cloud",
         },
       });
       await msg.react("🔓");
@@ -53,12 +61,16 @@ module.exports = {
       reaction.message.id === ticketDoc?.msg &&
       reaction.emoji.name === "🔓"
     ) {
-      message.channel.updateOverwrite(
-        client.users.cache.get(ticketDoc.userID),
-        {
-          SEND_MESSAGES: true,
-          VIEW_CHANNEL: true,
-        }
+      message.channel.updateOverwrite(client.users.cache.get(ticketDoc.owner), {
+        SEND_MESSAGES: true,
+        VIEW_CHANNEL: true,
+      });
+      await client.emit(
+        "ticketLog",
+        "re-opened",
+        message.channel,
+        ticketDoc.owner,
+        message.guild.id
       );
 
       const msg = await message.channel.messages.fetch(ticketDoc.msg);
@@ -69,7 +81,6 @@ module.exports = {
       );
       const owner = await message.guild.members.cache.get(ticketDoc.owner);
       const msg3 = await message.channel.send(e);
-      owner.send("Your ticket has been re-opened!");
       ticketDoc.msg = msg3.id;
       ticketDoc.ticketStatus = true;
 
@@ -86,8 +97,18 @@ module.exports = {
       reaction.message.id === ticketDoc?.msg &&
       reaction.emoji.name == "⛔"
     ) {
-      message.channel.delete();
-      await ticketDoc.deleteOne();
+      await client.emit(
+        "ticketLog",
+        "deleted",
+        message.channel,
+        ticketDoc.owner,
+        message.guild.id
+      );
+
+      setTimeout(async () => {
+        message.channel.delete();
+        await ticketDoc.deleteOne();
+      }, 5 * 1000);
     } else if (
       reaction.message.id === ticketDoc?.msg &&
       reaction.emoji.name == "📰"
@@ -101,9 +122,14 @@ module.exports = {
             m.embeds.length ? m.embeds[0].description : m.content
           }`
       );
-      haste
-        .post(content.join("\n"), "js")
-        .then((url) => message.channel.send(url));
+      const url = await pclient.createPaste({
+        code: content.join("\n"),
+        expireDate: "1W",
+        format: "javascript",
+        name: "transcript.js",
+        publicity: 1,
+      });
+      message.channel.send("Your transcript: " + url);
     }
   },
 };

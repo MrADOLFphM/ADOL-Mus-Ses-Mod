@@ -1,5 +1,5 @@
 # Andoi's Command List
- Total commands: 225 
+ Total commands: 227 
 > ❤ Command list generated [here](https://github.com/Tovade/Andoi/blob/main/scripts/updateDocs.js)
 
             
@@ -294,7 +294,7 @@
 
             
 
-### tickets [6] 
+### tickets [8] 
 | Name | Description | 
 | ---- | ----------- | 
 | [remove](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#remove) | Remove an user from the ticket! | 
@@ -302,6 +302,8 @@
 | [close](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#close) | closes a ticket! | 
 | [new](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#new) | makes a ticket channel! | 
 | [panel](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#panel) | Get the pannel! | 
+| [reason](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#reason) | Change the topic of the ticket! | 
+| [ticketsetup](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#ticketsetup) | Set's up the ticket system. | 
 | [transcript](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#transcript) | get a transcript of a ticket! | 
 
 
@@ -3134,7 +3136,7 @@ Usage: N/A
 Aliases: N/A
 
 [Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
-## tickets | 6 Commands
+## tickets | 8 Commands
 
 ### Remove
 Command: remove
@@ -3198,6 +3200,34 @@ Command: panel
 Category: tickets
 
 Description: Get the pannel!
+
+Usage: N/A
+
+Aliases: N/A
+
+[Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
+
+
+### Reason
+Command: reason
+
+Category: tickets
+
+Description: Change the topic of the ticket!
+
+Usage: N/A
+
+Aliases: N/A
+
+[Back to top](https://github.com/Tovade/Andoi/blob/master/docs/commands.md#Andoi-command-list)
+
+
+### Ticketsetup
+Command: ticketsetup
+
+Category: tickets
+
+Description: Set's up the ticket system.
 
 Usage: N/A
 
