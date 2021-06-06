@@ -3,6 +3,7 @@ const { MessageEmbed } = require("discord.js");
 const fetchAll = require("discord-fetch-all");
 const PasteClient = require("pastebin-api").default;
 const config = require("../../../config.json");
+const confModel = require("../../models/ticketcf");
 const pclient = new PasteClient(config.paste);
 module.exports = {
   name: "ticketLog",
@@ -11,7 +12,10 @@ module.exports = {
     const guildDoc = await guildModel.findOne({
       GuildID: guildD,
     });
-    if (!guildDoc?.log) return;
+    const conf = await confModel.findOne({
+      guild: guildD,
+    });
+    if (!conf?.ticketlogs) return;
     const embed = new MessageEmbed()
       .setTitle("Ticket logs!")
       .setDescription(
@@ -38,6 +42,6 @@ module.exports = {
       });
       embed.addField("Transcript:", `${url} (this link exspires in 1 week)`);
     }
-    client.channels.cache.get(guildDoc.log).send(embed);
+    client.channels.cache.get(conf.ticketlogs).send(embed);
   },
 };
