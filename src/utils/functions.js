@@ -23,15 +23,14 @@ module.exports = class Utils {
    */
   sendErrorLog(error, type, msgContent) {
     const name = error.name || "N/A";
-    const code = error.code.toString() || "N/A";
+    const code = String(error.code) || "N/A";
     const httpStatus = error.httpStatus || "N/A";
     const stack = error.stack || "N/A";
     const content = msgContent || "N/A";
-
     const embed = new MessageEmbed()
       .setTitle("An error occurred")
       .addField("Name", name, true)
-      .addField("Code", code, true)
+      .addField("Code", `\n${code}`, true)
       .addField("httpStatus", httpStatus, true)
       .addField("Command executed", content, true)
       .setDescription(`\`\`\`${stack}\`\`\` `)
