@@ -48,9 +48,9 @@ module.exports = {
         });
     }
 
-    const ignoredChannels = config.ignored_channels;
+    const ignoredChannels = config?.ignored_channels;
     if (ignoredChannels.includes(message.channel.id)) return;
-    const prefix = config.prefix;
+    const prefix = config?.prefix;
     if (
       message.content.startsWith("@someone") &&
       message.guild &&
