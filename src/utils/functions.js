@@ -16,9 +16,14 @@ module.exports = class Utils {
   formatDuration(duration) {
     return moment.duration(duration).format("hh:mm:ss", { stopTrim: "m" });
   }
+  /**
+   * @param {Object} error
+   * @param {String} type
+   * @param {String} msgContent
+   */
   sendErrorLog(error, type, msgContent) {
     const name = error.name || "N/A";
-    const code = error.code || "N/A";
+    const code = error.code.toString() || "N/A";
     const httpStatus = error.httpStatus || "N/A";
     const stack = error.stack || "N/A";
     const content = msgContent || "N/A";
@@ -26,7 +31,7 @@ module.exports = class Utils {
     const embed = new MessageEmbed()
       .setTitle("An error occurred")
       .addField("Name", name, true)
-      .addField("Code", `${code}`, true)
+      .addField("Code", code, true)
       .addField("httpStatus", httpStatus, true)
       .addField("Command executed", content, true)
       .setDescription(`\`\`\`${stack}\`\`\` `)

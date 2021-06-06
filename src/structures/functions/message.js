@@ -80,7 +80,7 @@ class msgFuncs {
               message.guild.id
             );
             const body = message.author.displayAvatarURL({ format: "png" });
-            const embed = new MessageEmbed()
+            const embed = new Discord.MessageEmbed()
               .setTitle("Level up!")
               .setDescription(`You have leveled up to ${user.level}! :tada:`)
               .setThumbnail(body)
