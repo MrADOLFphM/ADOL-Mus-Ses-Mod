@@ -4,12 +4,15 @@ const fetchAll = require("discord-fetch-all");
 const hastebin = require("hastebin.js");
 const haste = new hastebin({ url: hastebin.com });
 const { MessageAttachment } = require("discord.js");
+const configModel = require("../../models/ticketcf");
 module.exports = {
   name: "transcript",
   description: "get a transcript of a ticket!",
   cooldown: 3,
   category: "tickets",
   run: async (client, message, args) => {
+    const modd = await configModel.findOne({ guild: message.guild.id });
+    if (!modd) return message.send("The ticket system is not setup!");
     const ticketDoc = await ticketModel.findOne({ guild: message.guild.id });
     const guildDoc = await guildModel.findOne({ GuildID: message.guild.id });
     const e = message.member;

@@ -124,16 +124,15 @@ module.exports = class AndoiClient extends Client {
   /**
    * @returns {Channel|null}
    * @param {string} search
-   * @param {Guild} guild
    */
-  resolveChannel(search, guild) {
+  resolveChannel(search) {
     if (!search) return null;
     let channel = null;
-    channel = guild.channels.cache.get(
+    channel = this.channels.cache.get(
       search.replace("<", "").replace("#", "").replace(">", "")
     );
-    if (!channel) channel = guild.channels.cache.find((c) => c.name === search);
-    if (!channel) channel = guild.channels.cache.get(search);
+    if (!channel) channel = this.channels.cache.find((c) => c.name === search);
+    if (!channel) channel = this.channels.cache.get(search);
     return channel;
   }
   getEmoji(name) {

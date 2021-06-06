@@ -7,6 +7,7 @@ const ticketModel = mongoose.model(
     owner: String,
     channelID: String,
     status: { type: Boolean, default: true },
+    reason: String,
   })
 );
 module.exports = ticketModel;

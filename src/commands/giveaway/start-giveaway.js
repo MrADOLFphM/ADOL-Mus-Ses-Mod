@@ -82,9 +82,8 @@ module.exports = {
       // Messages
       messages: {
         giveaway:
-          (everyoneMention ? "@everyone\n\n" : "") + "🎉🎉 **GIVEAWAY** 🎉🎉",
-        giveawayEnded:
-          (everyoneMention ? "@everyone\n\n" : "") + "**GIVEAWAY ENDED**",
+          "<:bgift:851096270038761482> **GIVEAWAY** <:bgift:851096270038761482>",
+        giveawayEnded: "**GIVEAWAY ENDED**",
         timeRemaining: "Time remaining: **{duration}**!",
         inviteToParticipate: "React with 🎉 to participate!",
         winMessage: "Congratulations, {winners}! You won **{prize}**!",
