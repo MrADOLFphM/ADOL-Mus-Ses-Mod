@@ -4,13 +4,13 @@ const storeModel = require("../../models/store");
 module.exports = {
   name: "guildCreate",
   async execute(client, guild) {
-    const owner = guild.fetchOwner();
+    const owner = await guild.fetchOwner();
     const LogBed = new MessageEmbed()
       .setTitle(`New server ${guild.name} here is some info!`)
-      .addField("Owner", owner.tag)
-      .addField("MemberCount", guild.memberCount)
-      .addField("Name", guild.name)
-      .addField("ID", guild.id)
+      .addField("Owner", ` ${owner.tag}`)
+      .addField("MemberCount", `   ${guild.memberCount}  `)
+      .addField("Name", `${guild.name}`)
+      .addField("ID", `${guild.id}`)
       .setColor("RED");
     const w = await client.guilds.cache
       .get("740295580886106233")
