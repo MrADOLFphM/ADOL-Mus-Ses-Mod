@@ -11,14 +11,14 @@ module.exports = {
       .setColor("BLUE")
       .setTitle(`Channel Information for ${channel.name}`)
       .setThumbnail(message.guild.iconURL())
-      .addField("**NSFW**", nsfw, true)
-      .addField("**Channel ID**", channel.id, true)
-      .addField("**Channel Type**", channel.type)
+      .addField("**NSFW**", ` ${nsfw}`, true)
+      .addField("**Channel ID**", ` ${channel.id}`, true)
+      .addField("**Channel Type**", ` ${channel.type}`)
       .addField(
         "**Channel Description**",
         `${channel.topic || "No Description"}`
       )
-      .addField("**Channel Created At**", channel.createdAt);
+      .addField("**Channel Created At**", `   ${channel.createdAt}`);
 
     message.channel.send(embed);
   },

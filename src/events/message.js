@@ -261,7 +261,7 @@ module.exports = {
 
           return message.channel.send(embed);
         }
-        command.run(client, message, args, ops, emo);
+        await command.run(client, message, args, ops, emo);
         botDoc.commandssincerestart += 1;
         botDoc.total += 1;
         await botDoc.save();
