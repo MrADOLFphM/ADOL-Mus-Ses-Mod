@@ -45,10 +45,6 @@ module.exports = {
       .toArray()
       .map((flag) => serverflags[flag]);
     if (!userFlags || !userFlags.length) userFlags = "*None*";
-    if (client.config.dblkey.length === 0) {
-      message.channel.send("Your gay");
-      throw new Error("Nothing");
-    }
 
     const avatar =
       member.user.displayAvatarURL({
