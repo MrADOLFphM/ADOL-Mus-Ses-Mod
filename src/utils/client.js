@@ -15,13 +15,19 @@ module.exports = (client) => {
 
     return member;
   };
-  client.findChannel = (message, args) => {
-    return (
+  client.findChannel = (message, args, allowauthor = false) => {
+    let channel;
+
+    channel =
       message.mentions.channels.first() ||
       message.guild.channels.cache.get(args[0]) ||
       message.guild.channels.cache.find((r) => r.name === args[0]) ||
-      message.guild.channels.cache.find((r) => r.name.startsWith(args[0]))
-    );
+      message.guild.channels.cache.find((r) => r.name.startsWith(args[0]));
+
+    if (!channel && allowauthor) {
+      channel = message.channel;
+    }
+    return channel;
   };
   client.findRole = (message, args, allowChannel) => {
     let role;
